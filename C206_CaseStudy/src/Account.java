@@ -43,9 +43,7 @@ public class Account {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
 	public String toString() {
 		return String.format("%-20s %-20s %-20s %-20s", getUserRole(), getContactNumber(), getStudentId(), getUsername());
 	}
-
 }
