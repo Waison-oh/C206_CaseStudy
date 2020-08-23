@@ -81,6 +81,28 @@ public class C206_CaseStudy {
 			}
 		}
 	}
+	private static void editMenu(ArrayList<Menu> menuList) {
+		// TODO Auto-generated method stub
+		
+	}
+	private static Order inputOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	private static void addMenu(ArrayList<Menu> menuList, Menu mu) {
+		// TODO Auto-generated method stub
+		
+	}
+	private static Menu inputMenu() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	private static void setHeader(String header) {
+		// TODO Auto-generated method stub
+		Helper.line(80, "-");
+		System.out.println(header);
+		Helper.line(80, "-");
+	}
 	public static void menu() {
 		C206_CaseStudy.setHeader("SCHOOL LUNCH BOX");
 		System.out.println("1. Display Menu");
