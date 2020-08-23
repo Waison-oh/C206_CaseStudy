@@ -156,6 +156,15 @@ public class C206_CaseStudy {
 		output += getAllMenu(menuList); 
 		System.out.println(output);
 	}
+	
+	public static void createMenu(ArrayList<Menu>menuList) {
+		
+	}
+	
+	public static void deleteMenu(ArrayList<Menu>menuList) {
+		
+	}
+	
 	public static String getAllOrder(ArrayList<Order> orderList) {
 		String output = "";
 		
