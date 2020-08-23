@@ -1,19 +1,17 @@
-import java.awt.MenuItem; //this is quick fix before the menuItem array List is out
 import java.util.ArrayList;
-
 
 public class Menu {
 
 	private String displayName;
 	private int month;
-	private int numberOffers;
+	private int numberOfItems;
 	private ArrayList<MenuItem> items;
 	
-	public Menu(String displayName,int month,int numberOffers, ArrayList<MenuItem> items) {
+	
+	public Menu(String displayName, int month, int numberOfItems, ArrayList<MenuItem> items) {
 		this.displayName = displayName;
 		this.month = month;
-		this.numberOffers = numberOffers;
-		this.items = items;
+		this.numberOfItems = numberOfItems;
 	}
 
 	public String getDisplayName() {
@@ -32,24 +30,23 @@ public class Menu {
 		this.month = month;
 	}
 
-	public int getNumberOffers() {
-		return numberOffers;
+	public int getNumberOfItems() {
+		return numberOfItems;
 	}
 
-	public void setNumberOffers(int numberOffers) {
-		this.numberOffers = numberOffers;
+	public void setNumberOfItems(int numberOfItems) {
+		this.numberOfItems = numberOfItems;
 	}
-
 	public ArrayList<MenuItem> getItems() {
-		return items;
+		return items; 
 	}
-
 	public void setItems(ArrayList<MenuItem> items) {
 		this.items = items;
 	}
+
 	public String toString() {
-		String output = "";
-		return output;
+		return String.format("%-20s %-20d %-20d %-30s", getDisplayName(), 
+				getMonth(), getNumberOfItems(), getItems());
 		
 	}
 	

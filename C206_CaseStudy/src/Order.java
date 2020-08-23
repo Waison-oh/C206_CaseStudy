@@ -1,15 +1,15 @@
-import java.awt.MenuItem;
 import java.util.ArrayList;
 
-
-
 public class Order {
+	
 	private String studentId;
-	private String orderDate;
-	private ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+	private String orderDate; 
+	private ArrayList<MenuItem> items;
 	
 	public Order(String studentId, String orderDate, ArrayList<MenuItem> items) {
-		
+		this.studentId = studentId;
+		this.orderDate = orderDate; 
+		this.items = items;
 	}
 
 	public String getStudentId() {
@@ -36,9 +36,8 @@ public class Order {
 		this.items = items;
 	}
 	
-	public String toString(){
-		String output = "";
-		return output;
+	public String toString() {
+		return String.format("%-20s %-20s %-20s", getStudentId(), 
+				getOrderDate(), getItems());
 	}
-
 }
