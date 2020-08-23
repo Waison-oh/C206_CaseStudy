@@ -13,6 +13,7 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();  
 		ArrayList<Menu>menuList = new ArrayList<Menu>();
+		ArrayList<Order>orderList = new ArrayList<Order>();
 		
 		items.add(new MenuItem("Japanese", "Sushi", true, 3.50)); 
 		
@@ -55,7 +56,7 @@ public class C206_CaseStudy {
 					int itemType = ORDER;
 					C206_CaseStudy.buyOrder(orderList); 
 				}
-				else if (option = OPTION_EDIT) {
+				else if (option == OPTION_EDIT) {
 					C206_CaseStudy.setHeader("EDIT");
 					C206_CaseStudy.setHeader("ITEM TYPES");
 					System.out.println("1. MENU");
@@ -65,7 +66,7 @@ public class C206_CaseStudy {
 					if (itemType == MENU) {
 						C206_CaseStudy.editMenu(menuList);
 					}
-					else if (itemType = ORDER) {
+					else if (itemType == ORDER) {
 						C206_CaseStudy.editOrder(orderList);
 					}
 					else {
@@ -81,14 +82,30 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-	private static void editMenu(ArrayList<Menu> menuList) {
+	private static void editOrder(ArrayList<Order> orderList) {
 		// TODO Auto-generated method stub
 		
 	}
+	private static void addOrder(ArrayList<Order> orderList, Order od) {
+		// TODO Auto-generated method stub
+		
+	}
+	private static void buyOrder(ArrayList<Order> orderList) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	private static Order inputOrder() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//=================================================================================
+	private static void editMenu(ArrayList<Menu> menuList) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	private static void addMenu(ArrayList<Menu> menuList, Menu mu) {
 		// TODO Auto-generated method stub
 		
@@ -103,6 +120,7 @@ public class C206_CaseStudy {
 		System.out.println(header);
 		Helper.line(80, "-");
 	}
+	
 	public static void menu() {
 		C206_CaseStudy.setHeader("SCHOOL LUNCH BOX");
 		System.out.println("1. Display Menu");
