@@ -9,7 +9,7 @@ public class Menu {
 	private int numberOffers;
 	private ArrayList<MenuItem> items;
 	
-	public Menu(String displayName,int month,int numberOffers, ArrayList items) {
+	public Menu(String displayName,int month,int numberOffers, ArrayList<MenuItem> items) {
 		this.displayName = displayName;
 		this.month = month;
 		this.numberOffers = numberOffers;
