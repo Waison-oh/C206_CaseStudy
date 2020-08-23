@@ -13,9 +13,18 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();  
+<<<<<<< HEAD
 		ArrayList<Bill> billList = new ArrayList<Bill>();
+=======
+		ArrayList<Menu>menuList = new ArrayList<Menu>();
+		ArrayList<Order>orderList = new ArrayList<Order>();
+>>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
 		
+<<<<<<< HEAD
 		items.add("Japanese", "Sushi", true, 3.5); 
+=======
+		items.add(new MenuItem("Japanese", "Sushi", true, 3.50)); 
+>>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
 		
 		int option = 0;
 		
@@ -56,7 +65,7 @@ public class C206_CaseStudy {
 					int itemType = ORDER;
 					C206_CaseStudy.buyOrder(orderList); 
 				}
-				else if (option = OPTION_EDIT) {
+				else if (option == OPTION_EDIT) {
 					C206_CaseStudy.setHeader("EDIT");
 					C206_CaseStudy.setHeader("ITEM TYPES");
 					System.out.println("1. MENU");
@@ -66,7 +75,7 @@ public class C206_CaseStudy {
 					if (itemType == MENU) {
 						C206_CaseStudy.editMenu(menuList);
 					}
-					else if (itemType = ORDER) {
+					else if (itemType == ORDER) {
 						C206_CaseStudy.editOrder(orderList);
 					}
 					else {
@@ -111,15 +120,59 @@ public class C206_CaseStudy {
 			} //ASHLEIGH ENDS HERE//
 		}
 	}
+	private static void editOrder(ArrayList<Order> orderList) {
+		// TODO Auto-generated method stub
+		
+	}
+	private static void addOrder(ArrayList<Order> orderList, Order od) {
+		// TODO Auto-generated method stub
+		
+	}
+	private static void buyOrder(ArrayList<Order> orderList) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private static Order inputOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	//=================================================================================
+	private static void editMenu(ArrayList<Menu> menuList) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private static void addMenu(ArrayList<Menu> menuList, Menu mu) {
+		// TODO Auto-generated method stub
+		
+	}
+	private static Menu inputMenu() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	private static void setHeader(String header) {
+		// TODO Auto-generated method stub
+		Helper.line(80, "-");
+		System.out.println(header);
+		Helper.line(80, "-");
+	}
+	
 	public static void menu() {
 		C206_CaseStudy.setHeader("SCHOOL LUNCH BOX");
 		System.out.println("1. Display Menu");
 		System.out.println("2. Add item");
 		System.out.println("3. Buy item");
 		System.out.println("4. Edit item");
+<<<<<<< HEAD
 		System.out.println("5. Bill");
 		System.out.println("6. Exit");
 		Helper.line(80, '=');
+=======
+		System.out.println("5. Exit");
+		Helper.line(80, "=");
+>>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
 	}
 	public static String showAvailability(boolean isAvailable) {
 		String avail; 
@@ -147,6 +200,15 @@ public class C206_CaseStudy {
 		output += getAllMenu(menuList); 
 		System.out.println(output);
 	}
+	
+	public static void createMenu(ArrayList<Menu>menuList) {
+		
+	}
+	
+	public static void deleteMenu(ArrayList<Menu>menuList) {
+		
+	}
+	
 	public static String getAllOrder(ArrayList<Order> orderList) {
 		String output = "";
 		
