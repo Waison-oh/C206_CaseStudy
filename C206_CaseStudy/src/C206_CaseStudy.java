@@ -12,8 +12,9 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();  
+		ArrayList<Menu>menuList = new ArrayList<Menu>();
 		
-		items.add("Japanese", "Sushi", true, 3.50); 
+		items.add(new MenuItem("Japanese", "Sushi", true, 3.50)); 
 		
 		int option = 0;
 		
@@ -87,7 +88,7 @@ public class C206_CaseStudy {
 		System.out.println("3. Buy item");
 		System.out.println("4. Edit item");
 		System.out.println("5. Exit");
-		Helper.line(80, '=');
+		Helper.line(80, "=");
 	}
 	public static String showAvailability(boolean isAvailable) {
 		String avail; 
