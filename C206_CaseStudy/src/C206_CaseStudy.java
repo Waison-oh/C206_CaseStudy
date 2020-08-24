@@ -99,7 +99,7 @@ public class C206_CaseStudy {
 				int action = Helper.readInt("Enter option here > ");
 
 				if (action == CREATE) {
-					C206_CaseStudy.createOrder();
+					C206_CaseStudy.createOrder(orderList);
 				}
 
 				else if (action == VIEW) {
