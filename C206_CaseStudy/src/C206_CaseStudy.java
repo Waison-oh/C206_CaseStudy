@@ -289,7 +289,7 @@ public class C206_CaseStudy {
 		
 		String studentId =Helper.readString("Enter student id> ");
 		String orderDate =Helper.readString("Enter order date> ");
-		ArrayList<MenuItem> item = null;
+		ArrayList<MenuItem> item = new ArrayList<MenuItem>();
 		
 		Order newOrder = new Order(studentId, orderDate, item ); 
 		orderList.add(newOrder); 
