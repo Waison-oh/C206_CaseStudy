@@ -19,7 +19,7 @@ public class C206_CaseStudy {
 		ArrayList<Menu>menuList = new ArrayList<Menu>();
 		ArrayList<Order>orderList = new ArrayList<Order>();
 
-		items.add("Japanese", "Sushi", true, 3.5); 
+		items.add(new MenuItem("Japanese", "Sushi", true, 3.5)); 
 
 		items.add(new MenuItem("Japanese", "Sushi", true, 3.50)); 
 
@@ -165,7 +165,7 @@ public class C206_CaseStudy {
 
 		System.out.println("5. Bill");
 		System.out.println("6. Exit");
-		Helper.line(80, '=');
+		Helper.line(80, "=");
 
 		System.out.println("5. Exit");
 		Helper.line(80, "=");
