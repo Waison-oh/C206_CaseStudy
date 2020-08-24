@@ -12,6 +12,7 @@ public class Menu {
 		this.displayName = displayName;
 		this.month = month;
 		this.numberOfItems = numberOfItems;
+		this.items = items;
 	}
 
 	public String getDisplayName() {

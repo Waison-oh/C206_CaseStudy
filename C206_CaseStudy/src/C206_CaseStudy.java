@@ -113,6 +113,14 @@ public class C206_CaseStudy {
 	private static void addOrder(ArrayList<Order> orderList, Order od) {
 		// TODO Auto-generated method stub
 
+		int size = orderList.size();
+		orderList.add(od);
+		if (orderList.size() != 0) {
+			System.out.println("Successfully added");
+		} else {
+			System.out.println("Add fail");
+		}
+		
 	}
 
 	private static void buyOrder(ArrayList<Order> orderList) {
@@ -122,6 +130,16 @@ public class C206_CaseStudy {
 
 	private static Order inputOrder() {
 		// TODO Auto-generated method stub
+		String category = Helper.readString("Which category is this menu item in? ");
+		String name = Helper.readString("Enter menu item name: ");
+		boolean choice = Helper.readBoolean("Is this menu item a healthy choice?(true/false");
+		double price = Helper.readDouble("Price of menu item: ");
+		
+		MenuItem newMenuItem = new MenuItem(category, name, choice, price);
+		
+		String studentID = Helper.readString("Enter your student ID: ");
+		String orderDate = Helper.readString("Enter the date of order: ");
+		
 		return null;
 	}
 
@@ -134,10 +152,34 @@ public class C206_CaseStudy {
 	private static void addMenu(ArrayList<Menu> menuList, Menu mu) {
 		// TODO Auto-generated method stub
 
+		int size = menuList.size();
+		menuList.add(mu);
+		if (menuList.size() != 0) {
+			System.out.println("Successfully added");
+		} else {
+			System.out.println("Add fail");
+		}
+		
+
 	}
 
 	private static Menu inputMenu() {
 		// TODO Auto-generated method stub
+		String category = Helper.readString("Which category is this menu item in? ");
+		String name = Helper.readString("Enter menu item name: ");
+		boolean choice = Helper.readBoolean("Is this menu item a healthy choice?(true/false");
+		double price = Helper.readDouble("Price of menu item: ");
+		
+		MenuItem newMenuItem = new MenuItem(category, name, choice, price);
+		
+		String displayName = Helper.readString("Enter display name: ");
+		int month = Helper.readInt("Which month is this available? ");
+		int amount = Helper.readInt("How many number of items are there? ");
+		
+		
+		
+	
+		
 		return null;
 	}
 
