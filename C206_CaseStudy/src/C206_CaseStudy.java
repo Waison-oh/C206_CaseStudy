@@ -283,12 +283,34 @@ public class C206_CaseStudy {
 	// Qi Yue start//
 
 	private static void deleteOrder(ArrayList<Order> orderList) {
+		C206_CaseStudy.setHeader("DELETE ORDER");
 
+		boolean valid = false;
+		while (valid != true) {
+			String studentId = Helper.readString("Enter student id > ");
+			for (int i = 0; i < orderList.size(); i++) {
+				if (studentId == orderList.get(i).getStudentId()) {
+					orderList.remove(i);
+					System.out.println("Order Deleted!");
+				}
+			}
+			if (valid == false) {
+				System.out.println("Order does not exist!! \n");
+			}
+		}
 	}
 
 	private static void createOrder(ArrayList<Order> orderList) {
-		// TODO Auto-generated method stub
-
+		C206_CaseStudy.setHeader("CREATE ORDER");
+		
+		String studentId =Helper.readString("Enter student id> ");
+		String orderDate =Helper.readString("Enter order date> ");
+		ArrayList<MenuItem> item = null;
+		
+		Order newOrder = new Order(studentId, orderDate, item ); 
+		orderList.add(newOrder); 
+		System.out.println("Order added!");
+		
 	}
 
 	public static String getAllOrder(ArrayList<Order> orderList) {
