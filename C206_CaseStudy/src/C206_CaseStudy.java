@@ -2,9 +2,6 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
-	/**
-	 * 
-	 */
 	
 	private static final int OPTION_BILL = 5;
 	private static final int OPTION_MONTHLYMENU = 4;
@@ -100,7 +97,7 @@ public class C206_CaseStudy {
 				int action = Helper.readInt("Enter option here > ");
 				
 				if (action == CREATE) {
-					C206_CaseStudy.createOrder(); 
+					C206_CaseStudy.createOrder(orderList); 
 				}	
 				
 				else if (action == VIEW) {
