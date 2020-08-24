@@ -2,14 +2,17 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
+	/**
+	 * 
+	 */
+	private static final int OPTION_MENUITEM = 7;
 	private static final int OPTION_BILL = 5;
 	private static final int OPTION_MONTHLYMENU = 4;
 	private static final int OPTION_ORDER = 3;
 	private static final int OPTION_ACCOUNT = 2;
 	private static final int OPTION_MENU = 1;
 	private static final int OPTION_EXIT = 6;
-	private static final int OPTION_CREATEMENU = 7;
-	private static final int OPTION_DELETEMENU = 8;
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -135,7 +138,7 @@ public class C206_CaseStudy {
 					C206_CaseStudy.viewAllMenu(menuList); 
 				}
 				else if (action == DELETE) {
-					C206_CaseStudy.deleteMenu(orderList);
+					C206_CaseStudy.deleteMenu(menuList);
 				}	
 				else {
 					System.out.println("INVALID OPTION!!");
@@ -169,6 +172,39 @@ public class C206_CaseStudy {
 				System.out.println("GOODBYE!!");
 				} 
 			else {
+=======
+					if (actions == CREATE) {
+						String payee = Helper.readString("Enter payee name > ");
+						double amount = Helper.readDouble("Enter amount > ");
+						String dueDate = Helper.readString("Enter due date > ");
+						Bill newBill = new Bill(payee, amount, dueDate);
+						billList.add(newBill);
+					} else if (actions == VIEW) {
+						billList.toString();
+					} else if (actions == DELETE) {
+						C206_CaseStudy.deleteBill(billList);
+					} else {
+						System.out.println("INVALID OPTION!!");
+					}
+				} else if (option == OPTION_MENUITEM) {
+					System.out.println("1. View Menu Item");
+					System.out.println("2. Create Menu Item");
+					System.out.println("3. Delete Menu Item");
+
+					int choice = Helper.readInt("Enter choice: ");
+					if (choice == 1) {
+						C206_CaseStudy.viewItem(items);
+					} else if (choice == 2) {
+						C206_CaseStudy.addItem();
+					} else if (choice == 3) {
+						C206_CaseStudy.deleteItem(items);
+					} else {
+						System.out.println("Incorrect option");
+					}
+				} else if (option == OPTION_EXIT) {
+					System.out.println("GOODBYE!!");
+				} else {
+>>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
 					System.out.println("INVALID OPTION!!");
 				}
 			} // ASHLEIGH ENDS HERE//
@@ -193,6 +229,7 @@ public class C206_CaseStudy {
 		System.out.println("4. Monthly Menu");
 		System.out.println("5. Bill");
 		System.out.println("6. Exit");
+		System.out.println("7. Menu Item");
 		Helper.line(80, "=");
 
 	}
@@ -232,7 +269,7 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-	public static String viewMenuItems(ArrayList<MenuItem> items) {
+	public static String viewAllMenuItems(ArrayList<MenuItem> items) {
 		
 	}
 	
@@ -346,26 +383,11 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 
-	//OPTION 4 ======================================================= MONTHLY MENU//
-	private static Menu createMenu() {
-		// TODO Auto-generated method stub
-		String category = Helper.readString("Which category is this menu item in? ");
-		String name = Helper.readString("Enter menu item name: ");
-		boolean choice = Helper.readBoolean("Is this menu item a healthy choice?(true/false");
-		double price = Helper.readDouble("Price of menu item: ");
-
-		MenuItem newMenuItem = new MenuItem(category, name, choice, price);
 	
+	// OPTION 4 ========================================================== MONTHLY MENU//
+	public static void createMenu() {
+		
 	}
-	public static String getAllMenu(ArrayList<Menu> menuList) {
-		String output = "";
-
-		for (int i = 0; i < menuList.size(); i++) {
-			output += String.format("-90s\n", menuList.get(i).toString());
-		}
-		return output;
-	}
-
 	public static void viewAllMenu(ArrayList<Menu> menuList) {
 		String output = String.format("%-10s %-30s %-10s %-20s %-20s %-30s\n", "TAG NO.", "NAME", "AVAILABLE",
 				"DISPLAY NAME", "MONTH", "NUMBER OF OFFERS");
@@ -377,6 +399,7 @@ public class C206_CaseStudy {
 		
 	}
 
+	
 	
 	// OPTION 5 =============================================================== BILL//
 	//ASHLEIGH STARTS HERE//
