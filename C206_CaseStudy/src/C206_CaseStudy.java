@@ -13,19 +13,16 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();  
-<<<<<<< HEAD
+
 		ArrayList<Bill> billList = new ArrayList<Bill>();
-=======
+
 		ArrayList<Menu>menuList = new ArrayList<Menu>();
 		ArrayList<Order>orderList = new ArrayList<Order>();
->>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
-		
-<<<<<<< HEAD
+
 		items.add("Japanese", "Sushi", true, 3.5); 
-=======
+
 		items.add(new MenuItem("Japanese", "Sushi", true, 3.50)); 
->>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
-		
+
 		int option = 0;
 		
 		while (option != OPTION_EXIT) {
@@ -165,14 +162,14 @@ public class C206_CaseStudy {
 		System.out.println("2. Add item");
 		System.out.println("3. Buy item");
 		System.out.println("4. Edit item");
-<<<<<<< HEAD
+
 		System.out.println("5. Bill");
 		System.out.println("6. Exit");
 		Helper.line(80, '=');
-=======
+
 		System.out.println("5. Exit");
 		Helper.line(80, "=");
->>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
+
 	}
 	public static String showAvailability(boolean isAvailable) {
 		String avail; 
