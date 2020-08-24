@@ -9,7 +9,7 @@ public class C206_CaseStudy {
 	private static final int OPTION_BUY = 5;
 	private static final int OPTION_EDIT = 6;
 	private static final int OPTION_BILL = 7;
-	private static final int OPTION_EXIT = 8;	
+	private static final int OPTION_EXIT = 8;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -53,12 +53,11 @@ public class C206_CaseStudy {
 					} else {
 						System.out.println("INVALID TYPE!!");
 					}
-				}else if(option == OPTION_CREATEMENU){
-					
-				} else if(option == OPTION_DELETEMENU){
-					
-				}
-				else if (option == OPTION_BUY) {
+				} else if (option == OPTION_CREATEMENU) {
+
+				} else if (option == OPTION_DELETEMENU) {
+
+				} else if (option == OPTION_BUY) {
 					C206_CaseStudy.setHeader("ORDER");
 
 					int itemType = ORDER;
@@ -76,7 +75,7 @@ public class C206_CaseStudy {
 						C206_CaseStudy.editOrder(orderList);
 					} else {
 						System.out.println("INVALID TYPE!!");
-					} //test
+					} // test
 				}
 				// ASHLEIGH STARTS HERE - BILL//
 				else if (option == OPTION_BILL) {
@@ -127,7 +126,7 @@ public class C206_CaseStudy {
 		} else {
 			System.out.println("Add fail");
 		}
-		
+
 	}
 
 	private static void buyOrder(ArrayList<Order> orderList) {
@@ -141,12 +140,12 @@ public class C206_CaseStudy {
 		String name = Helper.readString("Enter menu item name: ");
 		boolean choice = Helper.readBoolean("Is this menu item a healthy choice?(true/false");
 		double price = Helper.readDouble("Price of menu item: ");
-		
+
 		MenuItem newMenuItem = new MenuItem(category, name, choice, price);
-		
+
 		String studentID = Helper.readString("Enter your student ID: ");
 		String orderDate = Helper.readString("Enter the date of order: ");
-		
+
 		return null;
 	}
 
@@ -166,7 +165,6 @@ public class C206_CaseStudy {
 		} else {
 			System.out.println("Add fail");
 		}
-		
 
 	}
 
@@ -176,17 +174,13 @@ public class C206_CaseStudy {
 		String name = Helper.readString("Enter menu item name: ");
 		boolean choice = Helper.readBoolean("Is this menu item a healthy choice?(true/false");
 		double price = Helper.readDouble("Price of menu item: ");
-		
+
 		MenuItem newMenuItem = new MenuItem(category, name, choice, price);
-		
+
 		String displayName = Helper.readString("Enter display name: ");
 		int month = Helper.readInt("Which month is this available? ");
 		int amount = Helper.readInt("How many number of items are there? ");
-		
-		
-		
-	
-		
+
 		return null;
 	}
 
@@ -242,12 +236,24 @@ public class C206_CaseStudy {
 
 	public static void createMenu(ArrayList<Menu> menuList) {
 		
-
 	}
 
 	public static void deleteMenu(ArrayList<Menu> menuList) {
+		String output = String.format("%-10s %-30s %-10s %-20s %-20s %-30s\n", "TAG NO.", "NAME", "AVAILABLE",
+				"DISPLAY NAME", "MONTH", "NUMBER OF OFFERS");
+		output += getAllMenu(menuList);
+		System.out.println(output);
+		String deleteNum = Helper.readString("Which menu do you wish to delete? (please enter the name) >");
+		for(int i =0; i<menuList.size();i++) {
+			if(deleteNum.equalsIgnoreCase(menuList.get(i).getDisplayName())) {
+				menuList.remove(i);
+				System.out.println("Menu Remove!");
+				}else {
+					System.out.println("No such menu name");
+				}
+			}
+		}
 
-	}
 
 	public static String getAllOrder(ArrayList<Order> orderList) {
 		String output = "";
