@@ -46,7 +46,7 @@ public class C206_CaseStudy {
 				}
 
 				else if (action == VIEW) {
-						C206_CaseStudy.viewAllMenuItems(items); 
+					C206_CaseStudy.viewAllMenuItems(items);
 				}
 
 				else if (action == DELETE) {
@@ -282,22 +282,20 @@ public class C206_CaseStudy {
 	// OPTION 3 =============================================================
 	// ORDER//
 	// Qi Yue start//
-	
-	
 
 	private static void createOrder(ArrayList<Order> orderList) {
 		C206_CaseStudy.setHeader("CREATE ORDER");
-		
-		String studentId =Helper.readString("Enter student id> ");
-		String orderDate =Helper.readString("Enter order date> ");
-		
+
+		String studentId = Helper.readString("Enter student id> ");
+		String orderDate = Helper.readString("Enter order date> ");
+
 		ArrayList<MenuItem> item = new ArrayList<MenuItem>();
 		// MenuItem add got error so i create a item to show.
 		item.add(new MenuItem("Cat123", "123", true, 12.00));
-		Order newOrder = new Order(studentId, orderDate, item); 
-		orderList.add(newOrder); 
+		Order newOrder = new Order(studentId, orderDate, item);
+		orderList.add(newOrder);
 		System.out.println("Order added!");
-		
+
 	}
 
 	public static String getAllOrder(ArrayList<Order> orderList) {
@@ -308,26 +306,26 @@ public class C206_CaseStudy {
 		}
 		return output;
 	}
-	
+
 	public static Boolean doDeleteOrder(ArrayList<Order> orderList, String studentId) {
 		boolean isDelete = false;
-		for(int i =0; i < orderList.size(); i++) {
+		for (int i = 0; i < orderList.size(); i++) {
 			String id = orderList.get(i).getStudentId();
-			if(studentId.equals(id)) {
+			if (studentId.equals(id)) {
 				orderList.remove(i);
 				isDelete = true;
 			}
 		}
 		return isDelete;
 	}
+
 	private static void deleteOrder(ArrayList<Order> orderList) {
 		C206_CaseStudy.setHeader("DELETE ORDER");
 		String studentid = Helper.readString("Enter Student ID: ");
 		Boolean isDelete = doDeleteOrder(orderList, studentid);
-		if(isDelete == false) {
+		if (isDelete == false) {
 			System.out.println("Invalid order");
-		}
-		else {
+		} else {
 			System.out.println(studentid + "'s  Order Deleted");
 		}
 	}
@@ -344,7 +342,7 @@ public class C206_CaseStudy {
 	// MENU//
 	// Qiao Ling start//
 	public static void createMenu(ArrayList<MenuItem> items, ArrayList<Menu> monthlyMenu) {
-		//hard code item menu for local testing:
+		// hard code item menu for local testing:
 		items.add(new MenuItem("Vegetarian", "potato salad", true, 6.70));
 		items.add(new MenuItem("Western", "Chicken Chop", false, 8.90));
 		//
@@ -352,7 +350,7 @@ public class C206_CaseStudy {
 		String menuName = Helper.readString("Enter the menu name > ");
 		int month = Helper.readInt("Enter the month for this menu >");
 		int ItemNum = Helper.readInt("Enter the number of item you want to add >");
-		
+
 		String choose = Helper.readString("Choose item to add > ");
 		for (int i = 0; i < items.size(); i++) {
 			String name = items.get(i).getName();
@@ -376,7 +374,7 @@ public class C206_CaseStudy {
 		}
 
 	}
-	
+
 	public static boolean createMenu(ArrayList<Menu> monthlyMenu, Menu mm) {
 
 		for (int i = 0; i < monthlyMenu.get(i).getNumberOfItems(); i++) {
@@ -389,7 +387,6 @@ public class C206_CaseStudy {
 		monthlyMenu.add(mm);
 		return true;
 	}
-		
 
 	public static String getAllMenu(ArrayList<Menu> menuList) {
 		String output = "";
