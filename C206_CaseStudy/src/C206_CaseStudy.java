@@ -45,11 +45,11 @@ public class C206_CaseStudy {
 				}
 
 				else if (action == VIEW) {
-
+						C206_CaseStudy.viewAllMenuItems(items); 
 				}
 
 				else if (action == DELETE) {
-
+					C206_CaseStudy.deleteMenuItems(items);
 				}
 
 				else {
@@ -225,7 +225,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 
-	public void deleteMenuItems(ArrayList<MenuItem> items) {
+	public static void deleteMenuItems(ArrayList<MenuItem> items) {
 		String name = Helper.readString("Enter the menu item name: ");
 		for (int i = 0; i < items.size(); i++) {
 			if (name == items.get(i).getName()) {
