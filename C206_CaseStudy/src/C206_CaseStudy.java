@@ -2,21 +2,27 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 	
+	private static final int OPTION_BILL = 5;
 	private static final int OPTION_EDIT = 4;
 	private static final int OPTION_BUY = 3;
 	private static final int OPTION_ADD = 2;
 	private static final int OPTION_MENU = 1;
-	private static final int OPTION_EXIT = 5;
+	private static final int OPTION_EXIT = 6;
 
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();  
+
+		ArrayList<Bill> billList = new ArrayList<Bill>();
+
 		ArrayList<Menu>menuList = new ArrayList<Menu>();
 		ArrayList<Order>orderList = new ArrayList<Order>();
-		
+
+		items.add(new MenuItem("Japanese", "Sushi", true, 3.5)); 
+
 		items.add(new MenuItem("Japanese", "Sushi", true, 3.50)); 
-		
+
 		int option = 0;
 		
 		while (option != OPTION_EXIT) {
@@ -73,13 +79,42 @@ public class C206_CaseStudy {
 						System.out.println("INVALID TYPE!!");
 					}
 				}
+				//ASHLEIGH STARTS HERE - BILL//
+				else if (option == OPTION_BILL) {
+					int CREATE = 1;
+					int VIEW = 2;
+					int DELETE = 3;
+					C206_CaseStudy.setHeader("BILL");
+					System.out.println("1. Create bill");
+					System.out.println("2. View bill");
+					System.out.println("3. Delete bill");
+					
+					int actions = Helper.readInt("Enter option here > ");
+					
+					if (actions == CREATE) {
+						String payee = Helper.readString("Enter payee name > ");
+						double amount = Helper.readDouble("Enter amount > ");
+						String dueDate = Helper.readString("Enter due date > ");
+						Bill newBill = new Bill(payee, amount, dueDate);
+						billList.add(newBill); 
+					}
+					else if (actions == VIEW) {
+						billList.toString(); 
+					}
+					else if (actions == DELETE) {
+						C206_CaseStudy.deleteBill(billList);
+					}
+					else {
+						System.out.println("INVALID OPTION!!");
+					}
+				}
 				else if (option == OPTION_EXIT) {
 					System.out.println("GOODBYE!!");
 				}
 				else {
 					System.out.println("INVALID OPTION!!");
 				}
-			}
+			} //ASHLEIGH ENDS HERE//
 		}
 	}
 	private static void editOrder(ArrayList<Order> orderList) {
@@ -166,8 +201,14 @@ public class C206_CaseStudy {
 		System.out.println("2. Add item");
 		System.out.println("3. Buy item");
 		System.out.println("4. Edit item");
+
+		System.out.println("5. Bill");
+		System.out.println("6. Exit");
+		Helper.line(80, "=");
+
 		System.out.println("5. Exit");
 		Helper.line(80, "=");
+
 	}
 	public static String showAvailability(boolean isAvailable) {
 		String avail; 
@@ -195,6 +236,15 @@ public class C206_CaseStudy {
 		output += getAllMenu(menuList); 
 		System.out.println(output);
 	}
+	
+	public static void createMenu(ArrayList<Menu>menuList) {
+		
+	}
+	
+	public static void deleteMenu(ArrayList<Menu>menuList) {
+		
+	}
+	
 	public static String getAllOrder(ArrayList<Order> orderList) {
 		String output = "";
 		
@@ -211,6 +261,31 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 	//OPTION 2 =========================================================== ADD ITEM//
+	
+	//OPTION 3 =========================================================== BUY ITEM//
+	
+	//OPTION 4 ========================================================== EDIT ITEM//
+	
+	//OPTION 5 =============================================================== BILL//
+	//ASHLEIGH STARTS HERE - DELETE BILL//
+	public static void deleteBill(ArrayList<Bill> billList) {
+		C206_CaseStudy.setHeader("DELETE BILL"); 
+		
+		boolean valid = false;
+		while (valid != true) {
+			String payee = Helper.readString("Enter payee name > "); 
+			for (int i = 0; i < billList.size(); i++) {
+				if (payee == billList.get(i).getPayee()) {
+					billList.remove(i); 
+					System.out.println("Bill Deleted!");
+				}
+			}
+			if (valid == false) {
+				System.out.println("Payee does not exist!! \n");
+			}
+		}
+	}
+	//ASHLEIGH ENDS HERE//
 	
 
 }
