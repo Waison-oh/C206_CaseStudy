@@ -12,6 +12,8 @@ public class C206_CaseStudy {
 	private static final int OPTION_ADD = 2;
 	private static final int OPTION_MENU = 1;
 	private static final int OPTION_EXIT = 6;
+	private static final int OPTION_CREATEMENU = 7;
+	private static final int OPTION_DELETEMENU = 8;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -55,6 +57,12 @@ public class C206_CaseStudy {
 					} else {
 						System.out.println("INVALID TYPE!!");
 					}
+
+				} else if (option == OPTION_CREATEMENU) {
+
+				} else if (option == OPTION_DELETEMENU) {
+					deleteMenu(menuList);
+
 				} else if (option == OPTION_BUY) {
 					C206_CaseStudy.setHeader("ORDER");
 
@@ -253,6 +261,10 @@ public class C206_CaseStudy {
 	}
 
 	public static void deleteMenu(ArrayList<Menu> menuList) {
+		String output = String.format("%-10s %-30s %-10s %-20s %-20s %-30s\n", "TAG NO.", "NAME", "AVAILABLE",
+				"DISPLAY NAME", "MONTH", "NUMBER OF OFFERS");
+		output += getAllMenu(menuList);
+		System.out.println(output);
 
 	}
 
@@ -276,6 +288,7 @@ public class C206_CaseStudy {
 	// OPTION 2 =========================================================== ADD
 	// ITEM//
 	// Wei Kiat start//
+
 	public static void addItem() {
 		String newcategory = Helper.readString("Enter new category for new menu item: ");
 		String newName = Helper.readString("Enter new name for new menu item: ");
@@ -283,6 +296,7 @@ public class C206_CaseStudy {
 		double newPrice = Helper.readDouble("Enter price for new menu item: ");
 
 		MenuItem newItem = new MenuItem(newcategory, newName, healthy, newPrice);
+
 	}
 
 	// OPTION 3 =========================================================== BUY
