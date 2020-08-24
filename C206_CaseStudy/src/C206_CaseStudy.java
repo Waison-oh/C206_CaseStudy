@@ -5,7 +5,7 @@ public class C206_CaseStudy {
 	/**
 	 * 
 	 */
-	private static final int OPTION_MENUITEM = 7;
+	
 	private static final int OPTION_BILL = 5;
 	private static final int OPTION_MONTHLYMENU = 4;
 	private static final int OPTION_ORDER = 3;
@@ -16,16 +16,12 @@ public class C206_CaseStudy {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
-
-		ArrayList<Bill> billList = new ArrayList<Bill>();
 
 		ArrayList<Menu> menuList = new ArrayList<Menu>();
+		ArrayList<Account> accountList = new ArrayList<Account> ();
 		ArrayList<Order> orderList = new ArrayList<Order>();
-
-		items.add(new MenuItem("Japanese", "Sushi", true, 3.5));
-
-		items.add(new MenuItem("Japanese", "Sushi", true, 3.50));
+		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+		ArrayList<Bill> billList = new ArrayList<Bill>();
 
 		int option = 0;
 
@@ -60,7 +56,7 @@ public class C206_CaseStudy {
 				else {
 					System.out.println("INVALID OPTION!!");
 				}
-			} 
+			} //WEI KIAT ENDS HERE - MENU//
 			
 			//SHARAN STARTS HERE - ACCOUNT//
 			else if (option == OPTION_ACCOUNT) {
@@ -75,11 +71,11 @@ public class C206_CaseStudy {
 				int action = Helper.readInt("Enter option here > ");
 				
 				if (action == CREATE) {
-					C206_CaseStudy.createAccount(); 
+					C206_CaseStudy.createAccount(accountList); 
 				}	
 				
 				else if (action == VIEW) {
-					C206_CaseStudy.viewAllAccounts(accountList);
+					C206_CaseStudy.viewAllAccount(accountList);
 				}
 				
 				else if (action == DELETE) {
@@ -89,7 +85,7 @@ public class C206_CaseStudy {
 				else {
 					System.out.println("INVALID OPTION!!");
 				}
-			}
+			} //SHARAN ENDS HERE - ACCOUNT//
 
 			//QI YUE STARTS HERE - ORDER//
 			else if (option == OPTION_ORDER) {
@@ -118,7 +114,8 @@ public class C206_CaseStudy {
 				else {
 					System.out.println("INVALID OPTION!!");
 				}
-			} 
+			} //QI YUE ENDS HERE - ORDER//
+			
 			//QIAO LING STARTS HERE - MONTHLY MENU//
 			else if (option == OPTION_MONTHLYMENU) {
 				int CREATE = 1;
@@ -142,7 +139,9 @@ public class C206_CaseStudy {
 				}	
 				else {
 					System.out.println("INVALID OPTION!!");
-			}
+				}
+			} //QIAO LING ENDS HERE - MONTHLY MENU//
+			
 			// ASHLEIGH STARTS HERE - BILL//
 			else if (option == OPTION_BILL) {
 				int CREATE = 1;
@@ -166,48 +165,14 @@ public class C206_CaseStudy {
 					} 
 				else {
 					System.out.println("INVALID OPTION!!");
-				}
+				} //ASHLEIGH ENDS HERE - BILL//
 			}
 			else if (option == OPTION_EXIT) {
 				System.out.println("GOODBYE!!");
-				} 
+			} 
 			else {
-=======
-					if (actions == CREATE) {
-						String payee = Helper.readString("Enter payee name > ");
-						double amount = Helper.readDouble("Enter amount > ");
-						String dueDate = Helper.readString("Enter due date > ");
-						Bill newBill = new Bill(payee, amount, dueDate);
-						billList.add(newBill);
-					} else if (actions == VIEW) {
-						billList.toString();
-					} else if (actions == DELETE) {
-						C206_CaseStudy.deleteBill(billList);
-					} else {
-						System.out.println("INVALID OPTION!!");
-					}
-				} else if (option == OPTION_MENUITEM) {
-					System.out.println("1. View Menu Item");
-					System.out.println("2. Create Menu Item");
-					System.out.println("3. Delete Menu Item");
-
-					int choice = Helper.readInt("Enter choice: ");
-					if (choice == 1) {
-						C206_CaseStudy.viewItem(items);
-					} else if (choice == 2) {
-						C206_CaseStudy.addItem();
-					} else if (choice == 3) {
-						C206_CaseStudy.deleteItem(items);
-					} else {
-						System.out.println("Incorrect option");
-					}
-				} else if (option == OPTION_EXIT) {
-					System.out.println("GOODBYE!!");
-				} else {
->>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
-					System.out.println("INVALID OPTION!!");
-				}
-			} // ASHLEIGH ENDS HERE//
+				System.out.println("INVALID OPTION!!");
+			}
 		}
 	}
 
@@ -251,26 +216,23 @@ public class C206_CaseStudy {
 	// OPTION 1 =========================================================== MENU//
 	// Wei Kiat start//	
 	public static void createItem(ArrayList<MenuItem> items) {
-		for (int i = 0; i < items.size(); i++) {
-			if (name == items.get(i).getName()) {
-				String newCategory = Helper.readString("Enter new Menu Item category (Western/Asian/Vegetarian):  ");
-				String newName = Helper.readString("Enter new Menu Item name: ");
-				boolean newHealthy = Helper.readBoolean("Is this new Menu Item a healthy choice?(true/false) ");
-				double newprice = Helper.readDouble("Enter price for new Menu Item: ");
+		
+		String newCategory = Helper.readString("Enter new Menu Item category (Western/Asian/Vegetarian):  ");
+		String newName = Helper.readString("Enter new Menu Item name: ");
+		boolean newHealthy = Helper.readBoolean("Is this new Menu Item a healthy choice?(true/false) ");
+		double newPrice = Helper.readDouble("Enter price for new Menu Item: ");
 
-				items.get(i).setCategory(newCategory);
-				items.get(i).setName(newName);
-				items.get(i).setHealthyChoice(newHealthy);
-				items.get(i).setPrice(newprice);
+		items.add(new MenuItem(newCategory, newName, newHealthy, newPrice));
 
-				System.out.println("Menu added!!");
-			} else {
-				System.out.println("Menu Item invalid!!");
-			}
-		}
+		System.out.println("Menu added!!");
+			
 	}
 	public static String viewAllMenuItems(ArrayList<MenuItem> items) {
-		
+		String output = null;
+        for (int i = 0; i < items.size(); i++) {
+            output = items.get(i).toString();
+        }
+        return output;
 	}
 	
 	public void deleteMenuItems(ArrayList<MenuItem> items) {
@@ -280,91 +242,57 @@ public class C206_CaseStudy {
 	// Wei Kiat end//
 	
 	//OPTION 2 =========================================================== ACCOUNT//
-	//Retrieving account list.
-	  public static String retrieveAllAccounts(ArrayList<Account> accountList) {
-	    String output = "";
-	    for (int i = 0; i < accountList.size(); i++) {
-
-	 
-
-	      output += String.format("%-10s %-30s %-10.2f\n", accountList.get(i).getUsername(),
-	          accountList.get(i).getPassword(), accountList.get(i).getUserRole());
-
-	 
-
-	    }
-	    return output;
-	  } //Viewing Account List
-	  public static void viewAllAccounts(ArrayList<Account> accountList) {
-	    for (int i = 0; i < accountList.size(); i++) {
-	      C206_CaseStudy.setHeader("ACCOUNT LIST");
-	      String output = String.format("%-10s %-30s %-10s\n", "USERNAME", "PASSWORD", "USER ROLE");
-	      output += retrieveAllAccounts(accountList);
-	      System.out.println(output);
-	    }
-
-	 } //Inputing Account
-	  public static Account createAccount() {
-	    String username = Helper.readString("Enter Username > ");
-	    String studentId = Helper.readString("Enter Student ID > ");
-	    String userRole = Helper.readString("Enter userRole > ");
-	    String contactNumber = Helper.readString("Enter Contact Number > ");
-	    
-	    Account a = new Account(userRole, contactNumber, studentId, username);
-	    return a;
-	  } 
-	  //Adding Account
-	  public static void addAccount (ArrayList<Account> accountList, Account a) {
-	    
-	    accountList.add(a);
-	    System.out.println("New Account Added!");
-	  }
-	  //Delete Account//
-	  public static boolean doDelete(ArrayList<Account> accountList, String username, String password, String userRole) {
-	    boolean isDeleted = false;
-	    
-	    for (int i = 0; i < accountList.size(); i++) {
-	      String z = accountList.get(i).getUsername();
-	      if (username.equalsIgnoreCase(z)) {
-	        accountList.get(i).setPassword(password);
-	        accountList.get(i).setUserRole(userRole);
-	      }
-	    }
-	    return isDeleted;
-	  }
-	  public static void deleteAccount(ArrayList<Account> accountList) {
-	    C206_CaseStudy.viewAllAccounts(accountList);
-	    String username = Helper.readString("Enter Username > ");
-	    String password = Helper.readString("Enter Password > ");
-	    String userRole = Helper.readString("Enter User Role > ");
-	    Boolean isDeleted = doDelete(accountList, username, password, userRole);
-	    if (isDeleted == false) {
-	      System.out.println("Account does not exist.");
-	    } else {
-	      System.out.println("Staff " + username + "'s account has been deleted.");
-	    }
-	  }
-	
+	//Sharan start//
+	public static void createAccount(ArrayList<Account> accountList) {
+        C206_CaseStudy.setHeader("CREATE ACCOUNT");
+        String username = Helper.readString("Enter username > ");
+        String password = Helper.readString("Enter password > ");
+        String contactNumber = Helper.readString("Enter Contact Number > ");
+        String userRole = Helper.readString("Enter User Role > ");
+       
+        Account newAccount = new Account(username, contactNumber, password, userRole);
+        accountList.add(newAccount);
+        System.out.println("Account Created");
+    }
+   
+   
+    public static String viewAllAccount(ArrayList<Account> accountList) {
+        String output = null;
+        for (int i = 0; i < accountList.size(); i++) {
+            output = accountList.get(i).toString();
+        }
+        return output;
+    }
+   
+   
+    public static void deleteAccount(ArrayList<Account> accountList) {	        
+        boolean valid = false;
+        while (valid!= true) {
+            String username = Helper.readString("Enter username > ");
+            for (int i = 0; i <accountList.size(); i++) {
+            	if (username == accountList.get(i).getUsername()) {
+					accountList.remove(i);
+					System.out.println("User Deleted!");
+				}
+            }
+        }
+        if (valid ==false) {
+            System.out.println("Username does not exist.");
+        }
+    }
+	//Sharan end//
 	
 	//OPTION 3 ============================================================= ORDER//
-		private static void deleteOrder(ArrayList<Order> orderList) {
+    //Qi Yue start//
+    
+	private static void deleteOrder(ArrayList<Order> orderList) {
 
-		}
+	}
 
-		private static Order createOrder() {
-			// TODO Auto-generated method stub
-			String category = Helper.readString("Which category is this menu item in? ");
-			String name = Helper.readString("Enter menu item name: ");
-			boolean choice = Helper.readBoolean("Is this menu item a healthy choice?(true/false");
-			double price = Helper.readDouble("Price of menu item: ");
-
-			MenuItem newMenuItem = new MenuItem(category, name, choice, price);
-
-			String studentID = Helper.readString("Enter your student ID: ");
-			String orderDate = Helper.readString("Enter the date of order: ");
-
-			return null;
-		}
+	private static void createOrder(ArrayList<Order> orderList) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public static String getAllOrder(ArrayList<Order> orderList) {
 		String output = "";
@@ -382,11 +310,21 @@ public class C206_CaseStudy {
 		output += getAllOrder(orderList);
 		System.out.println(output);
 	}
+	//Qi Yue end//   
 
 	
 	// OPTION 4 ========================================================== MONTHLY MENU//
+	//Qiao Ling start//
 	public static void createMenu() {
 		
+	}
+	public static String getAllMenu(ArrayList<Menu> menuList) {
+		String output = "";
+
+		for (int i = 0; i < menuList.size(); i++) {
+			output += String.format("%-90s\n", menuList.get(i).toString());
+		}
+		return output;
 	}
 	public static void viewAllMenu(ArrayList<Menu> menuList) {
 		String output = String.format("%-10s %-30s %-10s %-20s %-20s %-30s\n", "TAG NO.", "NAME", "AVAILABLE",
@@ -398,7 +336,7 @@ public class C206_CaseStudy {
 	public static void deleteMenu(ArrayList<Menu> menuList) {
 		
 	}
-
+	//Qiao Ling end//
 	
 	
 	// OPTION 5 =============================================================== BILL//
