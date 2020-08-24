@@ -113,7 +113,6 @@ public class C206_CaseStudy {
 		
 		String studentID = Helper.readString("Enter your student ID: ");
 		String orderDate = Helper.readString("Enter the date of order: ");
-		Order newOrder = new Order(studentID, orderDate, newMenuItem);
 		
 		return null;
 	}
@@ -147,7 +146,7 @@ public class C206_CaseStudy {
 		String displayName = Helper.readString("Enter display name: ");
 		int month = Helper.readInt("Which month is this available? ");
 		int amount = Helper.readInt("How many number of items are there? ");
-		Menu newMenu = new Menu(displayName, month, amount, newMenuItem);
+		
 		
 		
 	
