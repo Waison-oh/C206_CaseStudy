@@ -405,8 +405,39 @@ public class C206_CaseStudy {
 	}
 
 	public static void deleteMenu(ArrayList<Menu> menuList) {
-
+		boolean isDeleted = false;
+		for (int i = 0; i < menuList.size(); i++) {
+			String delete = Helper.readString("Enter the name of menu which you want to delete > ");
+			if (delete == null) {
+				delete = Helper.readString("Please enter an item name! > ");
+			} else if (delete.equalsIgnoreCase(menuList.get(i).getDisplayName())) {
+				Menu mm = null;
+				menuList.add(mm);
+				isDeleted = true;
+				break;
+			} else {
+				System.out.println("The menu is not existing.");
+			}
+		}
+		if (isDeleted) {
+			System.out.println("Menu removed!");
+		} else {
+			System.out.println("Menu not found!");
+		}
 	}
+
+	public static boolean deleteMenu(ArrayList<Menu> monthlyMenu, Menu mm) {
+		for (int i = 0; i < monthlyMenu.size(); i++) {
+			String displayName = mm.getDisplayName();
+			if (monthlyMenu.get(i).getDisplayName().equalsIgnoreCase(displayName)) {
+				monthlyMenu.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+		
+
 	// Qiao Ling end//
 
 	// OPTION 5 ===============================================================
