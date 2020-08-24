@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
+	private static final int OPTION_BILL = 5;
+	private static final int OPTION_EDIT = 4;
+	private static final int OPTION_BUY = 3;
+	private static final int OPTION_ADD = 2;
 	private static final int OPTION_MENU = 1;
-	private static final int OPTION_CREATEMENU = 2;
-	private static final int OPTION_DELETEMENU = 3;
-	private static final int OPTION_ADD = 4;
-	private static final int OPTION_BUY = 5;
-	private static final int OPTION_EDIT = 6;
-	private static final int OPTION_BILL = 7;
-	private static final int OPTION_EXIT = 8;
+	private static final int OPTION_EXIT = 6;
+	private static final int OPTION_CREATEMENU = 7;
+	private static final int OPTION_DELETEMENU = 8;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -53,6 +53,7 @@ public class C206_CaseStudy {
 					} else {
 						System.out.println("INVALID TYPE!!");
 					}
+
 				} else if (option == OPTION_CREATEMENU) {
 
 				} else if (option == OPTION_DELETEMENU) {
@@ -76,7 +77,7 @@ public class C206_CaseStudy {
 						C206_CaseStudy.editOrder(orderList);
 					} else {
 						System.out.println("INVALID TYPE!!");
-					} // test
+					}
 				}
 				// ASHLEIGH STARTS HERE - BILL//
 				else if (option == OPTION_BILL) {
@@ -119,7 +120,6 @@ public class C206_CaseStudy {
 
 	private static void addOrder(ArrayList<Order> orderList, Order od) {
 		// TODO Auto-generated method stub
-
 		int size = orderList.size();
 		orderList.add(od);
 		if (orderList.size() != 0) {
@@ -158,7 +158,6 @@ public class C206_CaseStudy {
 
 	private static void addMenu(ArrayList<Menu> menuList, Menu mu) {
 		// TODO Auto-generated method stub
-
 		int size = menuList.size();
 		menuList.add(mu);
 		if (menuList.size() != 0) {
@@ -195,13 +194,15 @@ public class C206_CaseStudy {
 	public static void menu() {
 		C206_CaseStudy.setHeader("SCHOOL LUNCH BOX");
 		System.out.println("1. Display Menu");
-		System.out.println("2. Create Menu");
-		System.out.println("3. delete Menu");
-		System.out.println("4. Add item");
-		System.out.println("5. Buy item");
-		System.out.println("6. Edit item");
-		System.out.println("7. Bill");
-		System.out.println("8. Exit");
+		System.out.println("2. Add item");
+		System.out.println("3. Buy item");
+		System.out.println("4. Edit item");
+
+		System.out.println("5. Bill");
+		System.out.println("6. Exit");
+		Helper.line(80, "=");
+
+		System.out.println("5. Exit");
 		Helper.line(80, "=");
 
 	}
@@ -236,7 +237,7 @@ public class C206_CaseStudy {
 	}
 
 	public static void createMenu(ArrayList<Menu> menuList) {
-		
+
 	}
 
 	public static void deleteMenu(ArrayList<Menu> menuList) {
@@ -244,17 +245,8 @@ public class C206_CaseStudy {
 				"DISPLAY NAME", "MONTH", "NUMBER OF OFFERS");
 		output += getAllMenu(menuList);
 		System.out.println(output);
-		String deleteNum = Helper.readString("Which menu do you wish to delete? (please enter the name) >");
-		for(int i =0; i<menuList.size();i++) {
-			if(deleteNum.equalsIgnoreCase(menuList.get(i).getDisplayName())) {
-				menuList.remove(i);
-				System.out.println("Menu Remove!");
-				}else {
-					System.out.println("No such menu name");
-				}
-			}
-		}
 
+	}
 
 	public static String getAllOrder(ArrayList<Order> orderList) {
 		String output = "";
@@ -272,15 +264,62 @@ public class C206_CaseStudy {
 		output += getAllOrder(orderList);
 		System.out.println(output);
 	}
+
 	// OPTION 2 =========================================================== ADD
 	// ITEM//
+	// Wei Kiat start//
+	public static void addItem(ArrayList<MenuItem> items, MenuItem Mi) {
+		int size = items.size();
+		items.add(Mi);
+		if (items.size() != 0) {
+			System.out.println("Successfully added");
+		} else {
+			System.out.println("Add fail");
+		}
+	}
 
 	// OPTION 3 =========================================================== BUY
 	// ITEM//
+	public static void buyItem(ArrayList<MenuItem> items) {
+		boolean valid = true;
+		if (valid == true) {
+			String name = Helper.readString("Enter Menu Item name: ");
+			for (int i = 0; i < items.size(); i++) {
+				if (name == items.get(i).getName()) {
+					System.out.println("Menu Item purchased successfully");
+				} else {
+					System.out.println("Menu Item does not exist");
+				}
+			}
+		} else {
+			System.out.println("Menu Item purchased unsuccessfully");
+		}
+	}
 
 	// OPTION 4 ========================================================== EDIT
 	// ITEM//
+	public static void editItem(ArrayList<MenuItem> items) {
+		String name = Helper.readString("Enter Menu Item name to edit: ");
+		for (int i = 0; i < items.size(); i++) {
+			if (name == items.get(i).getName()) {
+				String newCategory = Helper.readString("Enter new Menu Item category:  ");
+				String newName = Helper.readString("Enter new Menu Item name: ");
+				boolean newHealthy = Helper.readBoolean("Is this new Menu Item a healthy choice?(true/false) ");
+				double newprice = Helper.readDouble("Enter price for new Menu Item: ");
 
+				items.get(i).setCategory(newCategory);
+				items.get(i).setName(newName);
+				items.get(i).setHealthyChoice(newHealthy);
+				items.get(i).setPrice(newprice);
+
+				System.out.println("Edit successful");
+			} else {
+				System.out.println("Menu Item does not exist");
+			}
+		}
+	}
+
+	// Wei Kiat end//
 	// OPTION 5 ===============================================================
 	// BILL//
 	// ASHLEIGH STARTS HERE - DELETE BILL//
