@@ -53,7 +53,12 @@ public class C206_CaseStudy {
 					} else {
 						System.out.println("INVALID TYPE!!");
 					}
-				} else if (option == OPTION_BUY) {
+				}else if(option == OPTION_CREATEMENU){
+					
+				} else if(option == OPTION_DELETEMENU){
+					
+				}
+				else if (option == OPTION_BUY) {
 					C206_CaseStudy.setHeader("ORDER");
 
 					int itemType = ORDER;
