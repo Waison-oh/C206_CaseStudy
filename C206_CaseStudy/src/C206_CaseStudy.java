@@ -21,6 +21,7 @@ public class C206_CaseStudy {
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
 		ArrayList<Bill> billList = new ArrayList<Bill>();
+		ArrayList<MenuItem> item = new ArrayList<MenuItem>();
 
 		int option = 0;
 
@@ -281,7 +282,7 @@ public class C206_CaseStudy {
 	// OPTION 3 =============================================================
 	// ORDER//
 	// Qi Yue start//
-
+	
 	
 
 	private static void createOrder(ArrayList<Order> orderList) {
@@ -289,9 +290,11 @@ public class C206_CaseStudy {
 		
 		String studentId =Helper.readString("Enter student id> ");
 		String orderDate =Helper.readString("Enter order date> ");
-		ArrayList<MenuItem> item = new ArrayList<MenuItem>();
 		
-		Order newOrder = new Order(studentId, orderDate, item ); 
+		ArrayList<MenuItem> item = new ArrayList<MenuItem>();
+		// MenuItem add got error so i create a item to show.
+		item.add(new MenuItem("Cat123", "123", true, 12.00));
+		Order newOrder = new Order(studentId, orderDate, item); 
 		orderList.add(newOrder); 
 		System.out.println("Order added!");
 		
@@ -306,28 +309,32 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
+	public static Boolean doDeleteOrder(ArrayList<Order> orderList, String studentId) {
+		boolean isDelete = false;
+		for(int i =0; i < orderList.size(); i++) {
+			String id = orderList.get(i).getStudentId();
+			if(studentId.equals(id)) {
+				orderList.remove(i);
+				isDelete = true;
+			}
+		}
+		return isDelete;
+	}
 	private static void deleteOrder(ArrayList<Order> orderList) {
 		C206_CaseStudy.setHeader("DELETE ORDER");
-
-		boolean valid = false;
-		while (valid != true) {
-			String studentId = Helper.readString("Enter student id > ");
-			for (int i = 0; i < orderList.size(); i++) {
-				if (studentId == orderList.get(i).getStudentId()) {
-					orderList.remove(i);
-					System.out.println("Order Deleted!");
-				}
-			}
-			if (valid == false) {
-				System.out.println("Order does not exist!! \n");
-			}
+		String studentid = Helper.readString("Enter Student ID: ");
+		Boolean isDelete = doDeleteOrder(orderList, studentid);
+		if(isDelete == false) {
+			System.out.println("Invalid order");
+		}
+		else {
+			System.out.println(studentid + "'s  Order Deleted");
 		}
 	}
 
 	public static void viewAllOrder(ArrayList<Order> orderList) {
 		C206_CaseStudy.setHeader("ORDER LIST");
-		String output = String.format("%-10s %-30s %-10s %-10s %-30s %-30s\n", "TAG NO.", "NAME", "AVAILABLE",
-				"STUDENT ID", "STUDENT NAME", "ORDER DATE");
+		String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
 		output += getAllOrder(orderList);
 		System.out.println(output);
 	}

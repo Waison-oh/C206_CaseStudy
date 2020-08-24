@@ -37,7 +37,13 @@ public class Order {
 	}
 	
 	public String toString() {
-		return String.format("%-20s %-20s %-20s", getStudentId(), 
-				getOrderDate(), getItems());
+		String itemList = "";
+		for (int i = 0; i < items.size(); i++) {
+			itemList += items.get(i).getName();
+			if(i != (items.size()-1)) {
+				itemList += ", ";
+			}
+		}
+		return String.format("%-20s %-20s %-20s", studentId, orderDate, itemList);
 	}
 }
