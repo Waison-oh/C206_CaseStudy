@@ -2,6 +2,10 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
+	/**
+	 * 
+	 */
+	private static final int OPTION_MENUITEM = 7;
 	private static final int OPTION_BILL = 5;
 	private static final int OPTION_EDIT = 4;
 	private static final int OPTION_BUY = 3;
@@ -95,6 +99,21 @@ public class C206_CaseStudy {
 						C206_CaseStudy.deleteBill(billList);
 					} else {
 						System.out.println("INVALID OPTION!!");
+					}
+				} else if (option == OPTION_MENUITEM) {
+					System.out.println("1. View Menu Item");
+					System.out.println("2. Create Menu Item");
+					System.out.println("3. Delete Menu Item");
+
+					int choice = Helper.readInt("Enter choice: ");
+					if (choice == 1) {
+						C206_CaseStudy.viewItem(items);
+					} else if (choice == 2) {
+						C206_CaseStudy.addItem();
+					} else if (choice == 3) {
+						C206_CaseStudy.deleteItem(items);
+					} else {
+						System.out.println("Incorrect option");
 					}
 				} else if (option == OPTION_EXIT) {
 					System.out.println("GOODBYE!!");
@@ -192,6 +211,7 @@ public class C206_CaseStudy {
 
 		System.out.println("5. Bill");
 		System.out.println("6. Exit");
+		System.out.println("7. Menu Item");
 		Helper.line(80, "=");
 
 		System.out.println("5. Exit");
@@ -255,58 +275,43 @@ public class C206_CaseStudy {
 
 	// OPTION 2 =========================================================== ADD
 	// ITEM//
-	//Wei Kiat start//
-	public static void addItem(ArrayList<MenuItem> items, MenuItem Mi) {
-		int size = items.size();
-		items.add(Mi);
-		if (items.size() != 0) {
-			System.out.println("Successfully added");
-		} else {
-			System.out.println("Add fail");
-		}
+	// Wei Kiat start//
+	public static void addItem() {
+		String newcategory = Helper.readString("Enter new category for new menu item: ");
+		String newName = Helper.readString("Enter new name for new menu item: ");
+		boolean healthy = Helper.readBoolean("Is the new menu item a healthy choice?(true/false) ");
+		double newPrice = Helper.readDouble("Enter price for new menu item: ");
+
+		MenuItem newItem = new MenuItem(newcategory, newName, healthy, newPrice);
 	}
 
 	// OPTION 3 =========================================================== BUY
 	// ITEM//
-	public static void buyItem(ArrayList<MenuItem> items) {
-		boolean valid = true;
-		if (valid == true) {
-			String name = Helper.readString("Enter Menu Item name: ");
-			for (int i = 0; i < items.size(); i++) {
-				if (name == items.get(i).getName()) {
-					System.out.println("Menu Item purchased successfully");
-				} else {
-					System.out.println("Menu Item does not exist");
-				}
-			}
-		} else {
-			System.out.println("Menu Item purchased unsuccessfully");
+	public static void viewItem(ArrayList<MenuItem> items) {
+		String output = String.format("%-10s %-10s %-10b %-10.2f\n", "Category", "Name", "Healthy Choice", "Price");
+		for (int i = 0; i < items.size(); i++) {
+			output += String.format("%-10s %-10s %-10b %-10.2f\n", items.get(i).getCategory(), items.get(i).getName(),
+					items.get(i).isHealthyChoice(), items.get(i).getPrice());
 		}
+		System.out.println(output);
 	}
 
 	// OPTION 4 ========================================================== EDIT
 	// ITEM//
-	public static void editItem(ArrayList<MenuItem> items) {
-		String name = Helper.readString("Enter Menu Item name to edit: ");
+	public static void deleteItem(ArrayList<MenuItem> items) {
+		String name = Helper.readString("Enter menu item name: ");
 		for (int i = 0; i < items.size(); i++) {
-			if (name == items.get(i).getName()) {
-				String newCategory = Helper.readString("Enter new Menu Item category:  ");
-				String newName = Helper.readString("Enter new Menu Item name: ");
-				boolean newHealthy = Helper.readBoolean("Is this new Menu Item a healthy choice?(true/false) ");
-				double newprice = Helper.readDouble("Enter price for new Menu Item: ");
-
-				items.get(i).setCategory(newCategory);
-				items.get(i).setName(newName);
-				items.get(i).setHealthyChoice(newHealthy);
-				items.get(i).setPrice(newprice);
-
-				System.out.println("Edit successful");
+			if (items.get(i).getName() == name) {
+				items.remove(i);
+				System.out.println("Menu Item deleted");
 			} else {
-				System.out.println("Menu Item does not exist");
+				System.out.println("Menu Item not found");
 			}
 		}
+
 	}
-	//Wei Kiat end//
+
+	// Wei Kiat end//
 	// OPTION 5 ===============================================================
 	// BILL//
 	// ASHLEIGH STARTS HERE - DELETE BILL//
