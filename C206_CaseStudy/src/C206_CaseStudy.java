@@ -5,7 +5,7 @@ public class C206_CaseStudy {
 	private static final int OPTION_BILL = 5;
 	private static final int OPTION_EDIT = 4;
 	private static final int OPTION_BUY = 3;
-	private static final int OPTION_ADD = 2;
+	private static final int OPTION_ACCOUNT = 2;
 	private static final int OPTION_MENU = 1;
 	private static final int OPTION_EXIT = 6;
 
@@ -33,6 +33,7 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter an Option > ");
 			
 			if (option == OPTION_MENU) {
+				//CREATE, VIEW, DELETE MENU HERE//
 				C206_CaseStudy.viewAllMenu(menuList);
 				C206_CaseStudy.viewAllOrder(orderList);
 			}
@@ -40,20 +41,8 @@ public class C206_CaseStudy {
 				int MENU = 1;
 				int ORDER = 2;
 				
-				if (option == OPTION_ADD) {
-					C206_CaseStudy.setHeader("ADD"); 
-					System.out.println("1. Menu");
-					System.out.println("2. Order");
+				if (option == OPTION_ACCOUNT) {
 					
-					int itemType = Helper.readInt("Enter option to select item type > ");
-					
-					if (itemType == MENU) {
-						Menu mu = inputMenu(); 
-						C206_CaseStudy.addMenu(menuList, mu); 
-					}
-					else if (itemType == ORDER) {
-						Order od = inputOrder(); 
-						C206_CaseStudy.addOrder(orderList, od);
 					}
 					else {
 						System.out.println("INVALID TYPE!!");
@@ -120,15 +109,15 @@ public class C206_CaseStudy {
 			} //ASHLEIGH ENDS HERE//
 		}
 	}
-	private static void editOrder(ArrayList<Order> orderList) {
+	private static void viewOrder(ArrayList<Order> orderList) {
 		// TODO Auto-generated method stub
 		
 	}
-	private static void addOrder(ArrayList<Order> orderList, Order od) {
+	private static void createOrder(ArrayList<Order> orderList, Order od) {
 		// TODO Auto-generated method stub
 		
 	}
-	private static void buyOrder(ArrayList<Order> orderList) {
+	private static void deleteOrder(ArrayList<Order> orderList) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -139,19 +128,7 @@ public class C206_CaseStudy {
 	}
 	
 	//=================================================================================
-	private static void editMenu(ArrayList<Menu> menuList) {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	private static void addMenu(ArrayList<Menu> menuList, Menu mu) {
-		// TODO Auto-generated method stub
-		
-	}
-	private static Menu inputMenu() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	private static void setHeader(String header) {
 		// TODO Auto-generated method stub
 		Helper.line(80, "-");
@@ -161,10 +138,10 @@ public class C206_CaseStudy {
 	
 	public static void menu() {
 		C206_CaseStudy.setHeader("SCHOOL LUNCH BOX");
-		System.out.println("1. Display Menu");
-		System.out.println("2. Add item");
-		System.out.println("3. Buy item");
-		System.out.println("4. Edit item");
+		System.out.println("1. Menu");
+		System.out.println("2. Account");
+		System.out.println("3. Order");
+		System.out.println("4. Monthly Menu");
 <<<<<<< HEAD
 		System.out.println("5. Bill");
 		System.out.println("6. Exit");
@@ -185,7 +162,7 @@ public class C206_CaseStudy {
 		}
 		return avail;
 	}
-	//OPTION 1 ============================================================ DISPLAY MENU//
+	//OPTION 1 ============================================================ MENU//
 	public static String getAllMenu(ArrayList<Menu> menuList) {
 		String output = ""; 
 		
@@ -209,6 +186,9 @@ public class C206_CaseStudy {
 		
 	}
 	
+	//OPTION 2 =========================================================== ACCOUNT//
+	
+	//OPTION 3 ============================================================= ORDER//
 	public static String getAllOrder(ArrayList<Order> orderList) {
 		String output = "";
 		
@@ -224,11 +204,21 @@ public class C206_CaseStudy {
 		output += getAllOrder(orderList); 
 		System.out.println(output);
 	}
-	//OPTION 2 =========================================================== ADD ITEM//
 	
-	//OPTION 3 =========================================================== BUY ITEM//
+	//OPTION 4 ======================================================= MONTHLY MENU//
+	private static void viewMenu(ArrayList<Menu> menuList) {
+		// TODO Auto-generated method stub
+		
+	}
 	
-	//OPTION 4 ========================================================== EDIT ITEM//
+	private static void deleteMenu(ArrayList<Menu> menuList, Menu mu) {
+		// TODO Auto-generated method stub
+		
+	}
+	private static Menu createMenu() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	//OPTION 5 =============================================================== BILL//
 	//ASHLEIGH STARTS HERE - DELETE BILL//
