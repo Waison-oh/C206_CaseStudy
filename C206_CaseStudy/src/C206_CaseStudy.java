@@ -2,12 +2,14 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
-	private static final int OPTION_BILL = 5;
-	private static final int OPTION_EDIT = 4;
-	private static final int OPTION_BUY = 3;
-	private static final int OPTION_ADD = 2;
 	private static final int OPTION_MENU = 1;
-	private static final int OPTION_EXIT = 6;
+	private static final int OPTION_CREATEMENU = 2;
+	private static final int OPTION_DELETEMENU = 3;
+	private static final int OPTION_ADD = 4;
+	private static final int OPTION_BUY = 5;
+	private static final int OPTION_EDIT = 6;
+	private static final int OPTION_BILL = 7;
+	private static final int OPTION_EXIT = 8;	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -193,15 +195,13 @@ public class C206_CaseStudy {
 	public static void menu() {
 		C206_CaseStudy.setHeader("SCHOOL LUNCH BOX");
 		System.out.println("1. Display Menu");
-		System.out.println("2. Add item");
-		System.out.println("3. Buy item");
-		System.out.println("4. Edit item");
-
-		System.out.println("5. Bill");
-		System.out.println("6. Exit");
-		Helper.line(80, "=");
-
-		System.out.println("5. Exit");
+		System.out.println("2. Create Menu");
+		System.out.println("3. delete Menu");
+		System.out.println("4. Add item");
+		System.out.println("5. Buy item");
+		System.out.println("6. Edit item");
+		System.out.println("7. Bill");
+		System.out.println("8. Exit");
 		Helper.line(80, "=");
 
 	}
