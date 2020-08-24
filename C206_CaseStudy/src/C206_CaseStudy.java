@@ -56,6 +56,7 @@ public class C206_CaseStudy {
 				} else if (option == OPTION_CREATEMENU) {
 
 				} else if (option == OPTION_DELETEMENU) {
+					deleteMenu(menuList);
 
 				} else if (option == OPTION_BUY) {
 					C206_CaseStudy.setHeader("ORDER");
