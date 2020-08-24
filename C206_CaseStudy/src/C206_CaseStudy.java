@@ -282,23 +282,7 @@ public class C206_CaseStudy {
 	// ORDER//
 	// Qi Yue start//
 
-	private static void deleteOrder(ArrayList<Order> orderList) {
-		C206_CaseStudy.setHeader("DELETE ORDER");
-
-		boolean valid = false;
-		while (valid != true) {
-			String studentId = Helper.readString("Enter student id > ");
-			for (int i = 0; i < orderList.size(); i++) {
-				if (studentId == orderList.get(i).getStudentId()) {
-					orderList.remove(i);
-					System.out.println("Order Deleted!");
-				}
-			}
-			if (valid == false) {
-				System.out.println("Order does not exist!! \n");
-			}
-		}
-	}
+	
 
 	private static void createOrder(ArrayList<Order> orderList) {
 		C206_CaseStudy.setHeader("CREATE ORDER");
@@ -320,6 +304,24 @@ public class C206_CaseStudy {
 			output += String.format("%-90s\n", orderList.get(i).toString());
 		}
 		return output;
+	}
+	
+	private static void deleteOrder(ArrayList<Order> orderList) {
+		C206_CaseStudy.setHeader("DELETE ORDER");
+
+		boolean valid = false;
+		while (valid != true) {
+			String studentId = Helper.readString("Enter student id > ");
+			for (int i = 0; i < orderList.size(); i++) {
+				if (studentId == orderList.get(i).getStudentId()) {
+					orderList.remove(i);
+					System.out.println("Order Deleted!");
+				}
+			}
+			if (valid == false) {
+				System.out.println("Order does not exist!! \n");
+			}
+		}
 	}
 
 	public static void viewAllOrder(ArrayList<Order> orderList) {
