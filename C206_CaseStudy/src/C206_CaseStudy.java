@@ -318,6 +318,9 @@ public class C206_CaseStudy {
 		// hard code item menu for local testing:
 		items.add(new MenuItem("Vegetarian", "potato salad", true, 6.70));
 		items.add(new MenuItem("Western", "Chicken Chop", false, 8.90));
+		String listItem = String.format("%-20s %-20s %-10s %s\n", "Western", "Fries", "false", "3.0");
+		listItem += String.format("%-20s %-20s %-10s %s\n", "Vegetarian", "Cabbage", "true", "1.5");
+		System.out.println(listItem);
 		//
 		boolean isCreated = false;
 		String menuName = Helper.readString("Enter the menu name > ");
@@ -328,6 +331,25 @@ public class C206_CaseStudy {
 		for (int i = 0; i < items.size(); i++) {
 			String name = items.get(i).getName();
 
+			if (choose.equalsIgnoreCase(name)) {
+
+				String category = items.get(i).getCategory();
+				boolean healthyChoice = items.get(i).isHealthyChoice();
+				double price = items.get(i).getPrice();
+				Menu mm = new Menu(menuName, month, ItemNum, items);
+				monthlyMenu.add(mm);
+				isCreated = true;
+				break;
+			} else {
+				System.out.println("Invalid choice!");
+			}
+
+		}
+
+		if (isCreated == true) {
+			System.out.println("Menu created!");
+		} else {
+			System.out.println("Menu not created!");
 		}
 
 	}
@@ -352,7 +374,12 @@ public class C206_CaseStudy {
 	public static void viewAllMenu(ArrayList<Menu> menuList) {
 		String output = String.format("%-10s %-30s %-10s %-20s %-20s %-30s\n", "TAG NO.", "NAME", "AVAILABLE",
 				"DISPLAY NAME", "MONTH", "NUMBER OF OFFERS");
-		output += getAllMenu(menuList);
+		if(menuList.isEmpty()) {
+			output += "There is no menu";
+		}else {
+			output += getAllMenu(menuList);
+		}
+		
 		System.out.println(output);
 	}
 
