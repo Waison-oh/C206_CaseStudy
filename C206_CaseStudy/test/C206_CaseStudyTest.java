@@ -15,14 +15,33 @@ public class C206_CaseStudyTest {
 	private Order order2;
 	
 
-	private ArrayList<Menu> menuList = new ArrayList<Menu>();
-	private ArrayList<Account> accountList = new ArrayList<Account>();
-	private ArrayList<Order> orderList = new ArrayList<Order>();
-	private ArrayList<MenuItem> items = new ArrayList<MenuItem>();
-	private ArrayList<Bill> billList = new ArrayList<Bill>();
+	private ArrayList<Menu> menuList;
+	private ArrayList<Account> accountList;
+	private ArrayList<Order> orderList ;
+	private ArrayList<MenuItem> items ;
+	private ArrayList<Bill> billList ;
 
 	@Before
 	public void setUp() throws Exception {
+		//fill in respectively, thanksss
+		MI1 = new MenuItem(null, null, false, 0);
+		MI2 = new MenuItem(null, null, false, 0);
+		A1 = new Account(null, null, null, null);
+		A2 = new Account(null, null, null, null);
+
+		menuList= new ArrayList<Menu>();
+		accountList= new ArrayList<Account>();
+		orderList = new ArrayList<Order>();
+		items = new ArrayList<MenuItem>();
+		billList = new ArrayList<Bill>();		
+	}
+	@Test
+	public void c206_test() {
+		//fail("Not yet implemented"); 
+		assertTrue("C206_CaseStudy_SampleTest ",true);
+	}
+	@Test
+	public void createMenuTest() {
 		
 	}
 
@@ -30,10 +49,6 @@ public class C206_CaseStudyTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void c206_test() {
-		//fail("Not yet implemented"); 
-		assertTrue("C206_CaseStudy_SampleTest ",true);
-	}
+	
 
 }
