@@ -130,7 +130,7 @@ public class C206_CaseStudy {
 				int action = Helper.readInt("Enter option here > ");
 
 				if (action == CREATE) {
-					C206_CaseStudy.createMenu();
+					C206_CaseStudy.createMenu(items, menuList);
 				} else if (action == VIEW) {
 					C206_CaseStudy.viewAllMenu(menuList);
 				} else if (action == DELETE) {
@@ -314,8 +314,30 @@ public class C206_CaseStudy {
 	// OPTION 4 ========================================================== MONTHLY
 	// MENU//
 	// Qiao Ling start//
-	public static void createMenu() {
+	public static void createMenu(ArrayList<MenuItem> items, ArrayList<Menu> monthlyMenu) {
+		// hard code item menu for local testing:
+		items.add(new MenuItem("Vegetarian", "potato salad", true, 6.70));
+		items.add(new MenuItem("Western", "Chicken Chop", false, 8.90));
+		//
+		boolean isCreated = false;
+		String menuName = Helper.readString("Enter the menu name > ");
+		int month = Helper.readInt("Enter the month for this menu >");
+		int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
+		String choose = Helper.readString("Choose item to add > ");
+		for (int i = 0; i < items.size(); i++) {
+			String name = items.get(i).getName();
+
+		}
+
+	}
+
+	public static boolean createMenu(ArrayList<Menu> monthlyMenu, Menu mm) {
+
+		for (int i = 0; i < monthlyMenu.get(i).getNumberOfItems(); i++) {
+			monthlyMenu.add(mm);
+		}
+		return true;
 	}
 
 	public static String getAllMenu(ArrayList<Menu> menuList) {
@@ -335,7 +357,36 @@ public class C206_CaseStudy {
 	}
 
 	public static void deleteMenu(ArrayList<Menu> menuList) {
+		boolean isDeleted = false;
+		for (int i = 0; i < menuList.size(); i++) {
+			String delete = Helper.readString("Enter the name of menu which you want to delete > ");
+			if (delete == null) {
+				delete = Helper.readString("Please enter an item name! > ");
+			} else if (delete.equalsIgnoreCase(menuList.get(i).getDisplayName())) {
+				Menu mm = null;
+				menuList.add(mm);
+				isDeleted = true;
+				break;
+			} else {
+				System.out.println("The menu is not existing.");
+			}
+		}
+		if (isDeleted) {
+			System.out.println("Menu removed!");
+		} else {
+			System.out.println("Menu not found!");
+		}
+	}
 
+	public static boolean deleteMenu(ArrayList<Menu> monthlyMenu, Menu mm) {
+		for (int i = 0; i < monthlyMenu.size(); i++) {
+			String displayName = mm.getDisplayName();
+			if (monthlyMenu.get(i).getDisplayName().equalsIgnoreCase(displayName)) {
+				monthlyMenu.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 	// Qiao Ling end//
 
