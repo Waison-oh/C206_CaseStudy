@@ -1,3 +1,5 @@
+//THIS IS THE MAIN CLASS//
+
 import java.util.ArrayList;
 
 public class SchoolLunchBox_App {
@@ -283,12 +285,40 @@ public class SchoolLunchBox_App {
 	// Qi Yue start//
 
 	private static void deleteOrder(ArrayList<Order> orderList) {
-
+		SchoolLunchBox_App.setHeader("DELETE ORDER");
+		boolean valid = false;
+		while (valid != true) {
+			String studentId = Helper.readString("Enter student ID of order > ");
+			for (int i = 0; i < orderList.size(); i++) {
+				if (studentId == orderList.get(i).getStudentId()) {
+					orderList.remove(i);
+					System.out.println("Order Deleted!");
+				}
+			}
+		}
+		if (valid == false) {
+			System.out.println("Student ID does not exist.");
+		}
 	}
 
 	private static void createOrder(ArrayList<Order> orderList) {
 		// TODO Auto-generated method stub
-
+		SchoolLunchBox_App.setHeader("CREATE ORDER");
+		String studentId = Helper.readString("Enter student ID > ");
+		String orderDate = Helper.readString("Enter order date > ");
+		
+		String newCategory = Helper.readString("Enter new Menu Item category (Western/Asian/Vegetarian):  ");
+		String newName = Helper.readString("Enter new Menu Item name: ");
+		boolean newHealthy = Helper.readBoolean("Is this new Menu Item a healthy choice?(true/false) ");
+		double newPrice = Helper.readDouble("Enter price for new Menu Item: ");
+		
+		MenuItem newMenu = new MenuItem(newCategory, newName, newHealthy, newPrice); 
+		ArrayList<MenuItem> items = new ArrayList<MenuItem>(); 
+		items.add(newMenu); 
+		
+		Order newOrder = new Order(studentId, orderDate, items);
+		orderList.add(newOrder);
+		System.out.println("Order added!");
 	}
 
 	public static String getAllOrder(ArrayList<Order> orderList) {
@@ -356,7 +386,7 @@ public class SchoolLunchBox_App {
 	public static String viewBill(ArrayList<Bill> billList) {
 		String output = null;
 		for (int i = 0; i < billList.size(); i++) {
-			output = billList.get(i).toString();
+			output += billList.get(i).toString();
 		}
 		return output;
 	}
