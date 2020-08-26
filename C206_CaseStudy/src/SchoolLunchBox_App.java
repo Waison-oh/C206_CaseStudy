@@ -23,7 +23,7 @@ public class SchoolLunchBox_App {
 		ArrayList<Bill> billList = new ArrayList<Bill>();
 
 		int option = 0;
-
+		
 		while (option != OPTION_EXIT) {
 			SchoolLunchBox_App.menu();
 			option = Helper.readInt("Enter an Option > ");
@@ -365,17 +365,17 @@ public class SchoolLunchBox_App {
 	public static void deleteBill(ArrayList<Bill> billList) {
 		SchoolLunchBox_App.setHeader("DELETE BILL");
 
-		boolean valid = false;
-		while (valid != true) {
-			String payee = Helper.readString("Enter payee name > ");
-			for (int i = 0; i < billList.size(); i++) {
-				if (payee == billList.get(i).getPayee()) {
-					billList.remove(i);
-					System.out.println("Bill Deleted!");
-				}
+		String payee = Helper.readString("Enter payee name > ");
+		for (int i = 0; i < billList.size(); i++) {
+			if (payee == billList.get(i).getPayee()) {
+				billList.remove(i);
+				System.out.println("Bill Deleted!");
 			}
-			if (valid == false) {
-				System.out.println("Payee does not exist!! \n");
+			else if (payee != billList.get(i).getPayee()) {
+				System.out.println("Payee does not exist!!");
+			}
+			else {
+				System.out.println("INVALID INPUT!!");
 			}
 		}
 	}
@@ -385,8 +385,38 @@ public class SchoolLunchBox_App {
 		
 		String payee = Helper.readString("Enter payee name to update > ");
 		for (int i = 0; i < billList.size(); i++) {
-			
+			if (payee == billList.get(i).getPayee()) {
+				double amount = Helper.readDouble("Enter updated amount > ");
+				String dueDate = Helper.readString("Enter due date > "); 
+				boolean isPaid = Helper.readBoolean("Is it paid? (true/false) > ");
+				
+				billList.get(i).setTotalAmount(amount);
+				billList.get(i).setDueDate(dueDate);
+				billList.get(i).setPaid(isPaid); 
+				
+				System.out.println("Payee Updated!!");
+			}
+			else if (payee != billList.get(i).getPayee()) {
+				System.out.println("Payee does not exist!!");
+			}
+			else {
+				System.out.println("INVALID INPUT!!");
+			}
 		}
+	}
+	
+	//SEARCH BILL//
+	public static String searchBill(ArrayList<Bill> billList) {
+		SchoolLunchBox_App.setHeader("SEARCH BILL");
+		
+		String output = null;
+		String payee = Helper.readString("Enter payee name > "); 
+		for (int i = 0; i < billList.size(); i++) {
+			if (payee == billList.get(i).getPayee()) {
+				output += billList.get(i).toString(); 
+			}
+		}
+		return output;
 	}
 	// ASHLEIGH ENDS HERE//
 
