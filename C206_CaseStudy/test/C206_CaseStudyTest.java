@@ -354,7 +354,21 @@ public class C206_CaseStudyTest {
 
 	@Test
 	public void deleteMenuTest() {
+		//test if the user can delete the menu successfully - normal
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		boolean isDeleted = C206_CaseStudy.deleteMenu(menuList, monthMenu);
+		assertTrue("Test that the menu has been deleted successfully",isDeleted);
 		
+		//test that user cannot delete the menu as the menu does not exist - error
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		String menuName = "July Menu";
+		assertNotEquals("Test that the menu cannot be deleted due to non-existing menu",monthMenu.getDisplayName(),menuName);
+		
+		//test that user cannot delete the menu as the menu name field is empty - error
+		menuName = "";
+		assertNotEquals("Test that the menu cannot be deleted due to empty field",monthMenu.getDisplayName(),menuName);
+		
+
 
 	}
 
