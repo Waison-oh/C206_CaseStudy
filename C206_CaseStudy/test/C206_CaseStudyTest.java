@@ -340,7 +340,14 @@ public class C206_CaseStudyTest {
 
 	@Test
 	public void viewMenuTest() {
+		//test that if user can view the menu - normal
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		C206_CaseStudy.createMenu(menuList, monthMenu1);
+		assertEquals("Test that menu arrayList size is 2", 2, menuList.size());
 		
+		//test that user cannot view the menu due to there is no menu inside the list - error
+		menuList.clear();
+		assertEquals("Test that menu cannot be view due to empty List",0,menuList.size());
 
 	}
 	
