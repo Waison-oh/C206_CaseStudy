@@ -401,15 +401,13 @@ public class C206_CaseStudy {
 			if (delete == null) {
 				delete = Helper.readString("Please enter an item name! > ");
 			} else if (delete.equalsIgnoreCase(menuList.get(i).getDisplayName())) {
-				Menu mm = null;
-				menuList.add(mm);
+				menuList.remove(i);
 				isDeleted = true;
-				break;
 			} else {
 				System.out.println("The menu is not existing.");
 			}
 		}
-		if (isDeleted) {
+		if (isDeleted == true) {
 			System.out.println("Menu removed!");
 		} else {
 			System.out.println("Menu not found!");
