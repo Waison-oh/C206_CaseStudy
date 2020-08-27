@@ -275,8 +275,8 @@ public class C206_CaseStudyTest {
 		//fill in respectively, thanksss
 		MI1 = new MenuItem(null, null, false, 0);
 		MI2 = new MenuItem(null, null, false, 0);
+		
 		//all the arrayList:
-
 		menuList = new ArrayList<Menu>();
 		accountList = new ArrayList<Account>();
 		orderList = new ArrayList<Order>();
@@ -287,7 +287,6 @@ public class C206_CaseStudyTest {
 		// menu item
 		MI1 = new MenuItem("Western", "Chicken nugget", false, 6);
 		MI2 = new MenuItem("Vegetarian", "Potato", true, 5);
-
 		items.add(MI1);
 		items.add(MI2);
 
@@ -319,14 +318,25 @@ public class C206_CaseStudyTest {
 
 	@Test
 	public void createMenuTest() {
+				
 		// test if the menu is created - normal
 		C206_CaseStudy.createMenu(menuList, monthMenu);
 		assertSame("Check that menu is create", monthMenu.getDisplayName(), menuList.get(0).getDisplayName());
 
-		//test 
-
-	}
-	
+		//test if the menu is not created due to duplicated name - error
+		
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		monthMenu1 = new Menu("Jan menu", 2, 1, items);
+		boolean isCreated = C206_CaseStudy.createMenu(menuList, monthMenu1);
+		
+		assertEquals("Check that menu has the same menu name",menuList.get(0).getDisplayName(),monthMenu1.getDisplayName());
+		assertFalse("Ensure that menu is not created due to duplicated name",isCreated);
+		
+		//test if the menu name is empty - error
+		monthMenu1 = new Menu("", 2, 1, items);
+		boolean emptyName = C206_CaseStudy.createMenu(menuList, monthMenu1);
+		assertFalse("Ensure that menu is not created due to empty menu name",emptyName);
+	}	
 
 	@Test
 	public void viewMenuTest() {

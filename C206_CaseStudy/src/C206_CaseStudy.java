@@ -326,6 +326,10 @@ public class C206_CaseStudy {
 		//
 		boolean isCreated = false;
 		String menuName = Helper.readString("Enter the menu name > ");
+		while(menuName.equalsIgnoreCase("")) {
+			menuName = Helper.readString("Please do not leave menu name blank > ");
+			isCreated = false;
+		}
 		int month = Helper.readInt("Enter the month for this menu >");
 		int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
