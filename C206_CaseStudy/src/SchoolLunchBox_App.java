@@ -25,7 +25,7 @@ public class SchoolLunchBox_App {
 		ArrayList<Bill> billList = new ArrayList<Bill>();
 
 		int option = 0;
-		
+
 		while (option != OPTION_EXIT) {
 			SchoolLunchBox_App.menu();
 			option = Helper.readInt("Enter an Option > ");
@@ -47,7 +47,7 @@ public class SchoolLunchBox_App {
 				}
 
 				else if (action == VIEW) {
-						SchoolLunchBox_App.viewAllMenuItems(items); 
+					SchoolLunchBox_App.viewAllMenuItems(items);
 				}
 
 				else if (action == DELETE) {
@@ -130,7 +130,7 @@ public class SchoolLunchBox_App {
 				int action = Helper.readInt("Enter option here > ");
 
 				if (action == CREATE) {
-					SchoolLunchBox_App.createMenu();
+					SchoolLunchBox_App.createMenu(items, menuList);
 				} else if (action == VIEW) {
 					SchoolLunchBox_App.viewAllMenu(menuList);
 				} else if (action == DELETE) {
@@ -306,16 +306,16 @@ public class SchoolLunchBox_App {
 		SchoolLunchBox_App.setHeader("CREATE ORDER");
 		String studentId = Helper.readString("Enter student ID > ");
 		String orderDate = Helper.readString("Enter order date > ");
-		
+
 		String newCategory = Helper.readString("Enter new Menu Item category (Western/Asian/Vegetarian):  ");
 		String newName = Helper.readString("Enter new Menu Item name: ");
 		boolean newHealthy = Helper.readBoolean("Is this new Menu Item a healthy choice?(true/false) ");
 		double newPrice = Helper.readDouble("Enter price for new Menu Item: ");
-		
-		MenuItem newMenu = new MenuItem(newCategory, newName, newHealthy, newPrice); 
-		ArrayList<MenuItem> items = new ArrayList<MenuItem>(); 
-		items.add(newMenu); 
-		
+
+		MenuItem newMenu = new MenuItem(newCategory, newName, newHealthy, newPrice);
+		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+		items.add(newMenu);
+
 		Order newOrder = new Order(studentId, orderDate, items);
 		orderList.add(newOrder);
 		System.out.println("Order added!");
@@ -342,8 +342,30 @@ public class SchoolLunchBox_App {
 	// OPTION 4 ========================================================== MONTHLY
 	// MENU//
 	// Qiao Ling start//
-	public static void createMenu() {
+	public static void createMenu(ArrayList<MenuItem> items, ArrayList<Menu> monthlyMenu) {
+		// hard code item menu for local testing:
+		items.add(new MenuItem("Vegetarian", "potato salad", true, 6.70));
+		items.add(new MenuItem("Western", "Chicken Chop", false, 8.90));
+		//
+		boolean isCreated = false;
+		String menuName = Helper.readString("Enter the menu name > ");
+		int month = Helper.readInt("Enter the month for this menu >");
+		int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
+		String choose = Helper.readString("Choose item to add > ");
+		for (int i = 0; i < items.size(); i++) {
+			String name = items.get(i).getName();
+
+		}
+
+	}
+
+	public static boolean createMenu(ArrayList<Menu> monthlyMenu, Menu mm) {
+
+		for (int i = 0; i < monthlyMenu.get(i).getNumberOfItems(); i++) {
+			monthlyMenu.add(mm);
+		}
+		return true;
 	}
 
 	public static String getAllMenu(ArrayList<Menu> menuList) {
@@ -363,7 +385,36 @@ public class SchoolLunchBox_App {
 	}
 
 	public static void deleteMenu(ArrayList<Menu> menuList) {
+		boolean isDeleted = false;
+		for (int i = 0; i < menuList.size(); i++) {
+			String delete = Helper.readString("Enter the name of menu which you want to delete > ");
+			if (delete == null) {
+				delete = Helper.readString("Please enter an item name! > ");
+			} else if (delete.equalsIgnoreCase(menuList.get(i).getDisplayName())) {
+				Menu mm = null;
+				menuList.add(mm);
+				isDeleted = true;
+				break;
+			} else {
+				System.out.println("The menu is not existing.");
+			}
+		}
+		if (isDeleted) {
+			System.out.println("Menu removed!");
+		} else {
+			System.out.println("Menu not found!");
+		}
+	}
 
+	public static boolean deleteMenu(ArrayList<Menu> monthlyMenu, Menu mm) {
+		for (int i = 0; i < monthlyMenu.size(); i++) {
+			String displayName = mm.getDisplayName();
+			if (monthlyMenu.get(i).getDisplayName().equalsIgnoreCase(displayName)) {
+				monthlyMenu.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 	// Qiao Ling end//
 
@@ -400,50 +451,47 @@ public class SchoolLunchBox_App {
 			if (payee == billList.get(i).getPayee()) {
 				billList.remove(i);
 				System.out.println("Bill Deleted!");
-			}
-			else if (payee != billList.get(i).getPayee()) {
+			} else if (payee != billList.get(i).getPayee()) {
 				System.out.println("Payee does not exist!!");
-			}
-			else {
+			} else {
 				System.out.println("INVALID INPUT!!");
 			}
 		}
 	}
+
 	// UPDATE BILL//
 	public static void updateBill(ArrayList<Bill> billList) {
-		SchoolLunchBox_App.setHeader("UPDATE BILL"); 
-		
+		SchoolLunchBox_App.setHeader("UPDATE BILL");
+
 		String payee = Helper.readString("Enter payee name to update > ");
 		for (int i = 0; i < billList.size(); i++) {
 			if (payee == billList.get(i).getPayee()) {
 				double amount = Helper.readDouble("Enter updated amount > ");
-				String dueDate = Helper.readString("Enter due date > "); 
+				String dueDate = Helper.readString("Enter due date > ");
 				boolean isPaid = Helper.readBoolean("Is it paid? (true/false) > ");
-				
+
 				billList.get(i).setTotalAmount(amount);
 				billList.get(i).setDueDate(dueDate);
-				billList.get(i).setPaid(isPaid); 
-				
+				billList.get(i).setPaid(isPaid);
+
 				System.out.println("Payee Updated!!");
-			}
-			else if (payee != billList.get(i).getPayee()) {
+			} else if (payee != billList.get(i).getPayee()) {
 				System.out.println("Payee does not exist!!");
-			}
-			else {
+			} else {
 				System.out.println("INVALID INPUT!!");
 			}
 		}
 	}
-	
-	//SEARCH BILL//
+
+	// SEARCH BILL//
 	public static String searchBill(ArrayList<Bill> billList) {
 		SchoolLunchBox_App.setHeader("SEARCH BILL");
-		
+
 		String output = null;
-		String payee = Helper.readString("Enter payee name > "); 
+		String payee = Helper.readString("Enter payee name > ");
 		for (int i = 0; i < billList.size(); i++) {
 			if (payee == billList.get(i).getPayee()) {
-				output += billList.get(i).toString(); 
+				output += billList.get(i).toString();
 			}
 		}
 		return output;
