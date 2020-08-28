@@ -267,7 +267,6 @@ public class C206_CaseStudyTest {
 		assertNotNull("Check if there is valid Bill arraylist to add to", billList);
 		// Given an empty list, after adding 1 item, the size of the list is 1//
 		// The bill just added is the same as the first item of the list//
-		SchoolLunchBox_App.createBill(billList, billNew);
 		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
 		assertSame("Check that Bill is added", billNew, billList.get(0));
 
@@ -279,7 +278,7 @@ public class C206_CaseStudyTest {
 	public void searchBill() {
 		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
 
-		SchoolLunchBox_App.createBill(billList, billNew);
+		//SchoolLunchBox_App.createBill(billList, billNew);
 		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
 		assertSame("Check that bill is added", billNew, billList.get(0));
 
@@ -293,7 +292,7 @@ public class C206_CaseStudyTest {
 	public void updateBill() {
 		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
 
-		SchoolLunchBox_App.createBill(billList, billNew);
+		//SchoolLunchBox_App.createBill(billList, billNew);
 		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
 		assertSame("Check that bill is added", billNew, billList.get(0));
 
