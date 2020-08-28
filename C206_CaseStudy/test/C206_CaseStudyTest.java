@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class C206_CaseStudyTest {
+	
 
 	private MenuItem MI1;
 	private MenuItem MI2;
@@ -14,6 +15,7 @@ public class C206_CaseStudyTest {
 	private Account A2;
 	private Order order1;
 	private Order order2;
+	private Bill billNew;
 
 	private Menu monthMenu;
 	private Menu monthMenu1;
@@ -44,6 +46,10 @@ public class C206_CaseStudyTest {
 		MI2 = new MenuItem("Vegetarian", "Potato", true, 5);
 		items.add(MI1);
 		items.add(MI2);
+		
+		// bill - ashleigh part 
+		billNew = new Bill ("Ashleigh", 5.60, "27/8/2020", false);
+		billList= new ArrayList<Bill>();
 
 		// monthly menu
 		monthMenu = new Menu("Jan menu", 1, 1, items);
@@ -249,26 +255,9 @@ public class C206_CaseStudyTest {
 	//Qiao Ling ENDS HERE//
 
 	//Ashleigh STARTS HERE//
-	@Before
-	private Bill billNew;
-	
-	public void setUp() throws Exception {
-		billNew = new Bill ("Ashleigh", 5.60, "27/8/2020", false);
-		billList= new ArrayList<Bill>();
-	}
 
-	@After
-	public void tearDown() throws Exception {
-		billNew = null;
-		billList = null;
-	}
-
-	@Test
-	public void c206Bill_test() {
-		//fail("Not yet implemented"); 
-		assertTrue("C206_CaseStudyTest ",true);
-	}
-	@Test
+		
+		@Test
 	public void createBill() {
 			// Bill list is not null, so that can add a new bill - error condition//
 			assertNotNull("Check if there is valid Bill arraylist to add to", billList);
@@ -305,7 +294,7 @@ public class C206_CaseStudyTest {
 		
 	}
 	//Ashleigh ENDS HERE//
-=======
+	
 	// QIYUE ADD VIEW DELETE UPDATE SEARCH TEST CODE
 	@Test
 	public void CreateOrderTest() {
@@ -439,7 +428,7 @@ public class C206_CaseStudyTest {
 		
 		items = null;
 		menuList = null;
-		
+
 		billNew = null;
 		billList = null;
 	}

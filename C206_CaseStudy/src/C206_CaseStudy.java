@@ -375,7 +375,7 @@ public class C206_CaseStudy {
 				isDelete = true;
 			}
 		}
-<<<<<<< HEAD
+
 		public static void  searchOrder(ArrayList<Order> orderList) {
 			C206_CaseStudy.setHeader("Search LIST");
 			String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
@@ -389,7 +389,6 @@ public class C206_CaseStudy {
 				}
 			}
 			System.out.println(output);
-=======
 		return isDelete;
 	}
 
@@ -401,7 +400,6 @@ public class C206_CaseStudy {
 			System.out.println("Invalid order");
 		} else {
 			System.out.println(studentid + "'s  Order Deleted");
->>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
 		}
 	}
 
