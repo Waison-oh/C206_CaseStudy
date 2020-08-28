@@ -214,6 +214,11 @@ public class SchoolLunchBox_App {
 	// =================================================================================
 	// //
 
+	private static void searchOrder(ArrayList<Order> orderList) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private static void setHeader(String header) {
 		// TODO Auto-generated method stub
 		Helper.line(80, "-");
@@ -521,13 +526,13 @@ public class SchoolLunchBox_App {
 	// BILL//
 	// ASHLEIGH STARTS HERE//
 	// CREATE BILL//
-	public static void createBill(ArrayList<Bill> billList) {
+	public static void createBill(ArrayList<Bill> billList, Bill newBill) {
 		SchoolLunchBox_App.setHeader("CREATE BILL");
 		String payee = Helper.readString("Enter payee name > ");
 		double amount = Helper.readDouble("Enter total amount > ");
 		String due = Helper.readString("Enter due date > ");
 
-		Bill newBill = new Bill(payee, amount, due);
+		newBill = new Bill(payee, amount, due, false);
 		billList.add(newBill);
 		System.out.println("Bill added!");
 	}
@@ -583,11 +588,11 @@ public class SchoolLunchBox_App {
 	}
 
 	// SEARCH BILL//
-	public static String searchBill(ArrayList<Bill> billList) {
+	public static String searchBill(String payee, double amount, String dueDate, ArrayList<Bill> billList) {
 		SchoolLunchBox_App.setHeader("SEARCH BILL");
 
 		String output = null;
-		String payee = Helper.readString("Enter payee name > ");
+		payee = Helper.readString("Enter payee name > ");
 		for (int i = 0; i < billList.size(); i++) {
 			if (payee == billList.get(i).getPayee()) {
 				output += billList.get(i).toString();
