@@ -80,7 +80,7 @@ public class C206_CaseStudy {
 				}
 
 				else if (action == DELETE) {
-					C206_CaseStudy.deleteAccount(accountList);
+					C206_CaseStudy.deleteAccount(accountList, "username");
 				}
 
 				else {
@@ -273,12 +273,12 @@ public class C206_CaseStudy {
 		return output;
 	}
 
-	public static void deleteAccount(ArrayList<Account> accountList) {
+	public static void deleteAccount(ArrayList<Account> accountList, String delete) {
 		boolean valid = false;
 		while (valid != true) {
 			String username = Helper.readString("Enter username > ");
 			for (int i = 0; i < accountList.size(); i++) {
-				if (username == accountList.get(i).getUsername()) {
+				if (accountList.get(i).getUsername().equals(delete)) {
 					accountList.remove(i);
 					System.out.println("User Deleted!");
 				}

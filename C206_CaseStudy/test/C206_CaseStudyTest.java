@@ -418,5 +418,42 @@ public class C206_CaseStudyTest {
 		items = null;
 		menuList = null;
 	}
-
+	
+	@Test
+	public void addAccounttest() {
+		
+		// Test if account is created - normal
+	    Account A1 = new Account("userRole","contactNumber","studentId","username");
+	    
+	    // Check if the list is not null but empty boundary
+	    assertEquals("Check if arraylist size is 0" , 0, accountList.size());
+	    
+	    // Having added an item to an empty list, test if the list size is 1
+	    accountList.add(A1);
+	    // Add an item and test if ArrayList has a size of 1
+	    assertEquals("Check if arraylist size is 1" , 1, accountList.size());
+	    
+	 // Test that account is not created due to duplicated user - error
+	 		Account A2 = new Account("userRole","contactNumber","studentId","username");
+	 		assertEquals("Check that list has same username",accountList.get(0).getUsername());
+	}
+	
+	@Test
+	  public void deleteAccountTest() {
+		
+		//Test if account is deleted - normal
+	    Account A1 = new Account("userRole","contactNumber","studentId","username");
+	    accountList.add(A1);
+	    assertNotNull("Test if there is valid Request Quotation arraylist to retrieve item", accountList);
+	    // Check if the list size is 1 given an empty list after deleting 1 account
+	    C206_CaseStudy.deleteAccount(accountList, "username");
+	    assertEquals("Checks if deleted properly,", 0, accountList.size());
+	}
+	
+	public static void viewAccountTest() {
+		Account A1 = new Account("userRole","contactNumber","studentId","username");
+	    String output = String.format("%-10s %-20s %-10s %-10s %-20s\n", "userRole","contactNumber","studentId","username");
+	    System.out.println(output);
+	  }
+			  
 }
