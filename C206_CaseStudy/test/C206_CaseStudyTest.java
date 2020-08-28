@@ -277,14 +277,13 @@ public class C206_CaseStudyTest {
 	@Test
 	public void searchBill() {
 		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
-
 		//SchoolLunchBox_App.createBill(billList, billNew);
 		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
 		assertSame("Check that bill is added", billNew, billList.get(0));
 
 		String actualOutput = SchoolLunchBox_App.searchBill("Ashleigh", 5.60, "27/8/2020", billList);
-		String output = billList.get(0).toString();
-		assertEquals("Check that search returns correct bill", actualOutput, output);
+		String output = SchoolLunchBox_App.viewBill(billList);
+		assertEquals("Check that search returns correct bill", output, actualOutput);
 
 	}
 
