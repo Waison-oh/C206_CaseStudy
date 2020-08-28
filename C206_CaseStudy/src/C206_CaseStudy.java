@@ -96,9 +96,13 @@ public class C206_CaseStudy {
 				int CREATE = 1;
 				int VIEW = 2;
 				int DELETE = 3;
+				int UPDATE = 4;
+				int SEARCH = 5;
 				System.out.println("1. Create order");
 				System.out.println("2. View order");
 				System.out.println("3. Delete order");
+				System.out.println("4. Update order");
+				System.out.println("5.Search order");
 
 				int action = Helper.readInt("Enter option here > ");
 
@@ -112,6 +116,12 @@ public class C206_CaseStudy {
 
 				else if (action == DELETE) {
 					C206_CaseStudy.deleteOrder(orderList);
+				}
+				else if(action == UPDATE) {
+					C206_CaseStudy.updateOrder(orderList);
+				}
+				else if(action == SEARCH) {
+					C206_CaseStudy.searchOrder(orderList);
 				}
 
 				else {
@@ -291,6 +301,7 @@ public class C206_CaseStudy {
 		private static void createOrder(ArrayList<Order> orderList) {
 			C206_CaseStudy.setHeader("CREATE ORDER");
 			
+			System.out.println("Current Total Amount Of Orders: " + orderList.size());
 			String studentId =Helper.readString("Enter student id> ");
 			String orderDate =Helper.readString("Enter order date> ");
 			
@@ -300,18 +311,7 @@ public class C206_CaseStudy {
 			Order newOrder = new Order(studentId, orderDate, item); 
 			orderList.add(newOrder); 
 			System.out.println("Order added!");
-			
 		}
-
-		public static String getAllOrder(ArrayList<Order> orderList) {
-			String output = "";
-
-			for (int i = 0; i < orderList.size(); i++) {
-				output += String.format("%-90s\n", orderList.get(i).toString());
-			}
-			return output;
-		}
-		
 		public static Boolean doDeleteOrder(ArrayList<Order> orderList, String studentId) {
 			boolean isDelete = false;
 			for(int i =0; i < orderList.size(); i++) {
@@ -334,12 +334,45 @@ public class C206_CaseStudy {
 				System.out.println(studentid + "'s  Order Deleted");
 			}
 		}
-
+		public static void  searchOrder(ArrayList<Order> orderList) {
+			C206_CaseStudy.setHeader("Search LIST");
+			String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
+			String ID = Helper.readString("Enter Student ID To Search For: ");
+			for (int i = 0; i < orderList.size(); i++) {
+				if(orderList.get(i).getStudentId().equals(ID)) {
+					output += String.format("%-90s\n", orderList.get(i).toString());
+				}
+			}
+			System.out.println(output);
+		}
+		public static String getAllOrder(ArrayList<Order> orderList) {
+			String output = "";
+			
+			for (int i = 0; i < orderList.size(); i++) {
+				output += String.format("%-90s\n", orderList.get(i).toString());
+			}
+			return output;
+		}
+		
 		public static void viewAllOrder(ArrayList<Order> orderList) {
 			C206_CaseStudy.setHeader("ORDER LIST");
 			String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
 			output += getAllOrder(orderList);
 			System.out.println(output);
+		}
+	
+		public static void updateOrder(ArrayList<Order> orderList) {
+			String id = Helper.readString("Enter Student ID: ");
+			for(int i = 0; i < orderList.size(); i++) {
+				if(orderList.get(i).getStudentId().equals(id)) {
+					String newOrderDate = Helper.readString("Enter New Order Date: ");
+					orderList.get(i).setOrderDate(newOrderDate);
+					System.out.println("Order Date Updated");
+				}
+				else {
+					System.out.println("Student ID Invalid");
+				}
+			}
 		}
 		// Qi Yue end//
 
