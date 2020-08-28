@@ -445,7 +445,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void addAccounttest() {
+	public void addAccounttest() { //sharan starts here
 		
 		// Test if account is created - normal
 	    Account A1 = new Account("userRole","contactNumber","studentId","username");
@@ -475,7 +475,8 @@ public class C206_CaseStudyTest {
 	    assertEquals("Checks if deleted properly,", 0, accountList.size());
 	}
 	
-	public static void viewAccountTest() {
+	public static void viewAccountTest() { //sharan ends here
+		//view accounts -normal
 		Account A1 = new Account("userRole","contactNumber","studentId","username");
 	    String output = String.format("%-10s %-20s %-10s %-10s %-20s\n", "userRole","contactNumber","studentId","username");
 	    System.out.println(output);
