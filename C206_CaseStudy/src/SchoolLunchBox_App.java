@@ -421,7 +421,22 @@ public class SchoolLunchBox_App {
 		output += getAllOrder(orderList);
 		System.out.println(output);
 	}
+	
+	public static void updateOrder(ArrayList<Order> orderList) {
+		String id = Helper.readString("Enter Student ID: ");
+		for (int i = 0; i < orderList.size(); i++) {
+			if (orderList.get(i).getStudentId().equals(id)) {
+				String newOrderDate = Helper.readString("Enter New Order Date: ");
+				orderList.get(i).setOrderDate(newOrderDate);
+				System.out.println("Order Date Updated");
+			} 
+			else {
+				System.out.println("Student ID Invalid");
+			}
+		}
+	}
 	// Qi Yue end//
+
 
 	// OPTION 4 ========================================================== MONTHLY
 	// MENU//

@@ -57,7 +57,7 @@ public class MenuItem {
 	}
 	
 	public String toString() {
-		return String.format("%-10s %-30s %-10s %.2f", category,name, healthyChoice,price);//getCategory(),showHealthyChoice(isHealthyChoice()), getPrice());
+		return String.format("%-10s %-30s %-10s %.2f\n", category,name, healthyChoice,price);//getCategory(),showHealthyChoice(isHealthyChoice()), getPrice());
 	}
 	
 }
