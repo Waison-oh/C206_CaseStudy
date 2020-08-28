@@ -305,7 +305,7 @@ public class C206_CaseStudy {
 			
 			ArrayList<MenuItem> item = new ArrayList<MenuItem>();
 			// MenuItem add got error so i create a item to show.
-			item.add(new MenuItem("Cat123", "123", true, 12.00));
+			item.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
 			Order newOrder = new Order(studentId, orderDate, item); 
 			orderList.add(newOrder); 
 			System.out.println("Order added!");
@@ -332,13 +332,15 @@ public class C206_CaseStudy {
 				System.out.println(studentid + "'s  Order Deleted");
 			}
 		}
-		public static void  searchOrder(ArrayList<Order> orderList) {
+		public static void searchOrder(ArrayList<Order> orderList) {
 			C206_CaseStudy.setHeader("Search LIST");
 			String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
 			String ID = Helper.readString("Enter Student ID To Search For: ");
 			for (int i = 0; i < orderList.size(); i++) {
 				if(orderList.get(i).getStudentId().equals(ID)) {
 					output += String.format("%-90s\n", orderList.get(i).toString());
+				}else {
+					System.out.println("Invalid Student ID entered! ");
 				}
 			}
 			System.out.println(output);

@@ -292,7 +292,7 @@ public class C206_CaseStudyTest {
 		assertNotNull("Check if there is valid order arraylist to add to", orderList);
 		//Order List is empty list, after adding 1 item, the size of the list is 1 - Normal
 		ArrayList<MenuItem> MI = new ArrayList<MenuItem>();
-		MI.add(new MenuItem("Cat123", "123", true, 12.00));
+		MI.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		orderList.add(new Order("19013363", "2020-08-31", MI));
 		assertEquals("Check that order List size is 1", 1,orderList.size());
@@ -304,6 +304,19 @@ public class C206_CaseStudyTest {
 				assertFalse(false);
 			}
 		}
+		//Given that list is not empty display the total amount of orders - normal
+		if(orderList.size() > 0) {
+			assertTrue(true);
+		}
+		//Given that list is empty and the total amount should be 0 and not other amount -error
+		if(orderList.size() == 0) {
+			assertEquals(0,orderList);
+		}
+		//Given that list has 1 order but display 2 - error
+		if(orderList.size() > 0) {
+			assertFalse(false);
+		}
+		
 	}
 	@Test
 	public void viewOrderTest() {
@@ -311,7 +324,7 @@ public class C206_CaseStudyTest {
 		assertNotNull("Check if there is valid order arraylist to add to", orderList);
 		//OrderList is empty list, after adding 2 items, the size of the list is 2 - Normal
 		ArrayList<MenuItem> MI = new ArrayList<MenuItem>();
-		MI.add(new MenuItem("Cat123", "123", true, 12.00));
+		MI.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		orderList.add(new Order("19013363", "2020-08-31", MI));
 		orderList.add(new Order("19013363", "2020-08-31", MI));
@@ -330,7 +343,7 @@ public class C206_CaseStudyTest {
 		}
 		//OrderList is not empty, and order is in the list remove order- Normal
 		ArrayList<MenuItem> MI = new ArrayList<MenuItem>();
-		MI.add(new MenuItem("Cat123", "123", true, 12.00));
+		MI.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		orderList.add(new Order("19013363", "2020-08-31", MI));
 		boolean isdelete = false;
