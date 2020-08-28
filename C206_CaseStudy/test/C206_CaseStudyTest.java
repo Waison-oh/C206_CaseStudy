@@ -480,6 +480,5 @@ public class C206_CaseStudyTest {
 		Account A1 = new Account("userRole","contactNumber","studentId","username");
 	    String output = String.format("%-10s %-20s %-10s %-10s %-20s\n", "userRole","contactNumber","studentId","username");
 	    System.out.println(output);
-	  }
-			  
+	  }		  
 }
