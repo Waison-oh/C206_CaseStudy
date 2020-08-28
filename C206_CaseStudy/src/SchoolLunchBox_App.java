@@ -36,9 +36,11 @@ public class SchoolLunchBox_App {
 				int CREATE = 1;
 				int VIEW = 2;
 				int DELETE = 3;
+				int UPDATE = 4;
 				System.out.println("1. Create menu");
 				System.out.println("2. View menu");
 				System.out.println("3. Delete menu");
+				System.out.println("4. Update menu");
 
 				int action = Helper.readInt("Enter option here > ");
 
@@ -48,6 +50,21 @@ public class SchoolLunchBox_App {
 
 				else if (action == VIEW) {
 					SchoolLunchBox_App.viewAllMenuItems(items);
+					C206_CaseStudy.viewAllMenuItems(items);
+					System.out.println("1. Show menu items");
+					System.out.println("2. Search by menu item name");
+					System.out.println("3. Search by category");
+					int choice = Helper.readInt("Enter the choice: ");
+					if (choice == 1) {
+						C206_CaseStudy.viewAllMenuItems(items);
+					} 
+					else if (choice == 2) {
+						C206_CaseStudy.searchByName(items);
+					} 
+					else if (choice == 3) {
+						C206_CaseStudy.searchByCategory(items);
+
+					}
 				}
 
 				else if (action == DELETE) {
@@ -94,9 +111,14 @@ public class SchoolLunchBox_App {
 				int CREATE = 1;
 				int VIEW = 2;
 				int DELETE = 3;
+				int UPDATE = 4;
+				int SEARCH = 5;
+				
 				System.out.println("1. Create order");
 				System.out.println("2. View order");
 				System.out.println("3. Delete order");
+				System.out.println("4. Update order");
+				System.out.println("5. Search order");
 
 				int action = Helper.readInt("Enter option here > ");
 
@@ -110,6 +132,12 @@ public class SchoolLunchBox_App {
 
 				else if (action == DELETE) {
 					SchoolLunchBox_App.deleteOrder(orderList);
+				}
+				else if (action == UPDATE) {
+					SchoolLunchBox_App.updateOrder(orderList); 
+				}
+				else if (action == SEARCH) {
+					SchoolLunchBox_App.searchOrder(orderList);
 				}
 
 				else {
@@ -145,6 +173,8 @@ public class SchoolLunchBox_App {
 				int CREATE = 1;
 				int VIEW = 2;
 				int DELETE = 3;
+				int UPDATE = 4;
+				int SEARCH = 5; 
 				SchoolLunchBox_App.setHeader("BILL");
 				System.out.println("1. Create bill");
 				System.out.println("2. View bill");
@@ -154,16 +184,28 @@ public class SchoolLunchBox_App {
 
 				if (actions == CREATE) {
 					SchoolLunchBox_App.createBill(billList);
-				} else if (actions == VIEW) {
+				} 
+				else if (actions == VIEW) {
 					billList.toString();
-				} else if (actions == DELETE) {
+				} 
+				else if (actions == DELETE) {
 					SchoolLunchBox_App.deleteBill(billList);
-				} else {
+				} 
+				else if (actions == UPDATE) {
+					SchoolLunchBox_App.updateBill(billList); 
+				}
+				else if (actions == SEARCH) {
+					SchoolLunchBox_App.searchBill(billList); 
+				}
+				else {
 					System.out.println("INVALID OPTION!!");
-				} // ASHLEIGH ENDS HERE - BILL//
-			} else if (option == OPTION_EXIT) {
+				} 
+				// ASHLEIGH ENDS HERE - BILL//
+			} 
+			else if (option == OPTION_EXIT) {
 				System.out.println("GOODBYE!!");
-			} else {
+			} 
+			else {
 				System.out.println("INVALID OPTION!!");
 			}
 		}
@@ -220,9 +262,14 @@ public class SchoolLunchBox_App {
 	}
 
 	public static String viewAllMenuItems(ArrayList<MenuItem> items) {
-		String output = null;
+		String output = "";
 		for (int i = 0; i < items.size(); i++) {
-			output = items.get(i).toString();
+			if (items.get(i).getPrice() > 0) {
+				output = items.get(i).toString();
+			} 
+			else if (items.get(i).getPrice() == 0.00) {
+				output += (items.get(i).getName() + "have a price of $0.00");
+			}
 		}
 		return output;
 	}
@@ -236,6 +283,43 @@ public class SchoolLunchBox_App {
 				System.out.println("Menu Item does not exist");
 			}
 		}
+	}
+	public static void updateMenuItems(ArrayList<MenuItem> items) {
+		String searchName = Helper.readString("Enter menu item name to update: ");
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).getName() == searchName) {
+				String updateName = Helper.readString("Enter new menu item name: ");
+				double price = Helper.readDouble("Enter new menu item price: ");
+				items.get(i).setName(updateName);
+				items.get(i).setPrice(price);
+				System.out.println("Update successful");
+			} else {
+				System.out.println("The menu item does not exist");
+			}
+		}
+	}
+
+	public static String searchByName(ArrayList<MenuItem> items) {
+		String output = "";
+		String name = Helper.readString("Enter menu item name: ");
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).getName() == name) {
+				output += items.get(i).toString();
+			}
+		}
+		return output;
+	}
+
+	public static String searchByCategory(ArrayList<MenuItem> items) {
+		String output = "";
+		String category = Helper.readString("Enter category: ");
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).getCategory() == category) {
+				output += items.get(i).toString();
+			}
+		}
+
+		return output;
 	}
 
 	// Wei Kiat end//
@@ -337,7 +421,22 @@ public class SchoolLunchBox_App {
 		output += getAllOrder(orderList);
 		System.out.println(output);
 	}
+	
+	public static void updateOrder(ArrayList<Order> orderList) {
+		String id = Helper.readString("Enter Student ID: ");
+		for (int i = 0; i < orderList.size(); i++) {
+			if (orderList.get(i).getStudentId().equals(id)) {
+				String newOrderDate = Helper.readString("Enter New Order Date: ");
+				orderList.get(i).setOrderDate(newOrderDate);
+				System.out.println("Order Date Updated");
+			} 
+			else {
+				System.out.println("Student ID Invalid");
+			}
+		}
+	}
 	// Qi Yue end//
+
 
 	// OPTION 4 ========================================================== MONTHLY
 	// MENU//
