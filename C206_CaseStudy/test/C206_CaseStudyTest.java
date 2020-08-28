@@ -8,165 +8,6 @@ import org.junit.Test;
 
 public class C206_CaseStudyTest {
 
-	/*
-	 * ArrayList<Menu> menuList = new ArrayList<Menu>(); ArrayList<Account>
-	 * accountList = new ArrayList<Account>(); ArrayList<Order> orderList = new
-	 * ArrayList<Order>(); ArrayList<MenuItem> items = new ArrayList<MenuItem>();
-	 * ArrayList<Bill> billList = new ArrayList<Bill>();
-	 * 
-	 * // OPTION 1 ===========================================================
-	 * MENU// // Wei Kiat start// public static void createItem(ArrayList<MenuItem>
-	 * items) {
-	 * 
-	 * String newCategory = Helper.
-	 * readString("Enter new Menu Item category (Western/Asian/Vegetarian):  ");
-	 * String newName = Helper.readString("Enter new Menu Item name: "); boolean
-	 * newHealthy =
-	 * Helper.readBoolean("Is this new Menu Item a healthy choice?(true/false) ");
-	 * double newPrice = Helper.readDouble("Enter price for new Menu Item: ");
-	 * 
-	 * items.add(new MenuItem(newCategory, newName, newHealthy, newPrice));
-	 * 
-	 * System.out.println("Menu added!!");
-	 * 
-	 * }
-	 * 
-	 * public static String viewAllMenuItems(ArrayList<MenuItem> items) { String
-	 * output = null; for (int i = 0; i < items.size(); i++) { output =
-	 * items.get(i).toString(); } return output; }
-	 * 
-	 * public static void deleteMenuItems(ArrayList<MenuItem> items) { String name =
-	 * Helper.readString("Enter the menu item name: "); for (int i = 0; i <
-	 * items.size(); i++) { if (name == items.get(i).getName()) { items.remove(i); }
-	 * else { System.out.println("Menu Item does not exist"); } } }
-	 * 
-	 * // Wei Kiat end//
-	 * 
-	 * // OPTION 2 =========================================================== //
-	 * ACCOUNT// // Sharan start// public static void
-	 * createAccount(ArrayList<Account> accountList) { String username =
-	 * Helper.readString("Enter username > "); String password =
-	 * Helper.readString("Enter password > "); String contactNumber =
-	 * Helper.readString("Enter Contact Number > "); String userRole =
-	 * Helper.readString("Enter User Role > ");
-	 * 
-	 * Account newAccount = new Account(username, contactNumber, password,
-	 * userRole); accountList.add(newAccount);
-	 * System.out.println("Account Created"); }
-	 * 
-	 * public static String viewAllAccount(ArrayList<Account> accountList) { String
-	 * output = null; for (int i = 0; i < accountList.size(); i++) { output =
-	 * accountList.get(i).toString(); } return output; }
-	 * 
-	 * public static void deleteAccount(ArrayList<Account> accountList) { boolean
-	 * valid = false; while (valid != true) { String username =
-	 * Helper.readString("Enter username > "); for (int i = 0; i <
-	 * accountList.size(); i++) { if (username == accountList.get(i).getUsername())
-	 * { accountList.remove(i); System.out.println("User Deleted!"); } } } if (valid
-	 * == false) { System.out.println("Username does not exist."); } } // Sharan
-	 * end//
-	 * 
-	 * // OPTION 3 ============================================================= //
-	 * ORDER// // Qi Yue start//
-	 * 
-	 * private static void deleteOrder(ArrayList<Order> orderList) { boolean valid =
-	 * false; while (valid != true) { String studentId =
-	 * Helper.readString("Enter student ID of order > "); for (int i = 0; i <
-	 * orderList.size(); i++) { if (studentId == orderList.get(i).getStudentId()) {
-	 * orderList.remove(i); System.out.println("Order Deleted!"); } } } if (valid ==
-	 * false) { System.out.println("Student ID does not exist."); } }
-	 * 
-	 * private static void createOrder(ArrayList<Order> orderList) { // TODO
-	 * Auto-generated method stub String studentId =
-	 * Helper.readString("Enter student ID > "); String orderDate =
-	 * Helper.readString("Enter order date > ");
-	 * 
-	 * String newCategory = Helper.
-	 * readString("Enter new Menu Item category (Western/Asian/Vegetarian):  ");
-	 * String newName = Helper.readString("Enter new Menu Item name: "); boolean
-	 * newHealthy =
-	 * Helper.readBoolean("Is this new Menu Item a healthy choice?(true/false) ");
-	 * double newPrice = Helper.readDouble("Enter price for new Menu Item: ");
-	 * 
-	 * MenuItem newMenu = new MenuItem(newCategory, newName, newHealthy, newPrice);
-	 * ArrayList<MenuItem> items = new ArrayList<MenuItem>(); items.add(newMenu);
-	 * 
-	 * Order newOrder = new Order(studentId, orderDate, items);
-	 * orderList.add(newOrder); System.out.println("Order added!"); }
-	 * 
-	 * public static String getAllOrder(ArrayList<Order> orderList) { String output
-	 * = "";
-	 * 
-	 * for (int i = 0; i < orderList.size(); i++) { output +=
-	 * String.format("%-90s\n", orderList.get(i).toString()); } return output; }
-	 * 
-	 * public static void viewAllOrder(ArrayList<Order> orderList) { String output =
-	 * String.format("%-10s %-30s %-10s %-10s %-30s %-30s\n", "TAG NO.", "NAME",
-	 * "AVAILABLE", "STUDENT ID", "STUDENT NAME", "ORDER DATE"); output +=
-	 * getAllOrder(orderList); System.out.println(output); } // Qi Yue end//
-	 * 
-	 * // OPTION 4 ==========================================================
-	 * MONTHLY // MENU// // Qiao Ling start// public static void createMenu() {
-	 * 
-	 * }
-	 * 
-	 * public static String getAllMenu(ArrayList<Menu> menuList) { String output =
-	 * "";
-	 * 
-	 * for (int i = 0; i < menuList.size(); i++) { output +=
-	 * String.format("%-90s\n", menuList.get(i).toString()); } return output; }
-	 * 
-	 * public static void viewAllMenu(ArrayList<Menu> menuList) { String output =
-	 * String.format("%-10s %-30s %-10s %-20s %-20s %-30s\n", "TAG NO.", "NAME",
-	 * "AVAILABLE", "DISPLAY NAME", "MONTH", "NUMBER OF OFFERS"); output +=
-	 * getAllMenu(menuList); System.out.println(output); }
-	 * 
-	 * public static void deleteMenu(ArrayList<Menu> menuList) {
-	 * 
-	 * } // Qiao Ling end//
-	 * 
-	 * // OPTION 5 ===============================================================
-	 * // BILL// // ASHLEIGH STARTS HERE// // CREATE BILL// public static void
-	 * createBill(ArrayList<Bill> billList) { String payee =
-	 * Helper.readString("Enter payee name > "); double amount =
-	 * Helper.readDouble("Enter total amount > "); String due =
-	 * Helper.readString("Enter due date > ");
-	 * 
-	 * Bill newBill = new Bill(payee, amount, due); billList.add(newBill);
-	 * System.out.println("Bill added!"); }
-	 * 
-	 * // VIEW BILL// public static String viewBill(ArrayList<Bill> billList) {
-	 * String output = null; for (int i = 0; i < billList.size(); i++) { output +=
-	 * billList.get(i).toString(); } return output; }
-	 * 
-	 * // DELETE BILL// public static void deleteBill(ArrayList<Bill> billList) {
-	 * String payee = Helper.readString("Enter payee name > "); for (int i = 0; i <
-	 * billList.size(); i++) { if (payee == billList.get(i).getPayee()) {
-	 * billList.remove(i); System.out.println("Bill Deleted!"); } else if (payee !=
-	 * billList.get(i).getPayee()) { System.out.println("Payee does not exist!!"); }
-	 * else { System.out.println("INVALID INPUT!!"); } } } // UPDATE BILL// public
-	 * static void updateBill(ArrayList<Bill> billList) { String payee =
-	 * Helper.readString("Enter payee name to update > "); for (int i = 0; i <
-	 * billList.size(); i++) { if (payee == billList.get(i).getPayee()) { double
-	 * amount = Helper.readDouble("Enter updated amount > "); String dueDate =
-	 * Helper.readString("Enter due date > "); boolean isPaid =
-	 * Helper.readBoolean("Is it paid? (true/false) > ");
-	 * 
-	 * billList.get(i).setTotalAmount(amount); billList.get(i).setDueDate(dueDate);
-	 * billList.get(i).setPaid(isPaid);
-	 * 
-	 * System.out.println("Payee Updated!!"); } else if (payee !=
-	 * billList.get(i).getPayee()) { System.out.println("Payee does not exist!!"); }
-	 * else { System.out.println("INVALID INPUT!!"); } } }
-	 * 
-	 * //SEARCH BILL// public static String searchBill(ArrayList<Bill> billList) {
-	 * String output = null; String payee =
-	 * Helper.readString("Enter payee name > "); for (int i = 0; i <
-	 * billList.size(); i++) { if (payee == billList.get(i).getPayee()) { output +=
-	 * billList.get(i).toString(); } } return output; } // ASHLEIGH ENDS HERE//
-	 * 
-	 */
-
 	private MenuItem MI1;
 	private MenuItem MI2;
 	private Account A1;
@@ -228,9 +69,128 @@ public class C206_CaseStudyTest {
 		// fail("Not yet implemented");
 		assertTrue("C206_CaseStudy_SampleTest ", true);
 	}
+	
+	//Wei Kiat STARTS HERE//
+	
+	//Wei Kiat ENDS HERE//
+	
+	//Sharan STARTS HERE//
+	
+	//Sharan ENDS HERE//
+	
+	// QIYUE ADD VIEW DELETE UPDATE SEARCH TEST CODE
+		@Test
+		public void CreateOrderTest() {
+			// OrderList is not null, so that can add new orders - boundary
+			assertNotNull("Check if there is valid order arraylist to add to", orderList);
+			//Order List is empty list, after adding 1 item, the size of the list is 1 - Normal
+			ArrayList<MenuItem> MI = new ArrayList<MenuItem>();
+			MI.add(new MenuItem("Cat123", "123", true, 12.00));
+			MI.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
+			ArrayList<Order> orderList = new ArrayList<Order>();
+			orderList.add(new Order("19013363", "2020-08-31", MI));
+			assertEquals("Check that order List size is 1", 1,orderList.size());
+		}
+		public void CreateOrderTest() {
+					assertFalse(false);
+				
+			//Given that list is not empty display the total amount of orders - normal
+			if(orderList.size() > 0) {
+				assertTrue(true);
+			}
+			//Given that list is empty and the total amount should be 0 and not other amount -error
+			if(orderList.size() == 0) {
+				assertEquals(0,orderList);
+			}
+			//Given that list has 1 order but display 2 - error
+			if(orderList.size() > 0) {
+				assertFalse(false);
+			}
 
+		}
+		@Test
+		public void viewOrderTest() {
+			// OrderList is not null, so that can add new orders - boundary
+			assertNotNull("Check if there is valid order arraylist to add to", orderList);
+			//OrderList is empty list, after adding 2 items, the size of the list is 2 - Normal
+			ArrayList<MenuItem> MI = new ArrayList<MenuItem>();
+			MI.add(new MenuItem("Cat123", "123", true, 12.00));
+			MI.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
+			ArrayList<Order> orderList = new ArrayList<Order>();
+			orderList.add(new Order("19013363", "2020-08-31", MI));
+			orderList.add(new Order("19013363", "2020-08-31", MI));
+		}
+		public void DeleteOrderTest() {
+			
+			//OrderList is not empty, and order is in the list remove order- Normal
+			ArrayList<MenuItem> MI = new ArrayList<MenuItem>();
+			MI.add(new MenuItem("Cat123", "123", true, 12.00));
+			MI.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
+			ArrayList<Order> orderList = new ArrayList<Order>();
+			orderList.add(new Order("19013363", "2020-08-31", MI));
+			boolean isdelete = false;
+			if(orderList.get(0).getStudentId().equals("19013363")) {
+				orderList.remove(0);
+				isdelete = true;
+			}
+			assertTrue(true);
+			//Same Order can't be deleted again - error
+			orderList.add(new Order("19013363", "2020-08-31", MI));
+			for(int i= 0; i < orderList.size(); i++) {
+				if(orderList.get(i).getStudentId().equals("19013363") && orderList.get(i).getOrderDate().equals("2020-08-31")){
+					assertFalse(false);
+				}
+			}
+		}
+		@Test
+		public void updateOrderTest() {
+			// OrderList is not null, so that can add new orders - boundary
+			if(orderList.isEmpty()) {
+				assertFalse(false);
+			}
+			//Given that list is not empty check that input is the same then update- Normal
+			for(int i= 0; i < orderList.size(); i++) {
+				if(orderList.get(i).getStudentId().equals("19013363")) {
+					orderList.get(i).setOrderDate("2020-08-31");
+				}
+			}
+			assertTrue(true);
+			//List was not empty and enter in the change orderDate but it was not updated  - error
+			for(int i= 0; i < orderList.size(); i++) {
+				if(orderList.get(i).getStudentId().equals("19013363")) {
+					orderList.get(i).setOrderDate("2020-08-31");
+				}
+			}
+			assertFalse(false);
+		}
+		@Test
+		public void SearchOrderTest() {
+			// OrderList is not empty, so can search for the ID - boundary
+			if(orderList.size() > 0) {
+				assertTrue(true);
+			}
+			//Given that list is not empty check that ID is the same then show result of the ID- Normal
+			for(int i= 0; i < orderList.size(); i++) {
+				if(orderList.get(i).getStudentId().equals("19013363")) {
+					String output = " ";
+					output += String.format("%-90s\n", orderList.get(i).toString());
+				}
+			}
+			assertTrue(true);
+			//List is empty so not output shown  - error
+			for(int i= 0; i < orderList.size(); i++) {
+				if(orderList.get(i).getStudentId().equals("19013363")) {
+					String output = " ";
+					output += String.format("%-90s\n", orderList.get(i).toString());
+				}
+			}
+			assertFalse(false);
+		}
+		//Qi Yue ENDS HERE//
+	
+	//Qiao Ling STARTS HERE//
 	@Test
-	public void createMenuTest() { // qiaoling start here
+	public void createMenuTest() { 
 
 		// test if the menu is created - normal
 		C206_CaseStudy.createMenu(menuList, monthMenu);
@@ -267,7 +227,7 @@ public class C206_CaseStudyTest {
 	}
 
 	@Test
-	public void deleteMenuTest() { // qiaoling ends here
+	public void deleteMenuTest() { 
 		// test if the user can delete the menu successfully - normal
 		C206_CaseStudy.createMenu(menuList, monthMenu);
 		boolean isDeleted = C206_CaseStudy.deleteMenu(menuList, monthMenu);
@@ -285,7 +245,65 @@ public class C206_CaseStudyTest {
 				menuName);
 
 	}
+	//Qiao Ling ENDS HERE//
 
+	//Ashleigh STARTS HERE//
+	@Before
+	private Bill billNew;
+	
+	public void setUp() throws Exception {
+		billNew = new Bill ("Ashleigh", 5.60, "27/8/2020", false);
+		billList= new ArrayList<Bill>();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		billNew = null;
+		billList = null;
+	}
+
+	@Test
+	public void c206Bill_test() {
+		//fail("Not yet implemented"); 
+		assertTrue("C206_CaseStudyTest ",true);
+	}
+	@Test
+	public void createBill() {
+			// Bill list is not null, so that can add a new bill - error condition//
+			assertNotNull("Check if there is valid Bill arraylist to add to", billList);
+			//Given an empty list, after adding 1 item, the size of the list is 1//
+			//The bill just added is the same as the first item of the list//
+			C206_CaseStudyTest.createBill(billList, billNew);
+			assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
+			assertSame("Check that Bill is added", billNew, billList.get(0));
+			
+			//Add another bill. Test The size of the list is 2 -normal condition//
+			//The bill just added is the same as the second item of the list
+		}
+	}
+	@Test
+	public void searchBill() {
+		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
+		
+		billDb.createBill(billList, billNew);
+		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
+		assertSame("Check that bill is added", billNew, billList.get(0));
+		
+		String actualOutput = C206_CaseStudyTest.searchBill("Ashleigh", 5.60, "27/8/2020", billList);
+		String output = billList.get(0).toString();
+		assertEquals("Check that search returns correct bill", actualOutput, output);
+		
+	}
+	@Test
+	public void updateBill() {
+		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
+		
+		C206_CaseStudyTest.createBill(billList, billNew);
+		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
+		assertSame("Check that bill is added", billNew, billList.get(0));
+		
+	}
+	//Ashleigh ENDS HERE//
 	@After
 	public void tearDown() throws Exception {
 		MI1 = null;
@@ -297,6 +315,9 @@ public class C206_CaseStudyTest {
 		
 		items = null;
 		menuList = null;
+		
+		billNew = null;
+		billList = null;
 	}
 
 }

@@ -342,6 +342,9 @@ public class C206_CaseStudy {
 				if(orderList.get(i).getStudentId().equals(ID)) {
 					output += String.format("%-90s\n", orderList.get(i).toString());
 				}
+				else {
+					System.out.println("Invalid student ID entered!!");
+				}
 			}
 			System.out.println(output);
 		}
