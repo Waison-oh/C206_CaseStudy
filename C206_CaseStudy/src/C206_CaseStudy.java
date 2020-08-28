@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
-	/**
-	 * 
-	 */
+	
 
 	private static final int OPTION_BILL = 5;
 	private static final int OPTION_MONTHLYMENU = 4;
