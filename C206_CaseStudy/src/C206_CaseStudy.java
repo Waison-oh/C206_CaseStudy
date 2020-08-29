@@ -366,7 +366,7 @@ public class C206_CaseStudy {
 		  // Add Account
 		  public static void addAccount(ArrayList<Account> accountList, Account Acc) {
 
-<<<<<<< HEAD
+
 	public static void deleteAccount(ArrayList<Account> accountList, String delete) {
 		boolean valid = false;
 		while (valid != true) {
@@ -383,7 +383,7 @@ public class C206_CaseStudy {
 		}
 
 	}
-=======
+
 		    accountList.add(Acc);
 		    System.out.println("Customer added!");
 		  }
