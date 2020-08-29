@@ -438,9 +438,16 @@ public class SchoolLunchBox_App {
 		// hard code item menu for local testing:
 		items.add(new MenuItem("Vegetarian", "potato salad", true, 6.70));
 		items.add(new MenuItem("Western", "Chicken Chop", false, 8.90));
+		String listItem = String.format("%-20s %-20s %-10s %s\n", "Western", "chicken chop", "false", "8.9");
+		listItem += String.format("%-20s %-20s %-10s %s\n", "Vegetarian", "potato salad", "true", "6.70");
+		System.out.println(listItem);
 		//
 		boolean isCreated = false;
 		String menuName = Helper.readString("Enter the menu name > ");
+		while (menuName.equalsIgnoreCase("")) {
+			menuName = Helper.readString("Please do not leave menu name blank > ");
+			isCreated = false;
+		}
 		int month = Helper.readInt("Enter the month for this menu >");
 		int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
@@ -448,15 +455,39 @@ public class SchoolLunchBox_App {
 		for (int i = 0; i < items.size(); i++) {
 			String name = items.get(i).getName();
 
+			if (choose.equalsIgnoreCase(name)) {
+
+				String category = items.get(i).getCategory();
+				boolean healthyChoice = items.get(i).isHealthyChoice();
+				double price = items.get(i).getPrice();
+				Menu mm = new Menu(menuName, month, ItemNum, items);
+				monthlyMenu.add(mm);
+				isCreated = true;
+				break;
+			} else {
+				System.out.println("Invalid choice!");
+			}
+
+		}
+
+		if (isCreated == true) {
+			System.out.println("Menu created!");
+		} else {
+			System.out.println("Menu not created!");
 		}
 
 	}
 
 	public static boolean createMenu(ArrayList<Menu> monthlyMenu, Menu mm) {
 
-		for (int i = 0; i < monthlyMenu.get(i).getNumberOfItems(); i++) {
-			monthlyMenu.add(mm);
+		for (int i = 0; i < monthlyMenu.size(); i++) {
+			String displayName = mm.getDisplayName();
+			if (monthlyMenu.get(i).getDisplayName().equalsIgnoreCase(displayName)) {
+				System.out.println("Cannot have duplicate name of menu!");
+				return false;
+			}
 		}
+		monthlyMenu.add(mm);
 		return true;
 	}
 
@@ -472,7 +503,12 @@ public class SchoolLunchBox_App {
 	public static void viewAllMenu(ArrayList<Menu> menuList) {
 		String output = String.format("%-10s %-30s %-10s %-20s %-20s %-30s\n", "TAG NO.", "NAME", "AVAILABLE",
 				"DISPLAY NAME", "MONTH", "NUMBER OF OFFERS");
-		output += getAllMenu(menuList);
+		if (menuList.isEmpty()) {
+			output += "There is no menu";
+		} else {
+			output += getAllMenu(menuList);
+		}
+
 		System.out.println(output);
 	}
 
@@ -483,15 +519,13 @@ public class SchoolLunchBox_App {
 			if (delete == null) {
 				delete = Helper.readString("Please enter an item name! > ");
 			} else if (delete.equalsIgnoreCase(menuList.get(i).getDisplayName())) {
-				Menu mm = null;
-				menuList.add(mm);
+				menuList.remove(i);
 				isDeleted = true;
-				break;
 			} else {
 				System.out.println("The menu is not existing.");
 			}
 		}
-		if (isDeleted) {
+		if (isDeleted == true) {
 			System.out.println("Menu removed!");
 		} else {
 			System.out.println("Menu not found!");
@@ -507,6 +541,10 @@ public class SchoolLunchBox_App {
 			}
 		}
 		return false;
+	}
+	
+	static void updateMonthlyMenu() {
+		
 	}
 	// Qiao Ling end//
 
