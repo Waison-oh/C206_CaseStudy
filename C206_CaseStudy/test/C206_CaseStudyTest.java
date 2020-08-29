@@ -340,5 +340,5 @@ public class C206_CaseStudyTest {
 	    C206_CaseStudy.deleteAccount(accountList, "Account");
 	    C206_CaseStudy.deleteAccount(accountList,"USERNAME");
 	    assertEquals("Checks if deleted properly,", 0, accountList.size());
-	  }
+	  } //Sharan ends here
 }
