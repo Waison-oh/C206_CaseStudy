@@ -350,82 +350,67 @@ public class C206_CaseStudy {
 	// OPTION 3 =============================================================
 	// ORDER//
 	// Qi Yue start//
+	
+	
 
 	private static void createOrder(ArrayList<Order> orderList) {
 		C206_CaseStudy.setHeader("CREATE ORDER");
-
+		
 		System.out.println("Current Total Amount Of Orders: " + orderList.size());
-		String studentId = Helper.readString("Enter student id> ");
-		String orderDate = Helper.readString("Enter order date> ");
-
+		String studentId =Helper.readString("Enter student id> ");
+		String orderDate =Helper.readString("Enter order date> ");
+		
 		ArrayList<MenuItem> item = new ArrayList<MenuItem>();
 		// MenuItem add got error so i create a item to show.
 		item.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
-		Order newOrder = new Order(studentId, orderDate, item);
-		orderList.add(newOrder);
+		Order newOrder = new Order(studentId, orderDate, item); 
+		orderList.add(newOrder); 
 		System.out.println("Order added!");
 	}
-
 	public static Boolean doDeleteOrder(ArrayList<Order> orderList, String studentId) {
 		boolean isDelete = false;
-		for (int i = 0; i < orderList.size(); i++) {
+		for(int i =0; i < orderList.size(); i++) {
 			String id = orderList.get(i).getStudentId();
-			if (studentId.equals(id)) {
+			if(studentId.equals(id)) {
 				orderList.remove(i);
 				isDelete = true;
 			}
 		}
-
-		public static void  searchOrder(ArrayList<Order> orderList) {
-			C206_CaseStudy.setHeader("Search LIST");
-			String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
-			String ID = Helper.readString("Enter Student ID To Search For: ");
-			for (int i = 0; i < orderList.size(); i++) {
-				if(orderList.get(i).getStudentId().equals(ID)) {
-					output += String.format("%-90s\n", orderList.get(i).toString());
-				}
-				else {
-					System.out.println("Invalid student ID entered!!");
-				}
-			}
-			System.out.println(output);
 		return isDelete;
 	}
-
 	private static void deleteOrder(ArrayList<Order> orderList) {
 		C206_CaseStudy.setHeader("DELETE ORDER");
 		String studentid = Helper.readString("Enter Student ID: ");
 		Boolean isDelete = doDeleteOrder(orderList, studentid);
-		if (isDelete == false) {
+		if(isDelete == false) {
 			System.out.println("Invalid order");
-		} else {
+		}
+		else {
 			System.out.println(studentid + "'s  Order Deleted");
 		}
 	}
-
 	public static void searchOrder(ArrayList<Order> orderList) {
 		C206_CaseStudy.setHeader("Search LIST");
 		String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
 		String ID = Helper.readString("Enter Student ID To Search For: ");
 		for (int i = 0; i < orderList.size(); i++) {
-			if (orderList.get(i).getStudentId().equals(ID)) {
+			if(orderList.get(i).getStudentId().equals(ID)) {
 				output += String.format("%-90s\n", orderList.get(i).toString());
-			} else {
+			}else {
 				System.out.println("Invalid Student ID entered! ");
 			}
 		}
 		System.out.println(output);
 	}
-
 	public static String getAllOrder(ArrayList<Order> orderList) {
 		String output = "";
-
+		
 		for (int i = 0; i < orderList.size(); i++) {
 			output += String.format("%-90s\n", orderList.get(i).toString());
 		}
 		return output;
 	}
-
+	
 	public static void viewAllOrder(ArrayList<Order> orderList) {
 		C206_CaseStudy.setHeader("ORDER LIST");
 		String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
@@ -435,12 +420,13 @@ public class C206_CaseStudy {
 
 	public static void updateOrder(ArrayList<Order> orderList) {
 		String id = Helper.readString("Enter Student ID: ");
-		for (int i = 0; i < orderList.size(); i++) {
-			if (orderList.get(i).getStudentId().equals(id)) {
+		for(int i = 0; i < orderList.size(); i++) {
+			if(orderList.get(i).getStudentId().equals(id)) {
 				String newOrderDate = Helper.readString("Enter New Order Date: ");
 				orderList.get(i).setOrderDate(newOrderDate);
 				System.out.println("Order Date Updated");
-			} else {
+			}
+			else {
 				System.out.println("Student ID Invalid");
 			}
 		}
