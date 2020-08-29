@@ -365,25 +365,6 @@ public class C206_CaseStudy {
 
 		  // Add Account
 		  public static void addAccount(ArrayList<Account> accountList, Account Acc) {
-
-
-	public static void deleteAccount(ArrayList<Account> accountList, String delete) {
-		boolean valid = false;
-		while (valid != true) {
-			String username = Helper.readString("Enter username > ");
-			for (int i = 0; i < accountList.size(); i++) {
-				if (accountList.get(i).getUsername().equals(delete)) {
-					accountList.remove(i);
-					System.out.println("User Deleted!");
-				}
-			}
-		}
-		if (valid == false) {
-			System.out.println("Username does not exist.");
-		}
-
-	}
-
 		    accountList.add(Acc);
 		    System.out.println("Customer added!");
 		  }
