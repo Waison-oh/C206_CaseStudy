@@ -162,11 +162,7 @@ public class C206_CaseStudyTest {
 	public void updateBill() {
 		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
 
-<<<<<<< HEAD
-		// SchoolLunchBox_App.createBill(billList, billNew);
-=======
-		//SchoolLunchBox_App.createBill(billList, billNew);
->>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
+
 		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
 		assertSame("Check that bill is added", billList, billList.get(0));
 
