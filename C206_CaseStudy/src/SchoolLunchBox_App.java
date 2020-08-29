@@ -57,11 +57,9 @@ public class SchoolLunchBox_App {
 					int choice = Helper.readInt("Enter the choice: ");
 					if (choice == 1) {
 						C206_CaseStudy.viewAllMenuItems(items);
-					} 
-					else if (choice == 2) {
+					} else if (choice == 2) {
 						C206_CaseStudy.searchByName(items);
-					} 
-					else if (choice == 3) {
+					} else if (choice == 3) {
 						C206_CaseStudy.searchByCategory(items);
 
 					}
@@ -113,7 +111,7 @@ public class SchoolLunchBox_App {
 				int DELETE = 3;
 				int UPDATE = 4;
 				int SEARCH = 5;
-				
+
 				System.out.println("1. Create order");
 				System.out.println("2. View order");
 				System.out.println("3. Delete order");
@@ -132,11 +130,9 @@ public class SchoolLunchBox_App {
 
 				else if (action == DELETE) {
 					SchoolLunchBox_App.deleteOrder(orderList);
-				}
-				else if (action == UPDATE) {
-					SchoolLunchBox_App.updateOrder(orderList); 
-				}
-				else if (action == SEARCH) {
+				} else if (action == UPDATE) {
+					SchoolLunchBox_App.updateOrder(orderList);
+				} else if (action == SEARCH) {
 					SchoolLunchBox_App.searchOrder(orderList);
 				}
 
@@ -174,7 +170,7 @@ public class SchoolLunchBox_App {
 				int VIEW = 2;
 				int DELETE = 3;
 				int UPDATE = 4;
-				int SEARCH = 5; 
+				int SEARCH = 5;
 				SchoolLunchBox_App.setHeader("BILL");
 				System.out.println("1. Create bill");
 				System.out.println("2. View bill");
@@ -184,28 +180,21 @@ public class SchoolLunchBox_App {
 
 				if (actions == CREATE) {
 					SchoolLunchBox_App.createBill(billList);
-				} 
-				else if (actions == VIEW) {
+				} else if (actions == VIEW) {
 					billList.toString();
-				} 
-				else if (actions == DELETE) {
+				} else if (actions == DELETE) {
 					SchoolLunchBox_App.deleteBill(billList);
-				} 
-				else if (actions == UPDATE) {
-					SchoolLunchBox_App.updateBill(billList); 
-				}
-				else if (actions == SEARCH) {
-					SchoolLunchBox_App.searchBill(billList); 
-				}
-				else {
+				} else if (actions == UPDATE) {
+					SchoolLunchBox_App.updateBill(billList);
+				} else if (actions == SEARCH) {
+					SchoolLunchBox_App.searchBill(billList);
+				} else {
 					System.out.println("INVALID OPTION!!");
-				} 
+				}
 				// ASHLEIGH ENDS HERE - BILL//
-			} 
-			else if (option == OPTION_EXIT) {
+			} else if (option == OPTION_EXIT) {
 				System.out.println("GOODBYE!!");
-			} 
-			else {
+			} else {
 				System.out.println("INVALID OPTION!!");
 			}
 		}
@@ -216,7 +205,7 @@ public class SchoolLunchBox_App {
 
 	private static void searchOrder(ArrayList<Order> orderList) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private static void setHeader(String header) {
@@ -271,8 +260,7 @@ public class SchoolLunchBox_App {
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).getPrice() > 0) {
 				output = items.get(i).toString();
-			} 
-			else if (items.get(i).getPrice() == 0.00) {
+			} else if (items.get(i).getPrice() == 0.00) {
 				output += (items.get(i).getName() + "have a price of $0.00");
 			}
 		}
@@ -289,6 +277,7 @@ public class SchoolLunchBox_App {
 			}
 		}
 	}
+
 	public static void updateMenuItems(ArrayList<MenuItem> items) {
 		String searchName = Helper.readString("Enter menu item name to update: ");
 		for (int i = 0; i < items.size(); i++) {
@@ -426,7 +415,7 @@ public class SchoolLunchBox_App {
 		output += getAllOrder(orderList);
 		System.out.println(output);
 	}
-	
+
 	public static void updateOrder(ArrayList<Order> orderList) {
 		String id = Helper.readString("Enter Student ID: ");
 		for (int i = 0; i < orderList.size(); i++) {
@@ -434,14 +423,12 @@ public class SchoolLunchBox_App {
 				String newOrderDate = Helper.readString("Enter New Order Date: ");
 				orderList.get(i).setOrderDate(newOrderDate);
 				System.out.println("Order Date Updated");
-			} 
-			else {
+			} else {
 				System.out.println("Student ID Invalid");
 			}
 		}
 	}
 	// Qi Yue end//
-
 
 	// OPTION 4 ========================================================== MONTHLY
 	// MENU//
@@ -588,13 +575,13 @@ public class SchoolLunchBox_App {
 	}
 
 	// SEARCH BILL//
-	public static String searchBill(String payee, double amount, String dueDate, ArrayList<Bill> billList) {
+	public static String searchBill(ArrayList<Bill> billList) {
 		SchoolLunchBox_App.setHeader("SEARCH BILL");
 
 		String output = null;
-		payee = Helper.readString("Enter payee name > ");
+		String payee = Helper.readString("Enter payee name > ");
 		for (int i = 0; i < billList.size(); i++) {
-			if (payee == billList.get(i).getPayee()) {
+			if (payee.equalsIgnoreCase(billList.get(i).getPayee())) {
 				output += billList.get(i).toString();
 			}
 		}

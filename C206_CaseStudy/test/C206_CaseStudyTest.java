@@ -80,7 +80,7 @@ public class C206_CaseStudyTest {
 
 	// QIYUE ADD VIEW DELETE UPDATE SEARCH TEST CODE
 	@Test
-	public void CreateOrderTest() {
+	public void CreateOrderTest11() {
 		// OrderList is not null, so that can add new orders - boundary
 		assertNotNull("Check if there is valid order arraylist to add to", orderList);
 		// Order List is empty list, after adding 1 item, the size of the list is 1 -
@@ -277,11 +277,11 @@ public class C206_CaseStudyTest {
 	@Test
 	public void searchBill() {
 		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
-		//SchoolLunchBox_App.createBill(billList, billNew);
+		// SchoolLunchBox_App.createBill(billList, billNew);
 		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
 		assertSame("Check that bill is added", billNew, billList.get(0));
 
-		String actualOutput = SchoolLunchBox_App.searchBill("Ashleigh", 5.60, "27/8/2020", billList);
+		String actualOutput = SchoolLunchBox_App.searchBill(billList);
 		String output = SchoolLunchBox_App.viewBill(billList);
 		assertEquals("Check that search returns correct bill", output, actualOutput);
 
@@ -291,7 +291,7 @@ public class C206_CaseStudyTest {
 	public void updateBill() {
 		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
 
-		//SchoolLunchBox_App.createBill(billList, billNew);
+		// SchoolLunchBox_App.createBill(billList, billNew);
 		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
 		assertSame("Check that bill is added", billNew, billList.get(0));
 
@@ -300,7 +300,7 @@ public class C206_CaseStudyTest {
 
 	// QIYUE ADD VIEW DELETE UPDATE SEARCH TEST CODE
 	@Test
-	public void CreateOrderTest() {
+	public void CreateOrderTest1() {
 		// OrderList is not null, so that can add new orders - boundary
 		assertNotNull("Check if there is valid order arraylist to add to", orderList);
 		// Order List is empty list, after adding 1 item, the size of the list is 1 -
@@ -336,7 +336,7 @@ public class C206_CaseStudyTest {
 	}
 
 	@Test
-	public void viewOrderTest() {
+	public void viewOrderTest1() {
 		// OrderList is not null, so that can add new orders - boundary
 		assertNotNull("Check if there is valid order arraylist to add to", orderList);
 		// OrderList is empty list, after adding 2 items, the size of the list is 2 -
@@ -355,7 +355,7 @@ public class C206_CaseStudyTest {
 	}
 
 	@Test
-	public void DeleteOrderTest() {
+	public void DeleteOrderTest1() {
 		// Check that orderList is empty and cannot delete - boundary
 		if (orderList.isEmpty()) {
 			assertFalse(false);
@@ -382,7 +382,7 @@ public class C206_CaseStudyTest {
 	}
 
 	@Test
-	public void updateOrderTest() {
+	public void updateOrderTest1() {
 		// OrderList is not null, so that can add new orders - boundary
 		if (orderList.isEmpty()) {
 			assertFalse(false);
@@ -405,7 +405,7 @@ public class C206_CaseStudyTest {
 	}
 
 	@Test
-	public void SearchOrderTest() {
+	public void SearchOrderTest1() {
 		// OrderList is not empty, so can search for the ID - boundary
 		if (orderList.size() > 0) {
 			assertTrue(true);
@@ -445,43 +445,37 @@ public class C206_CaseStudyTest {
 		billList = null;
 	}
 
-	 /* @Test
-	public void addAccounttest() { // sharan starts here
-
-		// Test if account is created - normal
-		Account A1 = new Account("userRole", "contactNumber", "studentId", "username");
-
-		// Check if the list is not null but empty boundary
-		assertEquals("Check if arraylist size is 0", 0, accountList.size());
-
-		// Having added an item to an empty list, test if the list size is 1
-		accountList.add(A1);
-		// Add an item and test if ArrayList has a size of 1
-		assertEquals("Check if arraylist size is 1", 1, accountList.size());
-
-		// Test that account is not created due to duplicated user - error
-		Account A2 = new Account("userRole", "contactNumber", "studentId", "username");
-		assertEquals("Check that list has same username", accountList.get(0).getUsername());
-	}
-
-	@Test
-	public void deleteAccountTest() {
-
-		// Test if account is deleted - normal
-		Account A1 = new Account("userRole", "contactNumber", "studentId", "username");
-		accountList.add(A1);
-		assertNotNull("Test if there is valid Request Quotation arraylist to retrieve item", accountList);
-		// Check if the list size is 1 given an empty list after deleting 1 account
-		C206_CaseStudy.deleteAccount(accountList, "username");
-		assertEquals("Checks if deleted properly,", 0, accountList.size());
-	}
-
-	public static void viewAccountTest() { // sharan ends here
-		// view accounts -normal
-		Account A1 = new Account("userRole", "contactNumber", "studentId", "username");
-		String output = String.format("%-10s %-20s %-10s %-10s %-20s\n", "userRole", "contactNumber", "studentId",
-				"username");
-		System.out.println(output);
-	}
-	*/
+	/*
+	 * @Test public void addAccounttest() { // sharan starts here
+	 * 
+	 * // Test if account is created - normal Account A1 = new Account("userRole",
+	 * "contactNumber", "studentId", "username");
+	 * 
+	 * // Check if the list is not null but empty boundary
+	 * assertEquals("Check if arraylist size is 0", 0, accountList.size());
+	 * 
+	 * // Having added an item to an empty list, test if the list size is 1
+	 * accountList.add(A1); // Add an item and test if ArrayList has a size of 1
+	 * assertEquals("Check if arraylist size is 1", 1, accountList.size());
+	 * 
+	 * // Test that account is not created due to duplicated user - error Account A2
+	 * = new Account("userRole", "contactNumber", "studentId", "username");
+	 * assertEquals("Check that list has same username",
+	 * accountList.get(0).getUsername()); }
+	 * 
+	 * @Test public void deleteAccountTest() {
+	 * 
+	 * // Test if account is deleted - normal Account A1 = new Account("userRole",
+	 * "contactNumber", "studentId", "username"); accountList.add(A1);
+	 * assertNotNull("Test if there is valid Request Quotation arraylist to retrieve item"
+	 * , accountList); // Check if the list size is 1 given an empty list after
+	 * deleting 1 account C206_CaseStudy.deleteAccount(accountList, "username");
+	 * assertEquals("Checks if deleted properly,", 0, accountList.size()); }
+	 * 
+	 * public static void viewAccountTest() { // sharan ends here // view accounts
+	 * -normal Account A1 = new Account("userRole", "contactNumber", "studentId",
+	 * "username"); String output = String.format("%-10s %-20s %-10s %-10s %-20s\n",
+	 * "userRole", "contactNumber", "studentId", "username");
+	 * System.out.println(output); }
+	 */
 }
