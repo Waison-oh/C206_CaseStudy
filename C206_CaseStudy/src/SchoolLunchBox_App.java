@@ -150,6 +150,7 @@ public class SchoolLunchBox_App {
 				System.out.println("1. Create monthly menu");
 				System.out.println("2. View monthly menu");
 				System.out.println("3. Delete monthly menu");
+				System.out.println("4. Update monthly menu");
 
 				int action = Helper.readInt("Enter option here > ");
 
@@ -513,13 +514,13 @@ public class SchoolLunchBox_App {
 	// BILL//
 	// ASHLEIGH STARTS HERE//
 	// CREATE BILL//
-	public static void createBill(ArrayList<Bill> billList, Bill newBill) {
+	public static void createBill(ArrayList<Bill> billList) {
 		SchoolLunchBox_App.setHeader("CREATE BILL");
 		String payee = Helper.readString("Enter payee name > ");
 		double amount = Helper.readDouble("Enter total amount > ");
 		String due = Helper.readString("Enter due date > ");
 
-		newBill = new Bill(payee, amount, due, false);
+		Bill newBill = new Bill(payee, amount, due, false);
 		billList.add(newBill);
 		System.out.println("Bill added!");
 	}
