@@ -72,104 +72,104 @@ public class C206_CaseStudyTest {
 	}
 
 	// Qiao Ling STARTS HERE//
-		@Test
-		public void createMenuTest() {
+	@Test
+	public void createMenuTest() {
 
-			// test if the menu is created - normal
-			C206_CaseStudy.createMenu(menuList, monthMenu);
-			assertSame("Check that menu is create", monthMenu.getDisplayName(), menuList.get(0).getDisplayName());
+		// test if the menu is created - normal
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		assertSame("Check that menu is create", monthMenu.getDisplayName(), menuList.get(0).getDisplayName());
 
-			// test if the menu is not created due to duplicated name - error
+		// test if the menu is not created due to duplicated name - error
 
-			C206_CaseStudy.createMenu(menuList, monthMenu);
-			monthMenu1 = new Menu("Jan menu", 2, 1, items);
-			boolean isCreated = C206_CaseStudy.createMenu(menuList, monthMenu1);
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		monthMenu1 = new Menu("Jan menu", 2, 1, items);
+		boolean isCreated = C206_CaseStudy.createMenu(menuList, monthMenu1);
 
-			assertEquals("Check that menu has the same menu name", menuList.get(0).getDisplayName(),
-					monthMenu1.getDisplayName());
-			assertFalse("Ensure that menu is not created due to duplicated name", isCreated);
+		assertEquals("Check that menu has the same menu name", menuList.get(0).getDisplayName(),
+				monthMenu1.getDisplayName());
+		assertFalse("Ensure that menu is not created due to duplicated name", isCreated);
 
-			// test if the menu name is empty - error
-			monthMenu1 = new Menu("", 2, 1, items);
-			boolean emptyName = C206_CaseStudy.createMenu(menuList, monthMenu1);
-			assertFalse("Ensure that menu is not created due to empty menu name", emptyName);
-		}
+		// test if the menu name is empty - error
+		monthMenu1 = new Menu("", 2, 1, items);
+		boolean emptyName = C206_CaseStudy.createMenu(menuList, monthMenu1);
+		assertFalse("Ensure that menu is not created due to empty menu name", emptyName);
+	}
 
-		@Test
-		public void viewMenuTest() {
-			// test that if user can view the menu - normal
-			C206_CaseStudy.createMenu(menuList, monthMenu);
-			C206_CaseStudy.createMenu(menuList, monthMenu1);
-			assertEquals("Test that menu arrayList size is 2", 2, menuList.size());
+	@Test
+	public void viewMenuTest() {
+		// test that if user can view the menu - normal
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		C206_CaseStudy.createMenu(menuList, monthMenu1);
+		assertEquals("Test that menu arrayList size is 2", 2, menuList.size());
 
-			// test that user cannot view the menu due to there is no menu inside the list -
-			// error
-			menuList.clear();
-			assertEquals("Test that menu cannot be view due to empty List", 0, menuList.size());
+		// test that user cannot view the menu due to there is no menu inside the list -
+		// error
+		menuList.clear();
+		assertEquals("Test that menu cannot be view due to empty List", 0, menuList.size());
 
-		}
+	}
 
-		@Test
-		public void deleteMenuTest() {
-			// test if the user can delete the menu successfully - normal
-			C206_CaseStudy.createMenu(menuList, monthMenu);
-			boolean isDeleted = C206_CaseStudy.deleteMenu(menuList, monthMenu);
-			assertTrue("Test that the menu has been deleted successfully", isDeleted);
+	@Test
+	public void deleteMenuTest() {
+		// test if the user can delete the menu successfully - normal
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		boolean isDeleted = C206_CaseStudy.deleteMenu(menuList, monthMenu);
+		assertTrue("Test that the menu has been deleted successfully", isDeleted);
 
-			// test that user cannot delete the menu as the menu does not exist - error
-			C206_CaseStudy.createMenu(menuList, monthMenu);
-			String menuName = "July Menu";
-			assertNotEquals("Test that the menu cannot be deleted due to non-existing menu", monthMenu.getDisplayName(),
-					menuName);
+		// test that user cannot delete the menu as the menu does not exist - error
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		String menuName = "July Menu";
+		assertNotEquals("Test that the menu cannot be deleted due to non-existing menu", monthMenu.getDisplayName(),
+				menuName);
 
-			// test that user cannot delete the menu as the menu name field is empty - error
-			menuName = "";
-			assertNotEquals("Test that the menu cannot be deleted due to empty field", monthMenu.getDisplayName(),
-					menuName);
+		// test that user cannot delete the menu as the menu name field is empty - error
+		menuName = "";
+		assertNotEquals("Test that the menu cannot be deleted due to empty field", monthMenu.getDisplayName(),
+				menuName);
 
-		}
+	}
 
-		// Qiao Ling ENDS HERE//
+	// Qiao Ling ENDS HERE//
 
-		// Ashleigh STARTS HERE//
+	// Ashleigh STARTS HERE//
 
-		@Test
-		public void createBill() {
-			// Bill list is not null, so that can add a new bill - error condition//
-			assertNotNull("Check if there is valid Bill arraylist to add to", billList);
-			// Given an empty list, after adding 1 item, the size of the list is 1//
-			// The bill just added is the same as the first item of the list//
-			assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
-			assertSame("Check that Bill is added", billnew, billList.get(0));
+	@Test
+	public void createBill() {
+		// Bill list is not null, so that can add a new bill - error condition//
+		assertNotNull("Check if there is valid Bill arraylist to add to", billList);
+		// Given an empty list, after adding 1 item, the size of the list is 1//
+		// The bill just added is the same as the first item of the list//
+		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
+		assertSame("Check that Bill is added", billnew, billList.get(0));
 
-			// Add another bill. Test The size of the list is 2 -normal condition//
-			// The bill just added is the same as the second item of the list
-		}
+		// Add another bill. Test The size of the list is 2 -normal condition//
+		// The bill just added is the same as the second item of the list
+	}
 
-		@Test
-		public void searchBill() {
-			assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
-			// SchoolLunchBox_App.createBill(billList, billNew);
-			assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
-			assertSame("Check that bill is added", billList, billList.get(0));
+	@Test
+	public void searchBill() {
+		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
+		// SchoolLunchBox_App.createBill(billList, billNew);
+		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
+		assertSame("Check that bill is added", billList, billList.get(0));
 
-			String actualOutput = SchoolLunchBox_App.searchBill(billList);
-			String output = SchoolLunchBox_App.viewBill(billList);
-			assertEquals("Check that search returns correct bill", output, actualOutput);
+		String actualOutput = SchoolLunchBox_App.searchBill(billList);
+		String output = SchoolLunchBox_App.viewBill(billList);
+		assertEquals("Check that search returns correct bill", output, actualOutput);
 
-		}
+	}
 
-		@Test
-		public void updateBill() {
-			assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
+	@Test
+	public void updateBill() {
+		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
 
-			//SchoolLunchBox_App.createBill(billList, billNew);
-			assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
-			assertSame("Check that bill is added", billList, billList.get(0));
+		//SchoolLunchBox_App.createBill(billList, billNew);
+		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
+		assertSame("Check that bill is added", billList, billList.get(0));
 
-		}
-		// Ashleigh ENDS HERE//
-		
+	}
+	// Ashleigh ENDS HERE//
+
 	// QIYUE START HERE
 	@Test
 	public void CreateOrderTest() {
@@ -201,7 +201,7 @@ public class C206_CaseStudyTest {
 		if(orderList.size() > 0) {
 			assertFalse(false);
 		}
-		
+
 	}
 	@Test
 	public void viewOrderTest() {
@@ -289,7 +289,7 @@ public class C206_CaseStudyTest {
 		}
 		assertFalse(false);
 	}
-	
+
 	// QIYUE END HERE
 	@After
 	public void tearDown() throws Exception {
@@ -299,9 +299,36 @@ public class C206_CaseStudyTest {
 		A2 = null;
 		order1 = null;
 		order2 = null;
-		
+
 		items = null;
 		menuList = null;
 	}
+
+	@Test public void addAccounttest() { // sharan starts here
+
+		// Test if account is created - normal 
+		Account A1 = new Account("userRole","contactNumber", "studentId", "username");
+
+		// Check if the list is not null but empty boundary
+		assertEquals("Check if arraylist size is 0", 0, accountList.size());
+
+		// Having added an item to an empty list, test if the list size is 1
+		accountList.add(A1); // Add an item and test if ArrayList has a size of 1
+		assertEquals("Check if arraylist size is 1", 1, accountList.size());
+
+		// Test that account is not created due to duplicated user - error 
+		Account A2= new Account("userRole", "contactNumber", "studentId", "username");
+		assertEquals("Check that list has same username",
+				accountList.get(0).getUsername()); }
+
+	@Test public void deleteAccountTest() {
+
+		// Test if account is deleted - normal 
+		Account A1 = new Account("userRole","contactNumber", "studentId", "username"); accountList.add(A1);
+		assertNotNull("Test if there is valid Request Quotation arraylist to retrieve item",accountList); 
+		// Check if the list size is 1 given an empty list after deleting 1 account 
+		C206_CaseStudy.deleteAccount(accountList, "username");
+		assertEquals("Checks if deleted properly,", 0, accountList.size()); 
+		}
 
 }
