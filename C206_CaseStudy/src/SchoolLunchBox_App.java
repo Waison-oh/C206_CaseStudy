@@ -542,6 +542,10 @@ public class SchoolLunchBox_App {
 		}
 		return false;
 	}
+	
+	static void updateMonthlyMenu() {
+		
+	}
 	// Qiao Ling end//
 
 	// OPTION 5 ===============================================================
