@@ -336,8 +336,8 @@ public class C206_CaseStudy {
 
 		    for (int i = 0; i < accountList.size(); i++) {
 
-		      output += String.format("%-10s %-20s %-10s %-10s %-20s\n", accountList.get(i).getUsername(), 
-		    		  accountList.get(i).getContactNumber(),accountList.get(i).getUserRole(), accountList.get(i).getStudentId());
+		      output += String.format("%-10s %-20s %-10s %-10s %-20s\n", accountList.get(i).getUsername(),accountList.get(i).getUserRole(), 
+		    		  accountList.get(i).getContactNumber(), accountList.get(i).getStudentId());
 		    }
 		    return output;
 		  }
@@ -349,7 +349,6 @@ public class C206_CaseStudy {
 		    output += retrieveAllAccount(accountList);
 		    System.out.println(output);
 		  }
-
 		  // Delete Account
 		  public static void deleteAccount(ArrayList<Account> accountList, String delete) {
 			  

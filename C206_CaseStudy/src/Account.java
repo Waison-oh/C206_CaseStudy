@@ -1,15 +1,14 @@
-
 public class Account {
 	private String userRole;
 	private String contactNumber;
 	private String studentId;
 	private String username;
 	
-	public Account(String userRole, String contactNumber, String studentId, String username) {
+	public Account(String username, String userRole, String contactNumber, String studentId) {
+		this.username= username;
 		this.userRole = userRole;
 		this.contactNumber = contactNumber;
 		this.studentId = studentId;
-		this.username= username;
 	}
 
 	public String getUserRole() {

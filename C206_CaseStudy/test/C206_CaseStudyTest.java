@@ -11,14 +11,13 @@ public class C206_CaseStudyTest {
 
 	private MenuItem MI1;
 	private MenuItem MI2;
-	private Account A1;
-	private Account A2;
+	private Account a1;
 	private Order order1;
 	private Order order2;
 
 	private Menu monthMenu;
 	private Menu monthMenu1;
-
+	
 	private ArrayList<Menu> menuList;
 	private ArrayList<Account> accountList;
 	private ArrayList<Order> orderList;
@@ -53,8 +52,7 @@ public class C206_CaseStudyTest {
 		menuList.add(monthMenu1);
 
 		// account stuff
-		A1 = new Account(null, null, null, null);
-		A2 = new Account(null, null, null, null);
+		a1 = new Account("USERNAME", "USERROLE", "CONTACT NUMBER", "STUDENTID");
 
 		menuList = new ArrayList<Menu>();
 		accountList = new ArrayList<Account>();
@@ -295,8 +293,7 @@ public class C206_CaseStudyTest {
 	public void tearDown() throws Exception {
 		MI1 = null;
 		MI2 = null;
-		A1 = null;
-		A2 = null;
+		a1 = null;
 		order1 = null;
 		order2 = null;
 
@@ -304,31 +301,44 @@ public class C206_CaseStudyTest {
 		menuList = null;
 	}
 
-	@Test public void addAccounttest() { // sharan starts here
+	@Test
+	  public void addAccounttest() { // sharan starts here
+	    // Check if the list is not null but empty boundary
 
-		// Test if account is created - normal 
-		Account A1 = new Account("userRole","contactNumber", "studentId", "username");
+	    assertNotNull("Check for valid arraylist", accountList);
+	    // Having added an item to an empty list, test if the list size is 1
+	    C206_CaseStudy.addAccount(accountList, a1);
+	    // Add an item and test if ArrayList has a size of 1
+	    assertEquals("Check if arraylist size is 1" , 1, accountList.size());
+	  }
+	  
+	  
+	  @Test
+	  public void retrieveAccounttest() {
+	    
+	    // Remove customer according to the list. Check if planned output String is the same as retrieved package list
+	    String output = String.format("%-10s %-20s %-10s %-10s %-20s\n", "USERNAME", "USERROLE", "CONTACT NUMBER", "STUDENTID");
+	    addAccounttest();
+	    // Check if output string is similar to the received list
+	    assertEquals("checks if its retrieved properly", output, C206_CaseStudy.retrieveAllAccount(accountList));
 
-		// Check if the list is not null but empty boundary
-		assertEquals("Check if arraylist size is 0", 0, accountList.size());
+	  }
+	  @Test
+	  public void viewAccounttest() {
+	    // Given an empty list, check if the list size is 2 after adding 2 products(Normal)
+	    addAccounttest();
 
-		// Having added an item to an empty list, test if the list size is 1
-		accountList.add(A1); // Add an item and test if ArrayList has a size of 1
-		assertEquals("Check if arraylist size is 1", 1, accountList.size());
-
-		// Test that account is not created due to duplicated user - error 
-		Account A2= new Account("userRole", "contactNumber", "studentId", "username");
-		assertEquals("Check that list has same username",
-				accountList.get(0).getUsername()); }
-
-	@Test public void deleteAccountTest() {
-
-		// Test if account is deleted - normal 
-		Account A1 = new Account("userRole","contactNumber", "studentId", "username"); accountList.add(A1);
-		assertNotNull("Test if there is valid Request Quotation arraylist to retrieve item",accountList); 
-		// Check if the list size is 1 given an empty list after deleting 1 account 
-		C206_CaseStudy.deleteAccount(accountList, "username");
-		assertEquals("Checks if deleted properly,", 0, accountList.size()); 
-		}
-
+	    String output = C206_CaseStudy.retrieveAllAccount(accountList);
+	    // Test if the predicted output String is the same as the retrieved list
+	    assertEquals("Checks if view all is working properly.", output, C206_CaseStudy.retrieveAllAccount(accountList));
+	  }
+	  @Test
+	  public void deleteAccount() {
+	    
+	    assertNotNull("Test if there is valid Request Quotation arraylist to retrieve item", accountList);
+	    // Check if the list size is 1 given an empty list after deleting 1 customer
+	    C206_CaseStudy.deleteAccount(accountList, "Account");
+	    C206_CaseStudy.deleteAccount(accountList,"USERNAME");
+	    assertEquals("Checks if deleted properly,", 0, accountList.size());
+	  }
 }
