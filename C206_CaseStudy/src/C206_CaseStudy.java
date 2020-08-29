@@ -87,11 +87,13 @@ public class C206_CaseStudy {
 				int action = Helper.readInt("Enter option here > ");
 
 				if (action == CREATE) {
-					C206_CaseStudy.createAccount(accountList);
+				Account au = inputAccount();
+				C206_CaseStudy.addAccount(accountList, au);
+					
 				}
 
 				else if (action == VIEW) {
-					C206_CaseStudy.viewAllAccount(accountList);
+					C206_CaseStudy.viewAccount(accountList);
 				}
 
 				else if (action == DELETE) {
@@ -350,26 +352,21 @@ public class C206_CaseStudy {
 	// OPTION 2 ===========================================================
 	// ACCOUNT//
 	// Sharan start//
-	public static void createAccount(ArrayList<Account> accountList) {
-		C206_CaseStudy.setHeader("CREATE ACCOUNT");
-		String username = Helper.readString("Enter username > ");
-		String password = Helper.readString("Enter password > ");
-		String contactNumber = Helper.readString("Enter Contact Number > ");
-		String userRole = Helper.readString("Enter User Role > ");
+	 public static Account inputAccount() {
 
-		Account newAccount = new Account(username, contactNumber, password, userRole);
-		accountList.add(newAccount);
-		System.out.println("Account Created");
-	}
+		    String username = Helper.readString("Enter username> ");
+		    String userRole = Helper.readString("Enter User Role> ");
+		    String contactNumber = Helper.readString("Enter Contact Number> ");
+		    String studentId = Helper.readString("Enter Student ID> ");
+		    
+		    Account Acc = new Account(username, userRole, contactNumber, studentId);
+		    return Acc;
+		  }
 
-	public static String viewAllAccount(ArrayList<Account> accountList) {
-		String output = null;
-		for (int i = 0; i < accountList.size(); i++) {
-			output = accountList.get(i).toString();
-		}
-		return output;
-	}
+		  // Add Account
+		  public static void addAccount(ArrayList<Account> accountList, Account Acc) {
 
+<<<<<<< HEAD
 	public static void deleteAccount(ArrayList<Account> accountList, String delete) {
 		boolean valid = false;
 		while (valid != true) {
@@ -386,6 +383,44 @@ public class C206_CaseStudy {
 		}
 
 	}
+=======
+		    accountList.add(Acc);
+		    System.out.println("Customer added!");
+		  }
+
+		  // Retrieve Account
+		  public static String retrieveAllAccount(ArrayList<Account> accountList) {
+
+		    String output = "";
+
+		    for (int i = 0; i < accountList.size(); i++) {
+
+		      output += String.format("%-10s %-20s %-10s %-10s %-20s\n", accountList.get(i).getUsername(), 
+		    		  accountList.get(i).getContactNumber(),accountList.get(i).getUserRole(), accountList.get(i).getStudentId());
+		    }
+		    return output;
+		  }
+
+		  // View Account
+		  public static void viewAccount(ArrayList<Account> accountList) {
+
+		    String output = String.format("%-10s %-20s %-10s %-10s %-20s\n", "USERNAME", "USERROLE", "CONTACT NUMBER", "STUDENTID");
+		    output += retrieveAllAccount(accountList);
+		    System.out.println(output);
+		  }
+
+		  // Delete Account
+		  public static void deleteAccount(ArrayList<Account> accountList, String delete) {
+			  
+		    for (int i = 0; i < accountList.size(); i++) {
+
+		      if (accountList.get(i).getUsername().equals(delete)) {
+		    	  accountList.remove(i);
+		        System.out.println("Account removed!");
+		      }
+		    }
+		  }
+
 	// Sharan end//
 
 	// OPTION 3 =============================================================

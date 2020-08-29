@@ -162,7 +162,11 @@ public class C206_CaseStudyTest {
 	public void updateBill() {
 		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
 
+<<<<<<< HEAD
 		// SchoolLunchBox_App.createBill(billList, billNew);
+=======
+		//SchoolLunchBox_App.createBill(billList, billNew);
+>>>>>>> branch 'master' of https://github.com/Waison-oh/C206_CaseStudy.git
 		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
 		assertSame("Check that bill is added", billList, billList.get(0));
 
@@ -384,5 +388,32 @@ public class C206_CaseStudyTest {
 		items = null;
 		menuList = null;
 	}
+
+	@Test public void addAccounttest() { // sharan starts here
+
+		// Test if account is created - normal 
+		Account A1 = new Account("userRole","contactNumber", "studentId", "username");
+
+		// Check if the list is not null but empty boundary
+		assertEquals("Check if arraylist size is 0", 0, accountList.size());
+
+		// Having added an item to an empty list, test if the list size is 1
+		accountList.add(A1); // Add an item and test if ArrayList has a size of 1
+		assertEquals("Check if arraylist size is 1", 1, accountList.size());
+
+		// Test that account is not created due to duplicated user - error 
+		Account A2= new Account("userRole", "contactNumber", "studentId", "username");
+		assertEquals("Check that list has same username",
+				accountList.get(0).getUsername()); }
+
+	@Test public void deleteAccountTest() {
+
+		// Test if account is deleted - normal 
+		Account A1 = new Account("userRole","contactNumber", "studentId", "username"); accountList.add(A1);
+		assertNotNull("Test if there is valid Request Quotation arraylist to retrieve item",accountList); 
+		// Check if the list size is 1 given an empty list after deleting 1 account 
+		C206_CaseStudy.deleteAccount(accountList, "username");
+		assertEquals("Checks if deleted properly,", 0, accountList.size()); 
+		}
 
 }
