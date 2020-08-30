@@ -441,7 +441,7 @@ public class SchoolLunchBox_App {
 		// hard code item menu for local testing:
 		String listItem = "";
 		for (int i = 0; i < items.size(); i++) {
-			listItem += String.format("%-20s %-20s %-10s\n", items.get(i).getCategory(), items.get(i).getName(),
+			listItem += String.format("%-20d %-20s %-20s %-10s\n", i,items.get(i).getCategory(), items.get(i).getName(),
 					items.get(i).getPrice());
 		}
 		System.out.println(listItem);
@@ -460,6 +460,7 @@ public class SchoolLunchBox_App {
 		int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
 		String choose = Helper.readString("Choose item to add > ");
+		
 		for (int i = 0; i < items.size(); i++) {
 			String name = items.get(i).getName();
 
