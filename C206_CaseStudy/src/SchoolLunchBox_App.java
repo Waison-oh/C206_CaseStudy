@@ -548,11 +548,17 @@ public class SchoolLunchBox_App {
 					month = Helper.readInt("Please enter the month within the range of 1-12 >");
 				}
 				int ItemNum = Helper.readInt("Enter the number of item you want to add >");
+
+				String listItem = "";
+				for (int r = 0; r < items.size(); r++) {
+					listItem += String.format("%-20s %-20s %-10s\n", items.get(r).getCategory(), items.get(r).getName(),
+							items.get(r).getPrice());
+				}
+				System.out.println(listItem);
 				String choose = Helper.readString("Choose item to add > ");
 
 				if (choose.equalsIgnoreCase(items.get(i).getName())) {
 					menuList.get(i).setItems(items);
-
 					menuList.get(i).setDisplayName(newMenuName);
 					menuList.get(i).setMonth(month);
 					menuList.get(i).setNumberOfItems(ItemNum);
