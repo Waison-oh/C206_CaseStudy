@@ -538,7 +538,7 @@ public class SchoolLunchBox_App {
 		return false;
 	}
 
-	static void updateMonthlyMenu(ArrayList<Menu> menuList, ArrayList<MenuItem> items) {
+	public static void updateMonthlyMenu(ArrayList<Menu> menuList, ArrayList<MenuItem> items) {
 		boolean isUpdate = false;
 		String menuName = Helper.readString("Which menu do you wish to update?");
 		for (int i = 0; i < menuList.size(); i++) {

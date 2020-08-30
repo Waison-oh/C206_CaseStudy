@@ -140,17 +140,29 @@ public class C206_CaseStudyTest {
 		
 		assertEquals("Check if the updated information is being updated",testOutput,expectedOutput);
 		
-		//Test that User cannot update the details 
-		name = "Jan menu";
+		//Test that User cannot update the details due to empty fields- error
+		name = "Feb Menu";
 		assertSame("Check if the menu name is the same as the one in arrayList", name, monthMenu.getDisplayName());
-		monthMenu.setDisplayName(" ");
+		monthMenu.setDisplayName(null);
 		monthMenu.setMonth(2);
 		monthMenu.setNumberOfItems(1);
 		monthMenu.setItems(items);
 		expectedOutput = String.format("%-20s %-20d %-20d %-30s","Feb Menu",2,1,items);	
 		testOutput = monthMenu.toString();
-		boolean emptyName = SchoolLunchBox_App.updateMonthlyMenu(menuList, items);
-		assertFalse("Check if the updated information is being updated",testOutput);
+		
+		//check the empty fields
+		assertNull("Check if the name field is null",monthMenu.getDisplayName());
+		assertNotNull("Check if the month field is null",monthMenu.getMonth());
+		assertNotNull("Check if the number of item is null",monthMenu.getNumberOfItems());
+		
+		//Test that user cannot update the details due to menu not exisiting - error
+		name = "March Menu";
+		assertNotSame("Check if the menu name is the same as the one in arrayList", name, monthMenu1.getDisplayName());
+		monthMenu.setDisplayName("April");
+		monthMenu.setMonth(2);
+		monthMenu.setNumberOfItems(1);
+		monthMenu.setItems(items);
+		
 		
 	}
 
