@@ -437,63 +437,40 @@ public class SchoolLunchBox_App {
 	// OPTION 4 ========================================================== MONTHLY
 	// MENU//
 	// Qiao Ling start//
-	public static void createMenu(ArrayList<MenuItem> items, ArrayList<Menu> monthlyMenu) {
+	public static void createMenu(ArrayList<MenuItem> items, ArrayList<Menu> menuList) {
 		// hard code item menu for local testing:
-		String listItem = "";
-		for (int i=0;i<items.size();i++) {
-		listItem += String.format("%-20s %-20s %-10s\n", items.get(i).getCategory(),items.get(i).getName(),items.get(i).getPrice());
-		}
-		System.out.println(listItem);
-		//
-		boolean isCreated = false;
-		String menuName = Helper.readString("Enter the menu name > ");
-		while (menuName.equalsIgnoreCase("")) {
-			menuName = Helper.readString("Please do not leave menu name blank > ");
-			isCreated = false;
-		}
-		int month = Helper.readInt("Enter the month for this menu >");
-		int ItemNum = Helper.readInt("Enter the number of item you want to add >");
+				String listItem = "";
+				for (int i=0;i<items.size();i++) {
+				listItem += String.format("%-20s %-20s %-10s\n", items.get(i).getCategory(),items.get(i).getName(),items.get(i).getPrice());
+				}
+				System.out.println(listItem);
+				//
+				boolean isCreated = false;
+				String menuName = Helper.readString("Enter the menu name > ");
+				while (menuName.equalsIgnoreCase("")) {
+					menuName = Helper.readString("Please do not leave menu name blank > ");
+					isCreated = false;
+				}
+				int month = Helper.readInt("Enter the month for this menu >");
+				while (month < 1 && month > 12) {
+					month = Helper.readInt("Please enter the month within the range of 1-12 >");
+				}
+				int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
-		String choose = Helper.readString("Choose item to add > ");
-		for (int i = 0; i < items.size(); i++) {
-			String name = items.get(i).getName();
-
-			if (choose.equalsIgnoreCase(name)) {
-
-				String category = items.get(i).getCategory();
-				boolean healthyChoice = items.get(i).isHealthyChoice();
-				double price = items.get(i).getPrice();
-				Menu mm = new Menu(menuName, month, ItemNum, items);
-				monthlyMenu.add(mm);
-				isCreated = true;
-				break;
-			} else {
-				System.out.println("Invalid choice!");
-			}
-
-		}
-
-		if (isCreated == true) {
-			System.out.println("Menu created!");
-		} else {
-			System.out.println("Menu not created!");
-		}
+				String choose = Helper.readString("Choose item to add > ");
+				for (int i = 0; i < menuList.size(); i++) {
+					if (menuName.equalsIgnoreCase(menuList.get(i).getDisplayName())){
+						System.out.println("Cannot create menu due to duplicated name");
+						isCreated = false;
+					}else {
+						Menu newMenu = new Menu(menuName, month, ItemNum, items);
+						isCreated = true;
+					}
+				}
 
 	}
 
-	public static boolean createMenu(ArrayList<Menu> monthlyMenu, Menu mm) {
-
-		for (int i = 0; i < monthlyMenu.size(); i++) {
-			String displayName = mm.getDisplayName();
-			if (monthlyMenu.get(i).getDisplayName().equalsIgnoreCase(displayName)) {
-				System.out.println("Cannot have duplicate name of menu!");
-				return false;
-			}
-		}
-		monthlyMenu.add(mm);
-		return true;
-	}
-
+	
 	public static String getAllMenu(ArrayList<Menu> menuList) {
 		String output = "";
 
