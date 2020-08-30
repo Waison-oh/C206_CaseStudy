@@ -549,30 +549,20 @@ public class SchoolLunchBox_App {
 				}
 				int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
-				String listItem = "";
-				for (int r = 0; r < items.size(); r++) {
-					listItem += String.format("%-20s %-20s %-10s\n", items.get(r).getCategory(), items.get(r).getName(),
-							items.get(r).getPrice());
-				}
-				System.out.println(listItem);
-				String choose = Helper.readString("Choose item to add > ");
-
-				if (choose.equalsIgnoreCase(items.get(i).getName())) {
-					menuList.get(i).setItems(items);
 					menuList.get(i).setDisplayName(newMenuName);
 					menuList.get(i).setMonth(month);
 					menuList.get(i).setNumberOfItems(ItemNum);
 					isUpdate = true;
-				}
-
-				if (isUpdate == true) {
-					System.out.println("Menu is updated successfully");
-				} else {
-					System.out.println("Fail to update the menu, please try again");
-				}
-
+					break;
+				
 			}
 		}
+		if (isUpdate == true) {
+			System.out.println("Menu is updated successfully");
+		} else {
+			System.out.println("Fail to update the menu, please try again");
+		}
+
 	}
 	// Qiao Ling end//
 
