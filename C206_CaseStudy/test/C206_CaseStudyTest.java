@@ -135,10 +135,22 @@ public class C206_CaseStudyTest {
 		monthMenu.setMonth(2);
 		monthMenu.setNumberOfItems(1);
 		monthMenu.setItems(items);
-		String expectedOutput = String.format("%-20s %-20d %-20d %-30s\n","Feb Menu",2,1,items);	
+		String expectedOutput = String.format("%-20s %-20d %-20d %-30s","Feb Menu",2,1,items);	
 		String testOutput = monthMenu.toString();
 		
 		assertEquals("Check if the updated information is being updated",testOutput,expectedOutput);
+		
+		//Test that User cannot update the details 
+		name = "Jan menu";
+		assertSame("Check if the menu name is the same as the one in arrayList", name, monthMenu.getDisplayName());
+		monthMenu.setDisplayName(" ");
+		monthMenu.setMonth(2);
+		monthMenu.setNumberOfItems(1);
+		monthMenu.setItems(items);
+		expectedOutput = String.format("%-20s %-20d %-20d %-30s","Feb Menu",2,1,items);	
+		testOutput = monthMenu.toString();
+		
+		assertFalse("Check if the updated information is being updated",testOutput);
 		
 	}
 
