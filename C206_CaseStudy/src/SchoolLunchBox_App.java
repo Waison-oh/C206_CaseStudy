@@ -453,8 +453,9 @@ public class SchoolLunchBox_App {
 			isCreated = false;
 		}
 		int month = Helper.readInt("Enter the month for this menu >");
-		while (month < 1 && month > 12) {
-			month = Helper.readInt("Please enter the month within the range of 1 -12 >");
+		while (month < 1 || month > 12) {
+
+			month = Helper.readInt("Please enter the month within the range of 1-12 >");
 		}
 		int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
@@ -464,9 +465,6 @@ public class SchoolLunchBox_App {
 
 			if (choose.equalsIgnoreCase(name)) {
 
-				// String category = items.get(i).getCategory();
-				// boolean healthyChoice = items.get(i).isHealthyChoice();
-				// double price = items.get(i).getPrice();
 				Menu mm = new Menu(menuName, month, ItemNum, items);
 				monthlyMenu.add(mm);
 				isCreated = true;
@@ -489,15 +487,16 @@ public class SchoolLunchBox_App {
 		String output = "";
 
 		for (int i = 0; i < menuList.size(); i++) {
-			output += String.format("%-10s %-30d %-10s %-20d %-20f\n", menuList.get(i).getItems().get(i).getName(), menuList.get(i).getNumberOfItems(),
-					menuList.get(i).getDisplayName(), menuList.get(i).getMonth(), menuList.get(i).getItems().get(i).getPrice());
+			output += String.format("%-10s %-30d %-10s %-20d %-20f\n", menuList.get(i).getItems().get(i).getName(),
+					menuList.get(i).getNumberOfItems(), menuList.get(i).getDisplayName(), menuList.get(i).getMonth(),
+					menuList.get(i).getItems().get(i).getPrice());
 		}
 		return output;
 	}
 
 	public static void viewAllMenu(ArrayList<Menu> menuList) {
-		String output = String.format("%-10s %-30s %-10s %-20s %-20s\n", "NAME", "AVAILABLE",
-				"MENU NAME", "MONTH", "PRICE");
+		String output = String.format("%-10s %-30s %-10s %-20s %-20s\n", "NAME", "AVAILABLE", "MENU NAME", "MONTH",
+				"PRICE");
 		if (menuList.isEmpty()) {
 			output += "There is no menu";
 		} else {
@@ -539,21 +538,32 @@ public class SchoolLunchBox_App {
 	}
 
 	static void updateMonthlyMenu(ArrayList<Menu> menuList, ArrayList<MenuItem> items) {
+		boolean isUpdate = false;
 		String menuName = Helper.readString("Which menu do you wish to update?");
 		for (int i = 0; i < menuList.size(); i++) {
 			if (menuName.equalsIgnoreCase(menuList.get(i).getDisplayName())) {
+				String newMenuName = Helper.readString("Please enter a new menu name >");
 				int month = Helper.readInt("Enter the month for this menu >");
+				while (month < 1 || month > 12) {
+					month = Helper.readInt("Please enter the month within the range of 1-12 >");
+				}
 				int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 				String choose = Helper.readString("Choose item to add > ");
 
-				menuList.get(i).setMonth(month);
-				menuList.get(i).setNumberOfItems(ItemNum);
-				if (choose.equalsIgnoreCase(menuList.get(i).getItems().get(i).getName())) {
+				if (choose.equalsIgnoreCase(items.get(i).getName())) {
 					menuList.get(i).setItems(items);
-					System.out.println("Menu is Updated!");
-					break;
+
+					menuList.get(i).setDisplayName(newMenuName);
+					menuList.get(i).setMonth(month);
+					menuList.get(i).setNumberOfItems(ItemNum);
+					isUpdate = true;
 				}
-				System.out.println("Menu is unable to update");
+
+				if (isUpdate == true) {
+					System.out.println("Menu is updated successfully");
+				} else {
+					System.out.println("Fail to update the menu, please try again");
+				}
 
 			}
 		}
