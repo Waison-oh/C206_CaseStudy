@@ -149,7 +149,7 @@ public class C206_CaseStudyTest {
 		monthMenu.setItems(items);
 		expectedOutput = String.format("%-20s %-20d %-20d %-30s","Feb Menu",2,1,items);	
 		testOutput = monthMenu.toString();
-		
+		boolean emptyName = SchoolLunchBox_App.updateMonthlyMenu(menuList, items);
 		assertFalse("Check if the updated information is being updated",testOutput);
 		
 	}
