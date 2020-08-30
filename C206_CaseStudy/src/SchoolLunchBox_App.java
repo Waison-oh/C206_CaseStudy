@@ -489,14 +489,15 @@ public class SchoolLunchBox_App {
 		String output = "";
 
 		for (int i = 0; i < menuList.size(); i++) {
-			output += String.format("%-90s\n", menuList.get(i).toString());
+			output += String.format("%-10s %-30d %-10s %-20d %-20f\n", menuList.get(i).getItems().get(i).getName(), menuList.get(i).getNumberOfItems(),
+					menuList.get(i).getDisplayName(), menuList.get(i).getMonth(), menuList.get(i).getItems().get(i).getPrice());
 		}
 		return output;
 	}
 
 	public static void viewAllMenu(ArrayList<Menu> menuList) {
-		String output = String.format("%-10s %-30s %-10s %-20s %-20s %-30s\n", "TAG NO.", "NAME", "AVAILABLE",
-				"DISPLAY NAME", "MONTH", "NUMBER OF OFFERS");
+		String output = String.format("%-10s %-30s %-10s %-20s %-20s\n", "NAME", "AVAILABLE",
+				"MENU NAME", "MONTH", "PRICE");
 		if (menuList.isEmpty()) {
 			output += "There is no menu";
 		} else {
