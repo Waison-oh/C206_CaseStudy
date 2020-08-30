@@ -366,73 +366,87 @@ public class SchoolLunchBox_App {
 	// ORDER//
 	// Qi Yue start//
 
-	private static void deleteOrder(ArrayList<Order> orderList) {
-		SchoolLunchBox_App.setHeader("DELETE ORDER");
-		boolean valid = false;
-		while (valid != true) {
-			String studentId = Helper.readString("Enter student ID of order > ");
+		private static void createOrder(ArrayList<Order> orderList) {
+			C206_CaseStudy.setHeader("CREATE ORDER");
+
+			System.out.println("Current Total Amount Of Orders: " + orderList.size());
+			String studentId = Helper.readString("Enter student id> ");
+			String orderDate = Helper.readString("Enter order date> ");
+
+			ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+			items.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
+			Order newOrder = new Order(studentId, orderDate, items);
+			orderList.add(newOrder);
+			System.out.println("Order added!");
+		}
+
+		public static Boolean doDeleteOrder(ArrayList<Order> orderList, String studentId) {
+			boolean isDelete = false;
 			for (int i = 0; i < orderList.size(); i++) {
-				if (studentId == orderList.get(i).getStudentId()) {
+				String id = orderList.get(i).getStudentId();
+				if (studentId.equals(id)) {
 					orderList.remove(i);
-					System.out.println("Order Deleted!");
+					isDelete = true;
+				}
+			}
+			return isDelete;
+		}
+
+		private static void deleteOrder(ArrayList<Order> orderList) {
+			C206_CaseStudy.setHeader("DELETE ORDER");
+			String studentid = Helper.readString("Enter Student ID: ");
+			Boolean isDelete = doDeleteOrder(orderList, studentid);
+			if (isDelete == false) {
+				System.out.println("Invalid order");
+			} else {
+				System.out.println(studentid + "'s  Order Deleted");
+			}
+		}
+
+		public static void searchOrder1(ArrayList<Order> orderList) {
+			C206_CaseStudy.setHeader("Search LIST");
+			String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
+			String ID = Helper.readString("Enter Student ID To Search For: ");
+			for (int i = 0; i < orderList.size(); i++) {
+				if (orderList.get(i).getStudentId().equals(ID)) {
+					output += String.format("%-90s\n", orderList.get(i).toString());
+				} else {
+					System.out.println("Invalid Student ID entered! ");
+				}
+			}
+			System.out.println(output);
+		}
+
+		public static String getAllOrder(ArrayList<Order> orderList) {
+			String output = "";
+
+			for (int i = 0; i < orderList.size(); i++) {
+				output += String.format("%-90s\n", orderList.get(i).toString());
+			}
+			return output;
+		}
+
+		public static void viewAllOrder(ArrayList<Order> orderList) {
+			C206_CaseStudy.setHeader("ORDER LIST");
+			String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
+			output += getAllOrder(orderList);
+			System.out.println(output);
+		}
+
+		public static void updateOrder(ArrayList<Order> orderList) {
+			String id = Helper.readString("Enter Student ID: ");
+			for (int i = 0; i < orderList.size(); i++) {
+				if (orderList.get(i).getStudentId().equals(id)) {
+					String newOrderDate = Helper.readString("Enter New Order Date: ");
+					orderList.get(i).setOrderDate(newOrderDate);
+					System.out.println("Order Date Updated");
+				} else {
+					System.out.println("Student ID Invalid");
 				}
 			}
 		}
-		if (valid == false) {
-			System.out.println("Student ID does not exist.");
-		}
-	}
+		// Qi Yue end//
 
-	private static void createOrder(ArrayList<Order> orderList) {
-		// TODO Auto-generated method stub
-		SchoolLunchBox_App.setHeader("CREATE ORDER");
-		String studentId = Helper.readString("Enter student ID > ");
-		String orderDate = Helper.readString("Enter order date > ");
-
-		String newCategory = Helper.readString("Enter new Menu Item category (Western/Asian/Vegetarian):  ");
-		String newName = Helper.readString("Enter new Menu Item name: ");
-		boolean newHealthy = Helper.readBoolean("Is this new Menu Item a healthy choice?(true/false) ");
-		double newPrice = Helper.readDouble("Enter price for new Menu Item: ");
-
-		MenuItem newMenu = new MenuItem(newCategory, newName, newHealthy, newPrice);
-		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
-		items.add(newMenu);
-
-		Order newOrder = new Order(studentId, orderDate, items);
-		orderList.add(newOrder);
-		System.out.println("Order added!");
-	}
-
-	public static String getAllOrder(ArrayList<Order> orderList) {
-		String output = "";
-
-		for (int i = 0; i < orderList.size(); i++) {
-			output += String.format("%-90s\n", orderList.get(i).toString());
-		}
-		return output;
-	}
-
-	public static void viewAllOrder(ArrayList<Order> orderList) {
-		SchoolLunchBox_App.setHeader("ORDER LIST");
-		String output = String.format("%-10s %-30s %-10s %-10s %-30s %-30s\n", "TAG NO.", "NAME", "AVAILABLE",
-				"STUDENT ID", "STUDENT NAME", "ORDER DATE");
-		output += getAllOrder(orderList);
-		System.out.println(output);
-	}
-
-	public static void updateOrder(ArrayList<Order> orderList) {
-		String id = Helper.readString("Enter Student ID: ");
-		for (int i = 0; i < orderList.size(); i++) {
-			if (orderList.get(i).getStudentId().equals(id)) {
-				String newOrderDate = Helper.readString("Enter New Order Date: ");
-				orderList.get(i).setOrderDate(newOrderDate);
-				System.out.println("Order Date Updated");
-			} else {
-				System.out.println("Student ID Invalid");
-			}
-		}
-	}
-	// Qi Yue end//
 
 	// OPTION 4 ========================================================== MONTHLY
 	// MENU//
