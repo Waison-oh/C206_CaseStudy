@@ -146,6 +146,7 @@ public class SchoolLunchBox_App {
 				int CREATE = 1;
 				int VIEW = 2;
 				int DELETE = 3;
+				int UPDATE = 4;
 				SchoolLunchBox_App.setHeader("MONTHLY MENU");
 				System.out.println("1. Create monthly menu");
 				System.out.println("2. View monthly menu");
@@ -160,7 +161,9 @@ public class SchoolLunchBox_App {
 					SchoolLunchBox_App.viewAllMenu(menuList);
 				} else if (action == DELETE) {
 					SchoolLunchBox_App.deleteMenu(menuList);
-				} else {
+				} else if(action == UPDATE){
+					updateMonthlyMenu(menuList, items);
+				}else {
 					System.out.println("INVALID OPTION!!");
 				}
 			} // QIAO LING ENDS HERE - MONTHLY MENU//
@@ -543,8 +546,24 @@ public class SchoolLunchBox_App {
 		return false;
 	}
 	
-	static void updateMonthlyMenu() {
-		
+	static void updateMonthlyMenu(ArrayList<Menu> menuList, ArrayList<MenuItem> items) {
+		String menuName = Helper.readString("Which menu do you wish to update?");
+		for(int i =0;i<menuList.size();i++) {
+			if(menuName.equalsIgnoreCase(menuList.get(i).getDisplayName())) {
+				int month = Helper.readInt("Enter the month for this menu >");
+				int ItemNum = Helper.readInt("Enter the number of item you want to add >");
+				String choose = Helper.readString("Choose item to add > ");
+				
+				menuList.get(i).setMonth(month);
+				menuList.get(i).setNumberOfItems(ItemNum);
+				if(choose.equalsIgnoreCase(menuList.get(i).getItems().get(i).getName())) {
+					menuList.get(i).setItems(items);
+					System.out.println("Menu is Updated!");
+					break;
+				}System.out.println("Menu is unable to update");
+				
+			}
+		}
 	}
 	// Qiao Ling end//
 
