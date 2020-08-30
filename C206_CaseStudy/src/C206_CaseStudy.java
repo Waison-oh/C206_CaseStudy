@@ -122,7 +122,7 @@ public class C206_CaseStudy {
 				int action = Helper.readInt("Enter option here > ");
 
 				if (action == CREATE) {
-					C206_CaseStudy.createOrder(orderList);
+					C206_CaseStudy.createOrder(orderList, items);
 				}
 
 				else if (action == VIEW) {
@@ -407,15 +407,14 @@ public class C206_CaseStudy {
 	// ORDER//
 	// Qi Yue start//
 
-	private static void createOrder(ArrayList<Order> orderList) {
+	private static void createOrder(ArrayList<Order> orderList, ArrayList<MenuItem> items) {
 		C206_CaseStudy.setHeader("CREATE ORDER");
 
 		System.out.println("Current Total Amount Of Orders: " + orderList.size());
 		String studentId = Helper.readString("Enter student id> ");
 		String orderDate = Helper.readString("Enter order date> ");
 
-		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
-		items.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
+		
 		Order newOrder = new Order(studentId, orderDate, items);
 		orderList.add(newOrder);
 		System.out.println("Order added!");
