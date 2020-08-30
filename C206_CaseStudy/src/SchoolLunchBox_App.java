@@ -439,10 +439,10 @@ public class SchoolLunchBox_App {
 	// Qiao Ling start//
 	public static void createMenu(ArrayList<MenuItem> items, ArrayList<Menu> monthlyMenu) {
 		// hard code item menu for local testing:
-		items.add(new MenuItem("Vegetarian", "potato salad", true, 6.70));
-		items.add(new MenuItem("Western", "Chicken Chop", false, 8.90));
-		String listItem = String.format("%-20s %-20s %-10s %s\n", "Western", "chicken chop", "false", "8.9");
-		listItem += String.format("%-20s %-20s %-10s %s\n", "Vegetarian", "potato salad", "true", "6.70");
+		String listItem = "";
+		for (int i=0;i<items.size();i++) {
+		listItem += String.format("%-20s %-20s %-10s\n", items.get(i).getCategory(),items.get(i).getName(),items.get(i).getPrice());
+		}
 		System.out.println(listItem);
 		//
 		boolean isCreated = false;
