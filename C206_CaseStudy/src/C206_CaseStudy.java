@@ -414,9 +414,9 @@ public class C206_CaseStudy {
 		String studentId = Helper.readString("Enter student id> ");
 		String orderDate = Helper.readString("Enter order date> ");
 
-		ArrayList<MenuItem> item = new ArrayList<MenuItem>();
-		item.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
-		Order newOrder = new Order(studentId, orderDate, item);
+		ArrayList<MenuItem> items = new ArrayList<MenuItem>();
+		items.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
+		Order newOrder = new Order(studentId, orderDate, items);
 		orderList.add(newOrder);
 		System.out.println("Order added!");
 	}
