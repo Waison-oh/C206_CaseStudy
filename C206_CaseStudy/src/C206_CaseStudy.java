@@ -415,7 +415,6 @@ public class C206_CaseStudy {
 		String orderDate = Helper.readString("Enter order date> ");
 
 		ArrayList<MenuItem> item = new ArrayList<MenuItem>();
-		// MenuItem add got error so i create a item to show.
 		item.add(new MenuItem("Asian", "Chicken rice", true, 5.00));
 		Order newOrder = new Order(studentId, orderDate, item);
 		orderList.add(newOrder);
