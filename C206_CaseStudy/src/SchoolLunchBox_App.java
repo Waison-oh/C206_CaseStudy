@@ -448,7 +448,7 @@ public class SchoolLunchBox_App {
 		//
 		boolean isCreated = false;
 		String menuName = Helper.readString("Enter the menu name > ");
-		while (menuName.equalsIgnoreCase("")) {
+		while (menuName.isBlank()) {
 			menuName = Helper.readString("Please do not leave menu name blank > ");
 			isCreated = false;
 		}

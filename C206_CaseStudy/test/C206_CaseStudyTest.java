@@ -16,7 +16,7 @@ public class C206_CaseStudyTest {
 
 	private Menu monthMenu;
 	private Menu monthMenu1;
-	
+
 	private ArrayList<Menu> menuList;
 	private ArrayList<Account> accountList;
 	private ArrayList<Order> orderList;
@@ -75,6 +75,8 @@ public class C206_CaseStudyTest {
 		// test if the menu is created - normal
 		C206_CaseStudy.createMenu(menuList, monthMenu);
 		assertSame("Check that menu is create", monthMenu.getDisplayName(), menuList.get(0).getDisplayName());
+		boolean withinRange = monthMenu.getMonth() >= 1 && monthMenu.getMonth() <= 12;
+		assertTrue("Check the month is within the range", withinRange);
 
 		// test if the menu is not created due to duplicated name - error
 
@@ -87,9 +89,32 @@ public class C206_CaseStudyTest {
 		assertFalse("Ensure that menu is not created due to duplicated name", isCreated);
 
 		// test if the menu name is empty - error
-		monthMenu1 = new Menu("", 2, 1, items);
-		boolean emptyName = C206_CaseStudy.createMenu(menuList, monthMenu1);
+		monthMenu1 = new Menu(null, 2, 1, items);
+		boolean emptyName = monthMenu1.getDisplayName() != null;
 		assertFalse("Ensure that menu is not created due to empty menu name", emptyName);
+
+		// Check if the month is not within the range
+		C206_CaseStudy.createMenu(menuList, monthMenu);
+		assertSame("Check that menu is create", monthMenu.getDisplayName(), menuList.get(0).getDisplayName());
+		withinRange = monthMenu.getMonth() < 1 && monthMenu.getMonth() > 12;
+		assertFalse("Check the month is within the range", withinRange);
+		
+		//Check if the item chosen is in the item list
+		String foodName = "Chicken nugget";
+		boolean foodsame = foodName.equalsIgnoreCase(MI1.getName());
+		assertTrue("Check if the item chosen exist in the item list",foodsame);
+		
+		//check if the item chosen is out of range
+		foodName = "veggi crunch";
+		foodsame = foodName.equalsIgnoreCase(MI1.getName());
+		assertFalse("Check if the item chosen exist in the item list",foodsame);
+		
+		//check if the item field is empty
+		foodName = "";
+		foodsame = foodName.isEmpty();
+		assertTrue("Check if the item field is empty",foodsame);
+
+
 	}
 
 	@Test
@@ -125,45 +150,44 @@ public class C206_CaseStudyTest {
 				menuName);
 
 	}
-	
+
 	@Test
 	public void UpdateTest() {
-		//Test that user can update the details - normal
+		// Test that user can update the details - normal
 		String name = "Jan menu";
 		assertSame("Check if the menu name is the same as the one in arrayList", name, monthMenu.getDisplayName());
 		monthMenu.setDisplayName("Feb Menu");
 		monthMenu.setMonth(2);
 		monthMenu.setNumberOfItems(1);
 		monthMenu.setItems(items);
-		String expectedOutput = String.format("%-20s %-20d %-20d %-30s","Feb Menu",2,1,items);	
+		String expectedOutput = String.format("%-20s %-20d %-20d %-30s", "Feb Menu", 2, 1, items);
 		String testOutput = monthMenu.toString();
-		
-		assertEquals("Check if the updated information is being updated",testOutput,expectedOutput);
-		
-		//Test that User cannot update the details due to empty fields- error
+
+		assertEquals("Check if the updated information is being updated", testOutput, expectedOutput);
+
+		// Test that User cannot update the details due to empty fields- error
 		name = "Feb Menu";
 		assertSame("Check if the menu name is the same as the one in arrayList", name, monthMenu.getDisplayName());
 		monthMenu.setDisplayName(null);
 		monthMenu.setMonth(2);
 		monthMenu.setNumberOfItems(1);
 		monthMenu.setItems(items);
-		expectedOutput = String.format("%-20s %-20d %-20d %-30s","Feb Menu",2,1,items);	
+		expectedOutput = String.format("%-20s %-20d %-20d %-30s", "Feb Menu", 2, 1, items);
 		testOutput = monthMenu.toString();
-		
-		//check the empty fields
-		assertNull("Check if the name field is null",monthMenu.getDisplayName());
-		assertNotNull("Check if the month field is null",monthMenu.getMonth());
-		assertNotNull("Check if the number of item is null",monthMenu.getNumberOfItems());
-		
-		//Test that user cannot update the details due to menu not exisiting - error
+
+		// check the empty fields
+		assertNull("Check if the name field is null", monthMenu.getDisplayName());
+		assertNotNull("Check if the month field is null", monthMenu.getMonth());
+		assertNotNull("Check if the number of item is null", monthMenu.getNumberOfItems());
+
+		// Test that user cannot update the details due to menu not exisiting - error
 		name = "March Menu";
 		assertNotSame("Check if the menu name is the same as the one in arrayList", name, monthMenu1.getDisplayName());
 		monthMenu.setDisplayName("April");
 		monthMenu.setMonth(2);
 		monthMenu.setNumberOfItems(1);
 		monthMenu.setItems(items);
-		
-		
+
 	}
 
 	// Qiao Ling ENDS HERE//
@@ -199,7 +223,6 @@ public class C206_CaseStudyTest {
 	@Test
 	public void updateBill() {
 		assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
-
 
 		assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
 		assertSame("Check that bill is added", billList, billList.get(0));
@@ -423,43 +446,47 @@ public class C206_CaseStudyTest {
 	}
 
 	@Test
-	  public void addAccounttest() { // sharan starts here
-	    // Check if the list is not null but empty boundary
+	public void addAccounttest() { // sharan starts here
+		// Check if the list is not null but empty boundary
 
-	    assertNotNull("Check for valid arraylist", accountList);
-	    // Having added an item to an empty list, test if the list size is 1
-	    C206_CaseStudy.addAccount(accountList, a1);
-	    // Add an item and test if ArrayList has a size of 1
-	    assertEquals("Check if arraylist size is 1" , 1, accountList.size());
-	  }
-	  
-	  
-	  @Test
-	  public void retrieveAccounttest() {
-	    
-	    // Remove customer according to the list. Check if planned output String is the same as retrieved package list
-	    String output = String.format("%-10s %-20s %-10s %-10s %-20s\n", "USERNAME", "USERROLE", "CONTACT NUMBER", "STUDENTID");
-	    addAccounttest();
-	    // Check if output string is similar to the received list
-	    assertEquals("checks if its retrieved properly", output, C206_CaseStudy.retrieveAllAccount(accountList));
+		assertNotNull("Check for valid arraylist", accountList);
+		// Having added an item to an empty list, test if the list size is 1
+		C206_CaseStudy.addAccount(accountList, a1);
+		// Add an item and test if ArrayList has a size of 1
+		assertEquals("Check if arraylist size is 1", 1, accountList.size());
+	}
 
-	  }
-	  @Test
-	  public void viewAccounttest() {
-	    // Given an empty list, check if the list size is 2 after adding 2 products(Normal)
-	    addAccounttest();
+	@Test
+	public void retrieveAccounttest() {
 
-	    String output = C206_CaseStudy.retrieveAllAccount(accountList);
-	    // Test if the predicted output String is the same as the retrieved list
-	    assertEquals("Checks if view all is working properly.", output, C206_CaseStudy.retrieveAllAccount(accountList));
-	  }
-	  @Test
-	  public void deleteAccount() {
-	    
-	    assertNotNull("Test if there is valid Request Quotation arraylist to retrieve item", accountList);
-	    // Check if the list size is 1 given an empty list after deleting 1 customer
-	    C206_CaseStudy.deleteAccount(accountList, "Account");
-	    C206_CaseStudy.deleteAccount(accountList,"USERNAME");
-	    assertEquals("Checks if deleted properly,", 0, accountList.size());
-	  } //Sharan ends here
+		// Remove customer according to the list. Check if planned output String is the
+		// same as retrieved package list
+		String output = String.format("%-10s %-20s %-10s %-10s %-20s\n", "USERNAME", "USERROLE", "CONTACT NUMBER",
+				"STUDENTID");
+		addAccounttest();
+		// Check if output string is similar to the received list
+		assertEquals("checks if its retrieved properly", output, C206_CaseStudy.retrieveAllAccount(accountList));
+
+	}
+
+	@Test
+	public void viewAccounttest() {
+		// Given an empty list, check if the list size is 2 after adding 2
+		// products(Normal)
+		addAccounttest();
+
+		String output = C206_CaseStudy.retrieveAllAccount(accountList);
+		// Test if the predicted output String is the same as the retrieved list
+		assertEquals("Checks if view all is working properly.", output, C206_CaseStudy.retrieveAllAccount(accountList));
+	}
+
+	@Test
+	public void deleteAccount() {
+
+		assertNotNull("Test if there is valid Request Quotation arraylist to retrieve item", accountList);
+		// Check if the list size is 1 given an empty list after deleting 1 customer
+		C206_CaseStudy.deleteAccount(accountList, "Account");
+		C206_CaseStudy.deleteAccount(accountList, "USERNAME");
+		assertEquals("Checks if deleted properly,", 0, accountList.size());
+	} // Sharan ends here
 }
