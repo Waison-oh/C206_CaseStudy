@@ -207,11 +207,6 @@ public class SchoolLunchBox_App {
 	// =================================================================================
 	// //
 
-	private static void searchOrder(ArrayList<Order> orderList) {
-		// TODO Auto-generated method stub
-
-	}
-
 	private static void setHeader(String header) {
 		// TODO Auto-generated method stub
 		Helper.line(80, "-");
@@ -366,85 +361,84 @@ public class SchoolLunchBox_App {
 	// ORDER//
 	// Qi Yue start//
 
-		private static void createOrder(ArrayList<Order> orderList, ArrayList<MenuItem> items) {
-			C206_CaseStudy.setHeader("CREATE ORDER");
+	private static void createOrder(ArrayList<Order> orderList, ArrayList<MenuItem> items) {
+		C206_CaseStudy.setHeader("CREATE ORDER");
 
-			System.out.println("Current Total Amount Of Orders: " + orderList.size());
-			String studentId = Helper.readString("Enter student id> ");
-			String orderDate = Helper.readString("Enter order date> ");
+		System.out.println("Current Total Amount Of Orders: " + orderList.size());
+		String studentId = Helper.readString("Enter student id> ");
+		String orderDate = Helper.readString("Enter order date> ");
 
-			
-			Order newOrder = new Order(studentId, orderDate, items);
-			orderList.add(newOrder);
-			System.out.println("Order added!");
-		}
+		Order newOrder = new Order(studentId, orderDate, items);
+		orderList.add(newOrder);
+		System.out.println("Order added!");
+	}
 
-		public static Boolean doDeleteOrder(ArrayList<Order> orderList, String studentId) {
-			boolean isDelete = false;
-			for (int i = 0; i < orderList.size(); i++) {
-				String id = orderList.get(i).getStudentId();
-				if (studentId.equals(id)) {
-					orderList.remove(i);
-					isDelete = true;
-				}
-			}
-			return isDelete;
-		}
-
-		private static void deleteOrder(ArrayList<Order> orderList) {
-			C206_CaseStudy.setHeader("DELETE ORDER");
-			String studentid = Helper.readString("Enter Student ID: ");
-			Boolean isDelete = doDeleteOrder(orderList, studentid);
-			if (isDelete == false) {
-				System.out.println("Invalid order");
-			} else {
-				System.out.println(studentid + "'s  Order Deleted");
+	public static Boolean doDeleteOrder(ArrayList<Order> orderList, String studentId) {
+		boolean isDelete = false;
+		for (int i = 0; i < orderList.size(); i++) {
+			String id = orderList.get(i).getStudentId();
+			if (studentId.equals(id)) {
+				orderList.remove(i);
+				isDelete = true;
 			}
 		}
+		return isDelete;
+	}
 
-		public static void SearchOrder(ArrayList<Order> orderList) {
-			C206_CaseStudy.setHeader("Search LIST");
-			String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
-			String ID = Helper.readString("Enter Student ID To Search For: ");
-			for (int i = 0; i < orderList.size(); i++) {
-				if (orderList.get(i).getStudentId().equals(ID)) {
-					output += String.format("%-90s\n", orderList.get(i).toString());
-				} else {
-					System.out.println("Invalid Student ID entered! ");
-				}
-			}
-			System.out.println(output);
+	private static void deleteOrder(ArrayList<Order> orderList) {
+		C206_CaseStudy.setHeader("DELETE ORDER");
+		String studentid = Helper.readString("Enter Student ID: ");
+		Boolean isDelete = doDeleteOrder(orderList, studentid);
+		if (isDelete == false) {
+			System.out.println("Invalid order");
+		} else {
+			System.out.println(studentid + "'s  Order Deleted");
 		}
+	}
 
-		public static String getAllOrder(ArrayList<Order> orderList) {
-			String output = "";
-
-			for (int i = 0; i < orderList.size(); i++) {
+	public static void searchOrder(ArrayList<Order> orderList) {
+		C206_CaseStudy.setHeader("Search LIST");
+		String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
+		String ID = Helper.readString("Enter Student ID To Search For: ");
+		for (int i = 0; i < orderList.size(); i++) {
+			if (orderList.get(i).getStudentId().equals(ID)) {
 				output += String.format("%-90s\n", orderList.get(i).toString());
-			}
-			return output;
-		}
-
-		public static void viewAllOrder(ArrayList<Order> orderList) {
-			C206_CaseStudy.setHeader("ORDER LIST");
-			String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
-			output += getAllOrder(orderList);
-			System.out.println(output);
-		}
-
-		public static void updateOrder(ArrayList<Order> orderList) {
-			String id = Helper.readString("Enter Student ID: ");
-			for (int i = 0; i < orderList.size(); i++) {
-				if (orderList.get(i).getStudentId().equals(id)) {
-					String newOrderDate = Helper.readString("Enter New Order Date: ");
-					orderList.get(i).setOrderDate(newOrderDate);
-					System.out.println("Order Date Updated");
-				} else {
-					System.out.println("Student ID Invalid");
-				}
+			} else {
+				System.out.println("Invalid Student ID entered! ");
 			}
 		}
-		// Qi Yue end//
+		System.out.println(output);
+	}
+
+	public static String getAllOrder(ArrayList<Order> orderList) {
+		String output = "";
+
+		for (int i = 0; i < orderList.size(); i++) {
+			output += String.format("%-90s\n", orderList.get(i).toString());
+		}
+		return output;
+	}
+
+	public static void viewAllOrder(ArrayList<Order> orderList) {
+		C206_CaseStudy.setHeader("ORDER LIST");
+		String output = String.format("%-20s %-20s %-20s\n", "STUDENT ID", "ORDER DATE", "ITEM NAME");
+		output += getAllOrder(orderList);
+		System.out.println(output);
+	}
+
+	public static void updateOrder(ArrayList<Order> orderList) {
+		String id = Helper.readString("Enter Student ID: ");
+		for (int i = 0; i < orderList.size(); i++) {
+			if (orderList.get(i).getStudentId().equals(id)) {
+				String newOrderDate = Helper.readString("Enter New Order Date: ");
+				orderList.get(i).setOrderDate(newOrderDate);
+				System.out.println("Order Date Updated");
+			} else {
+				System.out.println("Student ID Invalid");
+			}
+		}
+	}
+	// Qi Yue end//
 
 	// OPTION 4 ========================================================== MONTHLY
 	// MENU//
@@ -453,8 +447,8 @@ public class SchoolLunchBox_App {
 		// hard code item menu for local testing:
 		String listItem = "";
 		for (int i = 0; i < items.size(); i++) {
-			listItem += String.format("%-20d %-20s %-20s %-10s\n", i,items.get(i).getCategory(), items.get(i).getName(),
-					items.get(i).getPrice());
+			listItem += String.format("%-20d %-20s %-20s %-10s\n", i, items.get(i).getCategory(),
+					items.get(i).getName(), items.get(i).getPrice());
 		}
 		System.out.println(listItem);
 		//
@@ -472,7 +466,7 @@ public class SchoolLunchBox_App {
 		int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
 		String choose = Helper.readString("Choose item to add > ");
-		
+
 		for (int i = 0; i < items.size(); i++) {
 			String name = items.get(i).getName();
 
@@ -562,12 +556,12 @@ public class SchoolLunchBox_App {
 				}
 				int ItemNum = Helper.readInt("Enter the number of item you want to add >");
 
-					menuList.get(i).setDisplayName(newMenuName);
-					menuList.get(i).setMonth(month);
-					menuList.get(i).setNumberOfItems(ItemNum);
-					isUpdate = true;
-					break;
-				
+				menuList.get(i).setDisplayName(newMenuName);
+				menuList.get(i).setMonth(month);
+				menuList.get(i).setNumberOfItems(ItemNum);
+				isUpdate = true;
+				break;
+
 			}
 		}
 		if (isUpdate == true) {
