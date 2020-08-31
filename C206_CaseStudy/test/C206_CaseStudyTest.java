@@ -139,8 +139,9 @@ public class C206_CaseStudyTest {
 			assertNotNull("Check if there is valid Bill arraylist to add to", billList);
 			// Given an empty list, after adding 1 item, the size of the list is 1//
 			Bill billnew = new Bill("Alice", 5.60, "21/8/2020", false);
+			billList.add(billnew);
 			// The bill just added is the same as the first item of the list//
-			assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
+			assertSame("Check that Bill arraylist size is 1", 1, billList.size());
 			assertSame("Check that Bill is added", billnew, billList.get(0));
 
 			// Add another bill. Test The size of the list is 2 -normal condition//
