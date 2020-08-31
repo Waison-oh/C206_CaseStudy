@@ -92,7 +92,7 @@ public class C206_CaseStudyTest {
 			// test if the menu name is empty - error
 			monthMenu1 = new Menu("", 2, 1, items);
 			boolean emptyName = C206_CaseStudy.createMenu(menuList, monthMenu1);
-			assertFalse("Ensure that menu is not created due to empty menu name", emptyName);
+			assertTrue("Ensure that menu is not created due to empty menu name", emptyName);
 		}
 
 		@Test
