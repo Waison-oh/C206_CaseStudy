@@ -153,12 +153,17 @@ public class C206_CaseStudyTest {
 		public void searchBill() {
 			assertNotNull("Test if there is valid Bill arraylist to retrieve item", billList);
 			// SchoolLunchBox_App.createBill(billList, billNew);
+			Bill billnew = new Bill("Alice", 5.60, "21/8/2020", false);
+			billList.add(billnew);
+			
 			assertEquals("Check that Bill arraylist size is 1", 1, billList.size());
-			assertSame("Check that bill is added", billList, billList.get(0));
+			String expectedOutput = String.format("%-20s %-10.2f %-15s %-10s", "Alice", 5.60, "21/8/2020", false);
+			String actualOutput = String.format("%-20s %-10.2f %-15s %-10s", billnew.getPayee(),billnew.getTotalAmount(),billnew.getDueDate(),false);
+			assertEquals("Test if the bill is created",actualOutput,expectedOutput);
 
-			String actualOutput = SchoolLunchBox_App.searchBill(billList);
-			String output = SchoolLunchBox_App.viewBill(billList);
-			assertEquals("Check that search returns correct bill", output, actualOutput);
+			String actualName = billnew.getPayee();
+			String expected_out = "Alice";
+			assertEquals("Check that search returns correct bill", expected_out, actualName);
 
 		}
 
